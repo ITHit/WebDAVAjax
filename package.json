@@ -1,0 +1,25 @@
+{
+  "name": "webdav.client",
+  "version": "4.0.2364",
+  "description": "WebDAV ajax library for opening documents from a web page and managing WebDAV servers.",
+  "main": "ITHitWebDAVClient.js",
+  "keywords": [
+    "webdav",
+    "javascript",
+    "library",
+    "ithit"
+  ],
+  "bugs": {
+    "email": "info@ithit.com"
+  },
+  "homepage": "https://www.webdavsystem.com/ajax/",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "IT Hit, LTD <info@ithit.com>",
+  "license": "SEE LICENSE IN README.md",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ITHit/WebDAVAjax.git"
+  }
+}

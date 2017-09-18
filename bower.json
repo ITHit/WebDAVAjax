@@ -1,0 +1,25 @@
+{
+  "name": "webdav.client",
+  "authors": [
+    "IT Hit, LTD <info@ithit.com>"
+  ],
+  "description": "WebDAV ajax library for opening documents from a web page and managing WebDAV servers.",
+  "keywords": [
+    "webdav",
+    "javascript",
+    "library"
+  ],
+  "license": "https://www.webdavsystem.com/media/1175/it-hit-webdav-ajax-library-license-agreement.rtf",
+  "homepage": "https://www.webdavsystem.com/ajax/",
+  "ignore": [
+    "**/.*",
+    "/package.json"
+  ],
+  "moduleType": [
+    "globals"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ITHit/WebDAVAjax.git"
+  }
+}
