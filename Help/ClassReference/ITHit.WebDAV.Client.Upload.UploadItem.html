@@ -2750,7 +2750,7 @@
 
     
     <div class="description">
-        This class represent file upload, provides methods and notification tocontrol it.
+        Represents a file or folder being uploaded. Provides functions to discover item state, get info about uploadprogress as well as to pause, resume and cancel upload.
     </div>
     
 
@@ -2999,7 +2999,7 @@
         <h4 class="name" id="CancelAsync">
             
             
-                CancelAsync<span class="signature">(<span class="optional">fCallback</span>, <span class="optional">iTryCount</span>)</span>
+                CancelAsync<span class="signature">(<span class="optional">iTryCount</span>, <span class="optional">fCallback</span>)</span>
             
         </h4>
     </div>
@@ -3031,48 +3031,12 @@
 		<th>Type</th>
 		
 		
-		<th>Default</th>
-		
 		
 		<th class="last">Description</th>
 	</tr>
 	</thead>
 	
 	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>fCallback</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type"><a href="ITHit.WebDAV.Client.Upload.UploadItem.html#~AsyncCallback">ITHit.WebDAV.Client.Upload.UploadItem~AsyncCallback</a></span>
-
-
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                The callback to call when upload cancelled.</td>
-        </tr>
-	
 	
 	
         <tr>
@@ -3090,11 +3054,35 @@
             </td>
             
             
-                <td class="default">
+            
+            <td class="description last">
                 
-                    5
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
                 
-                </td>
+                Number of times to try to delete the file if the file did not exist on the server before upload.Pass 0 to not try to delete the file. Default is: 5.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>fCallback</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type"><a href="ITHit.WebDAV.Client.Upload.UploadItem.html#~AsyncCallback">ITHit.WebDAV.Client.Upload.UploadItem~AsyncCallback</a></span>
+
+
+            
+            </td>
+            
             
             
             <td class="description last">
@@ -3106,7 +3094,7 @@
                         
                     
                 
-                The number to retry.</td>
+                The callback to call when upload cancelled.</td>
         </tr>
 	
 	
@@ -3717,7 +3705,7 @@
 
     
     <div class="description">
-        Begins upload.
+        Pauses upload.
     </div>
     
 
