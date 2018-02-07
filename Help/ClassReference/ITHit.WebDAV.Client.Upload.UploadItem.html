@@ -2999,7 +2999,7 @@
         <h4 class="name" id="CancelAsync">
             
             
-                CancelAsync<span class="signature">(<span class="optional">iTryCount</span>, <span class="optional">fCallback</span>)</span>
+                CancelAsync<span class="signature">(<span class="optional">iTryCount</span>, <span class="optional">iDelayAttempt</span>, <span class="optional">fCallback</span>)</span>
             
         </h4>
     </div>
@@ -3065,6 +3065,36 @@
                     
                 
                 Number of times to try to delete the file if the file did not exist on the server before upload.Pass 0 to not try to delete the file. Default is: 5.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>iDelayAttempt</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                Delay between attempts to delete in milliseconds. Default is: 500.</td>
         </tr>
 	
 	
