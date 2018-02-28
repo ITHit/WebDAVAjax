@@ -1407,6 +1407,8 @@
             
                 <li data-name="ITHit.WebDAV.Client.DocManager.GetInstallFileName"><a href="ITHit.WebDAV.Client.DocManager.html#.GetInstallFileName">GetInstallFileName</a></li>
             
+                <li data-name="ITHit.WebDAV.Client.DocManager.GetProtocolInstallFileNames"><a href="ITHit.WebDAV.Client.DocManager.html#.GetProtocolInstallFileNames">GetProtocolInstallFileNames</a></li>
+            
                 <li data-name="ITHit.WebDAV.Client.DocManager.IsDavProtocoSupported"><a href="ITHit.WebDAV.Client.DocManager.html#.IsDavProtocoSupported">IsDavProtocoSupported</a></li>
             
                 <li data-name="ITHit.WebDAV.Client.DocManager.IsMicrosoftOfficeDocument"><a href="ITHit.WebDAV.Client.DocManager.html#.IsMicrosoftOfficeDocument">IsMicrosoftOfficeDocument</a></li>
@@ -2568,6 +2570,8 @@
             
             <span class="subtitle">Members</span>
             
+                <li data-name="ITHit.WebDAV.Client.WebDavSession.ProtocolVersion"><a href="ITHit.WebDAV.Client.WebDavSession.html#.ProtocolVersion">ProtocolVersion</a></li>
+            
                 <li data-name="ITHit.WebDAV.Client.WebDavSession.Version"><a href="ITHit.WebDAV.Client.WebDavSession.html#.Version">Version</a></li>
             
             </ul>
@@ -3482,7 +3486,97 @@ ITHit.WebDAV.Client.DocManager.EditDocument(sDocumentUrl, sMountPoint, fProtocol
                         
                 </span>
             </td>
-            <td class="description last">File name of the protocol installer.</td>
+            <td class="description last">File name of the protocol installer.Obsolete. Please use <code>GetProtocolInstallFileNames</code> instead</td>
+        </tr>
+    
+    </tbody>
+</table>
+
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id=".GetProtocolInstallFileNames">
+            
+            
+                <span class="type-signature static">static</span>ITHit.WebDAV.Client.DocManager.GetProtocolInstallFileNames<span class="signature">()</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{Array}</span>
+            
+        </h4>
+    </div>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Gets file names of the protocol installer depending on OS.
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+
+<h5>Returns:</h5>
+<table class="params">
+    <tbody>
+    
+        <tr>
+            <td class="type">
+                <span class="param-type">
+                
+                            Array
+                            
+                        
+                </span>
+            </td>
+            <td class="description last">An array with file names of the protocol installer.</td>
         </tr>
     
     </tbody>
