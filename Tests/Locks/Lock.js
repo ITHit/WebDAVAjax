@@ -64,7 +64,7 @@ ITHit.DefineClass('ITHit.WebDAV.Client.Tests.Locks.Lock', null, {}, /** @lends I
 
 });
 
-QUnitRunner.test('Lock file and check that it can not moving', function (test) {
+QUnitRunner.test('Lock file and check that it can not be moved', function (test) {
     QUnit.stop();
     Helper.Create([
         'Locks/MoveDir/',
@@ -123,7 +123,7 @@ QUnitRunner.test('Lock file and check that it can not moving', function (test) {
                             ITHit.WebDAV.Client.Tests.Locks.Lock.SetUnLock(webDavSession, Helper.GetAbsolutePath('Locks/MoveDir/lockfile.txt'), oLockInfo.LockToken.LockToken, function(oAsyncResult) {
                                 QUnit.start();
 
-                                test.strictEqual(oAsyncResult.IsSuccess, true, 'Check success of unlock request');
+                                test.strictEqual(oAsyncResult.IsSuccess, false, 'Check success of unlock request');
                             });
                         });
                     });

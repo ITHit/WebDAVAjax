@@ -113,7 +113,12 @@ QUnitRunner.test('Subscribe on WebDavSession events: OnBeforeRequestSend, OnResp
 
             test.strictEqual(oResponseData.Status, ITHit.WebDAV.Client.HttpStatus.MultiStatus.Code, 'Check status in response event data');
             test.strictEqual(oResponseData.StatusDescription, ITHit.WebDAV.Client.HttpStatus.MultiStatus.Description, 'Check status description in response event data');
-            test.strictEqual(oResponseData.Headers['Content-Type'].replace(/; ?/g, '; '), 'application/xml; charset=utf-8', 'Check content type header in response event data');
+            for (var key in oResponseData.Headers) {
+                if (key.toLowerCase() == 'content-type') {
+                    test.strictEqual(oResponseData.Headers[key].replace(/; ?/g, '; '), 'application/xml; charset=utf-8', 'Check content type header in response event data');
+                    break;
+                }
+            }
             test.strictEqual(oResponseData.BodyText.indexOf('event.txt') !== -1, true, 'Check body text in response event data');
         });
     });
