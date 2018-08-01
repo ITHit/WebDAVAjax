@@ -1731,6 +1731,8 @@
             
                 <li data-name="ITHit.WebDAV.Client.Folder#GetItemAsync"><a href="ITHit.WebDAV.Client.Folder.html#GetItemAsync">GetItemAsync</a></li>
             
+                <li data-name="ITHit.WebDAV.Client.Folder#GetPageAsync"><a href="ITHit.WebDAV.Client.Folder.html#GetPageAsync">GetPageAsync</a></li>
+            
                 <li data-name="ITHit.WebDAV.Client.Folder#GetParent"><a href="ITHit.WebDAV.Client.Folder.html#GetParent">GetParent</a></li>
             
                 <li data-name="ITHit.WebDAV.Client.Folder#GetParentAsync"><a href="ITHit.WebDAV.Client.Folder.html#GetParentAsync">GetParentAsync</a></li>
@@ -1806,6 +1808,8 @@
                 <li data-name="ITHit.WebDAV.Client.Folder~GetFolderAsyncCallback"><a href="ITHit.WebDAV.Client.Folder.html#~GetFolderAsyncCallback">GetFolderAsyncCallback</a></li>
             
                 <li data-name="ITHit.WebDAV.Client.Folder~GetItemAsyncCallback"><a href="ITHit.WebDAV.Client.Folder.html#~GetItemAsyncCallback">GetItemAsyncCallback</a></li>
+            
+                <li data-name="ITHit.WebDAV.Client.Folder~GetPageAsyncCallback"><a href="ITHit.WebDAV.Client.Folder.html#~GetPageAsyncCallback">GetPageAsyncCallback</a></li>
             
                 <li data-name="ITHit.WebDAV.Client.Folder~ItemExistsAsyncCallback"><a href="ITHit.WebDAV.Client.Folder.html#~ItemExistsAsyncCallback">ItemExistsAsyncCallback</a></li>
             
@@ -2249,6 +2253,32 @@
             <span class="subtitle">Members</span>
             
                 <li data-name="ITHit.WebDAV.Client.OptionsInfo#Features"><a href="ITHit.WebDAV.Client.OptionsInfo.html#Features">Features</a></li>
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+
+            
+        </li>
+    
+        <li class="item tree-item tree-closed" data-name="ITHit.WebDAV.Client.PagingAsyncResult">
+            <span class="title">
+                
+                    <a href="ITHit.WebDAV.Client.PagingAsyncResult.html">PagingAsyncResult</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            <span class="subtitle">Members</span>
+            
+                <li data-name="ITHit.WebDAV.Client.PagingAsyncResult#PagingTotal"><a href="ITHit.WebDAV.Client.PagingAsyncResult.html#PagingTotal">PagingTotal</a></li>
             
             </ul>
             <ul class="methods itemMembers">
@@ -7451,6 +7481,256 @@ webDavSession.OpenFolderAsync(sFolderAbsolutePath, null, function(oFolderAsyncRe
             
                 
 <span class="param-type"><a href="ITHit.WebDAV.Client.Folder.html#~GetItemAsyncCallback">ITHit.WebDAV.Client.Folder~GetItemAsyncCallback</a></span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                Function to call when operation is completed.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+
+<h5>Returns:</h5>
+<table class="params">
+    <tbody>
+    
+        <tr>
+            <td class="type">
+                <span class="param-type">
+                
+                            <a href="ITHit.WebDAV.Client.Request.html">ITHit.WebDAV.Client.Request</a>
+                            
+                        
+                </span>
+            </td>
+            <td class="description last">Request object.</td>
+        </tr>
+    
+    </tbody>
+</table>
+
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="GetPageAsync">
+            
+            
+                GetPageAsync<span class="signature">(bRecursively, aProperties, offset, nResults, aOrderProperties, fCallback)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="ITHit.WebDAV.Client.Request.html">ITHit.WebDAV.Client.Request</a>}</span>
+            
+        </h4>
+    </div>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Get children of ITHit.WebDAV.Client.Folder folder that supports paging and sorting. If boolean parameter is set to false only children of this folder are requested.Otherwise the entire subtree is requested.
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>bRecursively</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                Indicates if all subtree of children should be return. Default is false.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>aProperties</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="ITHit.WebDAV.Client.PropertyName.html">ITHit.WebDAV.Client.PropertyName</a>></span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                Additional properties requested from server. Default is empty array.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>offset</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                The number of items to skip before returning the remaining items. Start listing from from next item. Default is null</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>nResults</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                The number of items to return. Default is null.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>aOrderProperties</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="ITHit.WebDAV.Client.OrderProperty.html">ITHit.WebDAV.Client.OrderProperty</a>></span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                List of order properties. Default is empty array</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>fCallback</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type"><a href="ITHit.WebDAV.Client.Folder.html#~GetPageAsyncCallback">ITHit.WebDAV.Client.Folder~GetPageAsyncCallback</a></span>
 
 
             
@@ -13772,6 +14052,163 @@ webDavSession.OpenFileAsync(sFileAbsolutePath, null, function(oFileAsyncResult) 
             <td class="description last">
                 
                 Item object corresponding to requested path.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+            </td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+            
+                
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="~GetPageAsyncCallback">
+            
+            
+                GetPageAsyncCallback<span class="signature">(oResult)</span>
+            
+        </h4>
+    </div>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Callback function to be called when children items loaded from server.
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>oResult</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type"><a href="ITHit.WebDAV.Client.PagingAsyncResult.html">ITHit.WebDAV.Client.PagingAsyncResult</a></span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                Result object
+                
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>Result</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="ITHit.WebDAV.Client.HierarchyItem.html">ITHit.WebDAV.Client.HierarchyItem</a>></span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                Array of file and folder objects.</td>
         </tr>
 	
 	
