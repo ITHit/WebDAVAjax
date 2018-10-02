@@ -48,7 +48,7 @@ ITHit.DefineClass('ITHit.WebDAV.Client.Tests.HierarchyItems.GetFolderItems', nul
             /** @typedef {ITHit.WebDAV.Client.Folder} oFolder */
             var oFolder = oFolderAsyncResult.Result;
 
-            oFolder.GetPageAsync(false, false, offset, pageSize, sortColumns, function (oPagingAsyncResult) {
+            oFolder.GetPageAsync(null, offset, pageSize, sortColumns, function (oPagingAsyncResult) {
 
                 /** @type {ITHit.WebDAV.Client.HierarchyItem[]} aItems */
                 var aItems = oPagingAsyncResult.Result;                                // Items on the requested page.
