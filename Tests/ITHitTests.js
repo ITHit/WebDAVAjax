@@ -495,7 +495,7 @@ if (!Array.prototype.forEach) {
 					url = QUnitRunner.getHash('url');
 				}
 				if (!url && window.opener && window.opener.location) {
-					url = window.opener.location.href;
+				    url = window.opener.location.href.replace(/[^/]*(\?[^?]+)?(#[^#]+)?$/, '');
 				}
 				if (!url) {
 					url = location.href.replace(/[^/]*(\?[^?]+)?(#[^#]+)?$/, '');

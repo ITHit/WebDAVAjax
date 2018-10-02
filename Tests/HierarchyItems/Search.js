@@ -35,6 +35,31 @@ ITHit.DefineClass('ITHit.WebDAV.Client.Tests.HierarchyItems.Search', null, {}, /
     },
 
     /**
+    * @param {ITHit.WebDAV.Client.WebDavSession} [webDavSession=new ITHit.WebDAV.Client.WebDavSession()]
+    * @param {string} [sFolderAbsolutePath='http://localhost:87654/']
+    * @param {number} [offset=10]
+    * @param {number} [pageSize=5]
+    * @param {function} [fCallback=function() {}]
+    */
+    GetSearchPageByString: function (webDavSession, sFolderAbsolutePath, offset, pageSize, fCallback) {
+        webDavSession.OpenFolderAsync(sFolderAbsolutePath, null, function (oFolderAsyncResult) {
+
+            /** @typedef {ITHit.WebDAV.Client.Folder} oFolder */
+            var oFolder = oFolderAsyncResult.Result;
+
+            oFolder.GetSearchPageAsync('my_file', null, offset, pageSize, function (oPagingAsyncResult) {
+
+                /** @type {ITHit.WebDAV.Client.HierarchyItem[]} aItems */
+                var aItems = oPagingAsyncResult.Result;                                // Items on the requested page.
+                /** @type {number} totalPages */
+                var totalPages = Math.ceil(oPagingAsyncResult.TotalNumber / pageSize); // Total number of pages.
+
+                fCallback(oAsyncResult);
+            });
+        });
+    },
+
+    /**
      * @param {ITHit.WebDAV.Client.WebDavSession} [webDavSession=new ITHit.WebDAV.Client.WebDavSession()]
      * @param {string} [sFolderAbsolutePath='http://localhost:87654/Products/']
      * @param {function} [fCallback=function() {}]
@@ -64,6 +89,42 @@ ITHit.DefineClass('ITHit.WebDAV.Client.Tests.HierarchyItems.Search', null, {}, /
                 for (var i = 0, l = aItems.length; i < l; i++) {
                     console.log(aItems[i].DisplayName);
                 }
+
+                fCallback(oAsyncResult);
+            });
+        });
+    },
+
+    /**
+     * @param {ITHit.WebDAV.Client.WebDavSession} [webDavSession=new ITHit.WebDAV.Client.WebDavSession()]
+     * @param {string} [sFolderAbsolutePath='http://localhost:87654/Products/']
+     * @param {number} [offset=10]
+     * @param {number} [pageSize=5]
+     * @param {function} [fCallback=function() {}]
+     */
+    GetSearchPageByQuery: function (webDavSession, sFolderAbsolutePath, offset, pageSize, fCallback) {
+        webDavSession.OpenFolderAsync(sFolderAbsolutePath, null, function (oFolderAsyncResult) {
+
+            /** @typedef {ITHit.WebDAV.Client.Folder} oFolder */
+            var oFolder = oFolderAsyncResult.Result;
+
+            // Build search query
+            var oSearchQuery = new ITHit.WebDAV.Client.SearchQuery('my_%');
+
+            // By default WebDAV Ajax Client search by DisplayName property.
+            // You can add other properties to this list.
+            oSearchQuery.LikeProperties.push(new ITHit.WebDAV.Client.PropertyName('creator-displayname', 'DAV:'));
+            oSearchQuery.LikeProperties.push(new ITHit.WebDAV.Client.PropertyName('comment', 'DAV:'));
+
+            // Disable search by file content
+            oSearchQuery.EnableContains = false;
+
+            oFolder.GetSearchPageByQueryAsync(oSearchQuery, offset, pageSize, function (oPagingAsyncResult) {
+
+                /** @type {ITHit.WebDAV.Client.HierarchyItem[]} aItems */
+                var aItems = oPagingAsyncResult.Result;                                // Items on the requested page.
+                /** @type {number} totalPages */
+                var totalPages = Math.ceil(oPagingAsyncResult.TotalNumber / pageSize); // Total number of pages.
 
                 fCallback(oAsyncResult);
             });

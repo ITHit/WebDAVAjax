@@ -1580,6 +1580,8 @@
             
                 <li data-name="ITHit.WebDAV.Client.Features.Dasl"><a href="ITHit.WebDAV.Client.Features.html#Dasl">Dasl</a></li>
             
+                <li data-name="ITHit.WebDAV.Client.Features.Paging"><a href="ITHit.WebDAV.Client.Features.html#Paging">Paging</a></li>
+            
                 <li data-name="ITHit.WebDAV.Client.Features.ResumableDownload"><a href="ITHit.WebDAV.Client.Features.html#ResumableDownload">ResumableDownload</a></li>
             
                 <li data-name="ITHit.WebDAV.Client.Features.ResumableUpload"><a href="ITHit.WebDAV.Client.Features.html#ResumableUpload">ResumableUpload</a></li>
@@ -1849,6 +1851,10 @@
             
                 <li data-name="ITHit.WebDAV.Client.Folder#GetPropertyValuesAsync"><a href="ITHit.WebDAV.Client.Folder.html#GetPropertyValuesAsync">GetPropertyValuesAsync</a></li>
             
+                <li data-name="ITHit.WebDAV.Client.Folder#GetSearchPageAsync"><a href="ITHit.WebDAV.Client.Folder.html#GetSearchPageAsync">GetSearchPageAsync</a></li>
+            
+                <li data-name="ITHit.WebDAV.Client.Folder#GetSearchPageByQueryAsync"><a href="ITHit.WebDAV.Client.Folder.html#GetSearchPageByQueryAsync">GetSearchPageByQueryAsync</a></li>
+            
                 <li data-name="ITHit.WebDAV.Client.Folder#GetSource"><a href="ITHit.WebDAV.Client.Folder.html#GetSource">GetSource</a></li>
             
                 <li data-name="ITHit.WebDAV.Client.Folder#GetSourceAsync"><a href="ITHit.WebDAV.Client.Folder.html#GetSourceAsync">GetSourceAsync</a></li>
@@ -1866,8 +1872,6 @@
                 <li data-name="ITHit.WebDAV.Client.Folder#MoveTo"><a href="ITHit.WebDAV.Client.Folder.html#MoveTo">MoveTo</a></li>
             
                 <li data-name="ITHit.WebDAV.Client.Folder#MoveToAsync"><a href="ITHit.WebDAV.Client.Folder.html#MoveToAsync">MoveToAsync</a></li>
-            
-                <li data-name="ITHit.WebDAV.Client.Folder#PageSearchByQueryAsync"><a href="ITHit.WebDAV.Client.Folder.html#PageSearchByQueryAsync">PageSearchByQueryAsync</a></li>
             
                 <li data-name="ITHit.WebDAV.Client.Folder#Refresh"><a href="ITHit.WebDAV.Client.Folder.html#Refresh">Refresh</a></li>
             
@@ -2374,6 +2378,38 @@
             
         </li>
     
+        <li class="item tree-item tree-closed" data-name="ITHit.WebDAV.Client.OrderProperty">
+            <span class="title">
+                
+                    <a href="ITHit.WebDAV.Client.OrderProperty.html">OrderProperty</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            <span class="subtitle">Members</span>
+            
+                <li data-name="ITHit.WebDAV.Client.OrderProperty#Ascending"><a href="ITHit.WebDAV.Client.OrderProperty.html#Ascending">Ascending</a></li>
+            
+                <li data-name="ITHit.WebDAV.Client.OrderProperty#Property"><a href="ITHit.WebDAV.Client.OrderProperty.html#Property">Property</a></li>
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="ITHit.WebDAV.Client.OrderProperty#toString"><a href="ITHit.WebDAV.Client.OrderProperty.html#toString">toString</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+
+            
+        </li>
+    
         <li class="item tree-item tree-closed" data-name="ITHit.WebDAV.Client.PagingAsyncResult">
             <span class="title">
                 
@@ -2384,7 +2420,7 @@
             
             <span class="subtitle">Members</span>
             
-                <li data-name="ITHit.WebDAV.Client.PagingAsyncResult#PagingTotal"><a href="ITHit.WebDAV.Client.PagingAsyncResult.html#PagingTotal">PagingTotal</a></li>
+                <li data-name="ITHit.WebDAV.Client.PagingAsyncResult#TotalItems"><a href="ITHit.WebDAV.Client.PagingAsyncResult.html#TotalItems">TotalItems</a></li>
             
             </ul>
             <ul class="methods itemMembers">
@@ -6231,7 +6267,7 @@ webDavSession.OpenFileAsync(sFileAbsolutePath, null, function(oFileAsyncResult) 
 
     
     <div class="description">
-        Returns children of ITHit.WebDAV.Client.Folder folder.
+        This method returns all items contained in the folder, which may be very large. To limit amount of items returned and get only a single results page use GetPageAsync() function instead.
     </div>
     
 
@@ -6437,7 +6473,7 @@ webDavSession.OpenFileAsync(sFileAbsolutePath, null, function(oFileAsyncResult) 
 
     
     <div class="description">
-        Get children of ITHit.WebDAV.Client.Folder folder. If boolean parameter is set to false only children of this folder are requested.Otherwise the entire subtree is requested.
+        This method returns all items contained in the folder, which may be very large. To limit amount of items returned and get only a single results page use GetPageAsync() function instead.
     </div>
     
 
@@ -7645,7 +7681,7 @@ webDavSession.OpenFolderAsync(sFolderAbsolutePath, null, function(oFolderAsyncRe
         <h4 class="name" id="GetPageAsync">
             
             
-                GetPageAsync<span class="signature">(bRecursively, aProperties, offset, nResults, aOrderProperties, fCallback)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="ITHit.WebDAV.Client.Request.html">ITHit.WebDAV.Client.Request</a>}</span>
+                GetPageAsync<span class="signature">(aProperties, offset, nResults, aOrderProperties, fCallback)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="ITHit.WebDAV.Client.Request.html">ITHit.WebDAV.Client.Request</a>}</span>
             
         </h4>
     </div>
@@ -7656,7 +7692,7 @@ webDavSession.OpenFolderAsync(sFolderAbsolutePath, null, function(oFolderAsyncRe
 
     
     <div class="description">
-        Get children of ITHit.WebDAV.Client.Folder folder that supports paging and sorting. If boolean parameter is set to false only children of this folder are requested.Otherwise the entire subtree is requested.
+        Get children of ITHit.WebDAV.Client.Folder folder that supports paging and sorting. If boolean parameter is set to false only children of this folder are requested.
     </div>
     
 
@@ -7683,29 +7719,6 @@ webDavSession.OpenFolderAsync(sFolderAbsolutePath, null, function(oFolderAsyncRe
 	</thead>
 	
 	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>bRecursively</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                Indicates if all subtree of children should be return. Default is false.</td>
-        </tr>
-	
 	
 	
         <tr>
@@ -7885,6 +7898,33 @@ webDavSession.OpenFolderAsync(sFolderAbsolutePath, null, function(oFolderAsyncRe
 
     
     
+    
+        <h5>Example</h5>
+        
+
+    
+    <pre class="prettyprint"><code>var webDavSession = new ITHit.WebDAV.Client.WebDavSession();
+var sFolderAbsolutePath = 'http://localhost:87654/';
+var offset = 10;
+var pageSize = 5;
+var sortColumns = [new ITHit.WebDAV.Client.OrderProperty(new ITHit.WebDAV.Client.PropertyName('name', 'myNs'), true)];
+var fCallback = function() {};
+
+webDavSession.OpenFolderAsync(sFolderAbsolutePath, null, function (oFolderAsyncResult) {
+
+    /** @typedef {ITHit.WebDAV.Client.Folder} oFolder */
+    var oFolder = oFolderAsyncResult.Result;
+
+    oFolder.GetPageAsync(false, false, offset, pageSize, sortColumns, function (oPagingAsyncResult) {
+
+        /** @type {ITHit.WebDAV.Client.HierarchyItem[]} aItems */
+        var aItems = oPagingAsyncResult.Result;                                // Items on the requested page.
+        /** @type {number} totalPages */
+        var totalPages = Math.ceil(oPagingAsyncResult.TotalNumber / pageSize); // Total number of pages.
+    });
+});</code></pre>
+    
+
     
 </dd>
 
@@ -9075,6 +9115,504 @@ webDavSession.OpenFileAsync(sFileAbsolutePath, null, function(oFileAsyncResult) 
         var aProperties = oAsyncResult.Result;
 
         console.log('Value of `mynamespace:myname`: ' + aProperties[0].StringValue());
+
+        fCallback(oAsyncResult);
+    });
+});</code></pre>
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="GetSearchPageAsync">
+            
+            
+                GetSearchPageAsync<span class="signature">(sSearchQuery, aAdditionalProperties, offset, nResults, fCallback)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="ITHit.WebDAV.Client.Request.html">ITHit.WebDAV.Client.Request</a>}</span>
+            
+        </h4>
+    </div>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        This method returns all items found on the server, which may be very large. To limit amount of items returned and get only a single results page use GetSearchPageAsync() function instead.
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>sSearchQuery</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                String of search query.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>aAdditionalProperties</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="ITHit.WebDAV.Client.PropertyName.html">ITHit.WebDAV.Client.PropertyName</a>></span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                List of properties to be returned from server in search results with each item. Default is an empty array.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>offset</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                The number of items to skip before returning the remaining items. Start listing from from next item. Default is null</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>nResults</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                The number of items to return. Default is null.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>fCallback</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">ITHit.WebDAV.Client.Folder~GetSearchPageAsyncCallback</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                Function to call when operation is completed.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+
+<h5>Returns:</h5>
+<table class="params">
+    <tbody>
+    
+        <tr>
+            <td class="type">
+                <span class="param-type">
+                
+                            <a href="ITHit.WebDAV.Client.Request.html">ITHit.WebDAV.Client.Request</a>
+                            
+                        
+                </span>
+            </td>
+            <td class="description last">Request object.</td>
+        </tr>
+    
+    </tbody>
+</table>
+
+    
+    
+    
+        <h5>Example</h5>
+        
+
+    
+    <pre class="prettyprint"><code>var webDavSession = new ITHit.WebDAV.Client.WebDavSession();
+var sFolderAbsolutePath = 'http://localhost:87654/';
+var offset = 10;
+var pageSize = 5;
+var fCallback = function() {};
+
+webDavSession.OpenFolderAsync(sFolderAbsolutePath, null, function (oFolderAsyncResult) {
+
+    /** @typedef {ITHit.WebDAV.Client.Folder} oFolder */
+    var oFolder = oFolderAsyncResult.Result;
+
+    oFolder.GetSearchPageAsync('my_file', null, offset, pageSize, function (oPagingAsyncResult) {
+
+        /** @type {ITHit.WebDAV.Client.HierarchyItem[]} aItems */
+        var aItems = oPagingAsyncResult.Result;                                // Items on the requested page.
+        /** @type {number} totalPages */
+        var totalPages = Math.ceil(oPagingAsyncResult.TotalNumber / pageSize); // Total number of pages.
+
+        fCallback(oAsyncResult);
+    });
+});</code></pre>
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="GetSearchPageByQueryAsync">
+            
+            
+                GetSearchPageByQueryAsync<span class="signature">(oSearchQuery, offset, nResults, fCallback)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="ITHit.WebDAV.Client.Request.html">ITHit.WebDAV.Client.Request</a>}</span>
+            
+        </h4>
+    </div>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Searches folder by query.
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>oSearchQuery</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type"><a href="ITHit.WebDAV.Client.SearchQuery.html">ITHit.WebDAV.Client.SearchQuery</a></span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                Object with search query conditions.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>offset</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                The number of items to skip before returning the remaining items. Start listing from from next item. Default is null</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>nResults</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                The number of items to return. Default is null.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>fCallback</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type"><a href="ITHit.WebDAV.Client.Folder.html#SearchByQueryAsyncCallback">ITHit.WebDAV.Client.Folder~SearchByQueryAsyncCallback</a></span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                Function to call when operation is completed.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+
+<h5>Returns:</h5>
+<table class="params">
+    <tbody>
+    
+        <tr>
+            <td class="type">
+                <span class="param-type">
+                
+                            <a href="ITHit.WebDAV.Client.Request.html">ITHit.WebDAV.Client.Request</a>
+                            
+                        
+                </span>
+            </td>
+            <td class="description last">Request object.</td>
+        </tr>
+    
+    </tbody>
+</table>
+
+    
+    
+    
+        <h5>Example</h5>
+        
+
+    
+    <pre class="prettyprint"><code>var webDavSession = new ITHit.WebDAV.Client.WebDavSession();
+var sFolderAbsolutePath = 'http://localhost:87654/Products/';
+var offset = 10;
+var pageSize = 5;
+var fCallback = function() {};
+
+webDavSession.OpenFolderAsync(sFolderAbsolutePath, null, function (oFolderAsyncResult) {
+
+    /** @typedef {ITHit.WebDAV.Client.Folder} oFolder */
+    var oFolder = oFolderAsyncResult.Result;
+
+    // Build search query
+    var oSearchQuery = new ITHit.WebDAV.Client.SearchQuery('my_%');
+
+    // By default WebDAV Ajax Client search by DisplayName property.
+    // You can add other properties to this list.
+    oSearchQuery.LikeProperties.push(new ITHit.WebDAV.Client.PropertyName('creator-displayname', 'DAV:'));
+    oSearchQuery.LikeProperties.push(new ITHit.WebDAV.Client.PropertyName('comment', 'DAV:'));
+
+    // Disable search by file content
+    oSearchQuery.EnableContains = false;
+
+    oFolder.GetSearchPageByQueryAsync(oSearchQuery, offset, pageSize, function (oPagingAsyncResult) {
+
+        /** @type {ITHit.WebDAV.Client.HierarchyItem[]} aItems */
+        var aItems = oPagingAsyncResult.Result;                                // Items on the requested page.
+        /** @type {number} totalPages */
+        var totalPages = Math.ceil(oPagingAsyncResult.TotalNumber / pageSize); // Total number of pages.
 
         fCallback(oAsyncResult);
     });
@@ -10941,210 +11479,6 @@ webDavSession.OpenFolderAsync(sSourceFolderAbsolutePath, null, function(oSourceF
         
             
 <dt>
-    <div class="nameContainer">
-        <h4 class="name" id="PageSearchByQueryAsync">
-            
-            
-                PageSearchByQueryAsync<span class="signature">(oSearchQuery, offset, nResults, fCallback)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="ITHit.WebDAV.Client.Request.html">ITHit.WebDAV.Client.Request</a>}</span>
-            
-        </h4>
-    </div>
-
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        Searches folder by query.
-    </div>
-    
-
-    
-    
-    
-    
-    
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>oSearchQuery</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type"><a href="ITHit.WebDAV.Client.SearchQuery.html">ITHit.WebDAV.Client.SearchQuery</a></span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                Object with search query conditions.</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>offset</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                The number of items to skip before returning the remaining items. Start listing from from next item. Default is null</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>nResults</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                The number of items to return. Default is null.</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>fCallback</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type"><a href="ITHit.WebDAV.Client.Folder.html#SearchByQueryAsyncCallback">ITHit.WebDAV.Client.Folder~SearchByQueryAsyncCallback</a></span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                Function to call when operation is completed.</td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-
-<h5>Returns:</h5>
-<table class="params">
-    <tbody>
-    
-        <tr>
-            <td class="type">
-                <span class="param-type">
-                
-                            <a href="ITHit.WebDAV.Client.Request.html">ITHit.WebDAV.Client.Request</a>
-                            
-                        
-                </span>
-            </td>
-            <td class="description last">Request object.</td>
-        </tr>
-    
-    </tbody>
-</table>
-
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
     <div class="nameContainer inherited">
         <h4 class="name" id="Refresh">
             
@@ -12086,7 +12420,7 @@ webDavSession.OpenFolderAsync(sFolderAbsolutePath, null, function(oFolderAsyncRe
 
     
     <div class="description">
-        Searches folder by query.
+        This method returns all items found on the server, which may be very large. To limit amount of items returned and get only a single results page use GetSearchPageByQueryAsync() function instead.
     </div>
     
 

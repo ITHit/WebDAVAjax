@@ -32,8 +32,31 @@ ITHit.DefineClass('ITHit.WebDAV.Client.Tests.HierarchyItems.GetFolderItems', nul
                 fCallback(oItemsAsyncResult);
             });
         });
-    }
+    },
 
+    /**
+    * @param {ITHit.WebDAV.Client.WebDavSession} [webDavSession=new ITHit.WebDAV.Client.WebDavSession()]
+    * @param {string} [sFolderAbsolutePath='http://localhost:87654/']
+    * @param {number} [offset=10]
+    * @param {number} [pageSize=5]
+    * @param {ITHit.WebDAV.Client.OrderProperty[]} [sortColumns=[new ITHit.WebDAV.Client.OrderProperty(new ITHit.WebDAV.Client.PropertyName('name', 'myNs'), true)]]
+    * @param {function} [fCallback=function() {}]
+    */
+    GetPage: function (webDavSession, sFolderAbsolutePath, offset, pageSize, sortColumns, fCallback) {
+        webDavSession.OpenFolderAsync(sFolderAbsolutePath, null, function (oFolderAsyncResult) {
+
+            /** @typedef {ITHit.WebDAV.Client.Folder} oFolder */
+            var oFolder = oFolderAsyncResult.Result;
+
+            oFolder.GetPageAsync(false, false, offset, pageSize, sortColumns, function (oPagingAsyncResult) {
+
+                /** @type {ITHit.WebDAV.Client.HierarchyItem[]} aItems */
+                var aItems = oPagingAsyncResult.Result;                                // Items on the requested page.
+                /** @type {number} totalPages */
+                var totalPages = Math.ceil(oPagingAsyncResult.TotalNumber / pageSize); // Total number of pages.
+            });
+        });
+    }
 });
 
 QUnitRunner.test('List folder content', function (test) {
