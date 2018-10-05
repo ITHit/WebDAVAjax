@@ -1919,11 +1919,13 @@
             
                 <li data-name="ITHit.WebDAV.Client.Folder~GetPageAsyncCallback"><a href="ITHit.WebDAV.Client.Folder.html#GetPageAsyncCallback">GetPageAsyncCallback</a></li>
             
+                <li data-name="ITHit.WebDAV.Client.Folder~GetSearchPageAsyncCallback"><a href="ITHit.WebDAV.Client.Folder.html#GetSearchPageAsyncCallback">GetSearchPageAsyncCallback</a></li>
+            
+                <li data-name="ITHit.WebDAV.Client.Folder~GetSearchPageByQueryAsyncCallback"><a href="ITHit.WebDAV.Client.Folder.html#GetSearchPageByQueryAsyncCallback">GetSearchPageByQueryAsyncCallback</a></li>
+            
                 <li data-name="ITHit.WebDAV.Client.Folder~ItemExistsAsyncCallback"><a href="ITHit.WebDAV.Client.Folder.html#ItemExistsAsyncCallback">ItemExistsAsyncCallback</a></li>
             
                 <li data-name="ITHit.WebDAV.Client.Folder~OpenItemAsyncCallback"><a href="ITHit.WebDAV.Client.Folder.html#OpenItemAsyncCallback">OpenItemAsyncCallback</a></li>
-            
-                <li data-name="ITHit.WebDAV.Client.Folder~PageSearchByQueryAsyncCallback"><a href="ITHit.WebDAV.Client.Folder.html#PageSearchByQueryAsyncCallback">PageSearchByQueryAsyncCallback</a></li>
             
                 <li data-name="ITHit.WebDAV.Client.Folder~SearchAsyncCallback"><a href="ITHit.WebDAV.Client.Folder.html#SearchAsyncCallback">SearchAsyncCallback</a></li>
             
@@ -2410,17 +2412,19 @@
             
         </li>
     
-        <li class="item tree-item tree-closed" data-name="ITHit.WebDAV.Client.PagingAsyncResult">
+        <li class="item tree-item tree-closed" data-name="ITHit.WebDAV.Client.PageResults">
             <span class="title">
                 
-                    <a href="ITHit.WebDAV.Client.PagingAsyncResult.html">PagingAsyncResult</a>
+                    <a href="ITHit.WebDAV.Client.PageResults.html">PageResults</a>
                 
             </span>
             <ul class="members itemMembers">
             
             <span class="subtitle">Members</span>
             
-                <li data-name="ITHit.WebDAV.Client.PagingAsyncResult#TotalItems"><a href="ITHit.WebDAV.Client.PagingAsyncResult.html#TotalItems">TotalItems</a></li>
+                <li data-name="ITHit.WebDAV.Client.PageResults#Page"><a href="ITHit.WebDAV.Client.PageResults.html#Page">Page</a></li>
+            
+                <li data-name="ITHit.WebDAV.Client.PageResults#TotalItems"><a href="ITHit.WebDAV.Client.PageResults.html#TotalItems">TotalItems</a></li>
             
             </ul>
             <ul class="methods itemMembers">
@@ -7918,9 +7922,9 @@ webDavSession.OpenFolderAsync(sFolderAbsolutePath, null, function (oFolderAsyncR
     oFolder.GetPageAsync(null, offset, pageSize, sortColumns, function (oPagingAsyncResult) {
 
         /** @type {ITHit.WebDAV.Client.HierarchyItem[]} aItems */
-        var aItems = oPagingAsyncResult.Result;                                // Items on the requested page.
+        var aItems = oPagingAsyncResult.Result.Page;                                // Items on the requested page.
         /** @type {number} totalPages */
-        var totalPages = Math.ceil(oPagingAsyncResult.TotalNumber / pageSize); // Total number of pages.
+        var totalPages = Math.ceil(oPagingAsyncResult.Result.TotalItems / pageSize); // Total number of pages.
     });
 });</code></pre>
     
@@ -9142,7 +9146,7 @@ webDavSession.OpenFileAsync(sFileAbsolutePath, null, function(oFileAsyncResult) 
 
     
     <div class="description">
-        This method returns all items found on the server, which may be very large. To limit amount of items returned and get only a single results page use GetSearchPageAsync() function instead.
+        Searches folder by search string.
     </div>
     
 
@@ -9271,7 +9275,7 @@ webDavSession.OpenFileAsync(sFileAbsolutePath, null, function(oFileAsyncResult) 
             <td class="type">
             
                 
-<span class="param-type">ITHit.WebDAV.Client.Folder~GetSearchPageAsyncCallback</span>
+<span class="param-type"><a href="ITHit.WebDAV.Client.Folder.html#GetSearchPageAsyncCallback">ITHit.WebDAV.Client.Folder~GetSearchPageAsyncCallback</a></span>
 
 
             
@@ -9367,9 +9371,9 @@ webDavSession.OpenFolderAsync(sFolderAbsolutePath, null, function (oFolderAsyncR
     oFolder.GetSearchPageAsync('my_file', null, offset, pageSize, function (oPagingAsyncResult) {
 
         /** @type {ITHit.WebDAV.Client.HierarchyItem[]} aItems */
-        var aItems = oPagingAsyncResult.Result;                                // Items on the requested page.
+        var aItems = oPagingAsyncResult.Result.Page;                                // Items on the requested page.
         /** @type {number} totalPages */
-        var totalPages = Math.ceil(oPagingAsyncResult.TotalNumber / pageSize); // Total number of pages.
+        var totalPages = Math.ceil(oPagingAsyncResult.Result.TotalItems / pageSize); // Total number of pages.
 
         fCallback(oAsyncResult);
     });
@@ -9503,7 +9507,7 @@ webDavSession.OpenFolderAsync(sFolderAbsolutePath, null, function (oFolderAsyncR
             <td class="type">
             
                 
-<span class="param-type"><a href="ITHit.WebDAV.Client.Folder.html#SearchByQueryAsyncCallback">ITHit.WebDAV.Client.Folder~SearchByQueryAsyncCallback</a></span>
+<span class="param-type"><a href="ITHit.WebDAV.Client.Folder.html#GetSearchPageByQueryAsyncCallback">ITHit.WebDAV.Client.Folder~GetSearchPageByQueryAsyncCallback</a></span>
 
 
             
@@ -9610,9 +9614,9 @@ webDavSession.OpenFolderAsync(sFolderAbsolutePath, null, function (oFolderAsyncR
     oFolder.GetSearchPageByQueryAsync(oSearchQuery, offset, pageSize, function (oPagingAsyncResult) {
 
         /** @type {ITHit.WebDAV.Client.HierarchyItem[]} aItems */
-        var aItems = oPagingAsyncResult.Result;                                // Items on the requested page.
+        var aItems = oPagingAsyncResult.Result.Page;                                // Items on the requested page.
         /** @type {number} totalPages */
-        var totalPages = Math.ceil(oPagingAsyncResult.TotalNumber / pageSize); // Total number of pages.
+        var totalPages = Math.ceil(oPagingAsyncResult.Result.TotalItems / pageSize); // Total number of pages.
 
         fCallback(oAsyncResult);
     });
@@ -14775,7 +14779,7 @@ webDavSession.OpenFileAsync(sFileAbsolutePath, null, function(oFileAsyncResult) 
             <td class="type">
             
                 
-<span class="param-type"><a href="ITHit.WebDAV.Client.PagingAsyncResult.html">ITHit.WebDAV.Client.PagingAsyncResult</a></span>
+<span class="param-type"><a href="ITHit.WebDAV.Client.AsyncResult.html">ITHit.WebDAV.Client.AsyncResult</a></span>
 
 
             
@@ -14814,7 +14818,7 @@ webDavSession.OpenFileAsync(sFileAbsolutePath, null, function(oFileAsyncResult) 
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;<a href="ITHit.WebDAV.Client.HierarchyItem.html">ITHit.WebDAV.Client.HierarchyItem</a>></span>
+<span class="param-type"><a href="ITHit.WebDAV.Client.PageResults.html">ITHit.WebDAV.Client.PageResults</a></span>
 
 
             
@@ -14824,7 +14828,321 @@ webDavSession.OpenFileAsync(sFileAbsolutePath, null, function(oFileAsyncResult) 
             
             <td class="description last">
                 
-                Array of file and folder objects.</td>
+                sinle page results.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+            </td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+            
+                
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="GetSearchPageAsyncCallback">
+            
+            
+                GetSearchPageAsyncCallback<span class="signature">(oResult)</span>
+            
+        </h4>
+    </div>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Callback function to be called when search is complete and items are loaded from server.
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>oResult</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type"><a href="ITHit.WebDAV.Client.AsyncResult.html">ITHit.WebDAV.Client.AsyncResult</a></span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                Result object
+                
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>Result</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type"><a href="ITHit.WebDAV.Client.PageResults.html">ITHit.WebDAV.Client.PageResults</a></span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                sinle page results.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+            </td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+            
+                
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="GetSearchPageByQueryAsyncCallback">
+            
+            
+                GetSearchPageByQueryAsyncCallback<span class="signature">(oResult)</span>
+            
+        </h4>
+    </div>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Callback function to be called when search is complete and items are loaded from server.
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>oResult</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type"><a href="ITHit.WebDAV.Client.AsyncResult.html">ITHit.WebDAV.Client.AsyncResult</a></span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                Result object
+                
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>Result</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type"><a href="ITHit.WebDAV.Client.PageResults.html">ITHit.WebDAV.Client.PageResults</a></span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                sinle page results.</td>
         </tr>
 	
 	
@@ -15139,163 +15457,6 @@ webDavSession.OpenFileAsync(sFileAbsolutePath, null, function(oFileAsyncResult) 
             <td class="description last">
                 
                 Loaded folder object.</td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-            </td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-            
-                
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="PageSearchByQueryAsyncCallback">
-            
-            
-                PageSearchByQueryAsyncCallback<span class="signature">(oResult)</span>
-            
-        </h4>
-    </div>
-
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        Callback function to be called when search is complete and items are loaded from server.
-    </div>
-    
-
-    
-    
-    
-    
-    
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>oResult</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type"><a href="ITHit.WebDAV.Client.PagingAsyncResult.html">ITHit.WebDAV.Client.PagingAsyncResult</a></span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                Result object
-                
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>Result</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;<a href="ITHit.WebDAV.Client.HierarchyItem.html">ITHit.WebDAV.Client.HierarchyItem</a>></span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                Array of file objects.</td>
         </tr>
 	
 	

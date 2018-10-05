@@ -1919,11 +1919,13 @@
             
                 <li data-name="ITHit.WebDAV.Client.Folder~GetPageAsyncCallback"><a href="ITHit.WebDAV.Client.Folder.html#GetPageAsyncCallback">GetPageAsyncCallback</a></li>
             
+                <li data-name="ITHit.WebDAV.Client.Folder~GetSearchPageAsyncCallback"><a href="ITHit.WebDAV.Client.Folder.html#GetSearchPageAsyncCallback">GetSearchPageAsyncCallback</a></li>
+            
+                <li data-name="ITHit.WebDAV.Client.Folder~GetSearchPageByQueryAsyncCallback"><a href="ITHit.WebDAV.Client.Folder.html#GetSearchPageByQueryAsyncCallback">GetSearchPageByQueryAsyncCallback</a></li>
+            
                 <li data-name="ITHit.WebDAV.Client.Folder~ItemExistsAsyncCallback"><a href="ITHit.WebDAV.Client.Folder.html#ItemExistsAsyncCallback">ItemExistsAsyncCallback</a></li>
             
                 <li data-name="ITHit.WebDAV.Client.Folder~OpenItemAsyncCallback"><a href="ITHit.WebDAV.Client.Folder.html#OpenItemAsyncCallback">OpenItemAsyncCallback</a></li>
-            
-                <li data-name="ITHit.WebDAV.Client.Folder~PageSearchByQueryAsyncCallback"><a href="ITHit.WebDAV.Client.Folder.html#PageSearchByQueryAsyncCallback">PageSearchByQueryAsyncCallback</a></li>
             
                 <li data-name="ITHit.WebDAV.Client.Folder~SearchAsyncCallback"><a href="ITHit.WebDAV.Client.Folder.html#SearchAsyncCallback">SearchAsyncCallback</a></li>
             
@@ -2410,17 +2412,19 @@
             
         </li>
     
-        <li class="item tree-item tree-closed" data-name="ITHit.WebDAV.Client.PagingAsyncResult">
+        <li class="item tree-item tree-closed" data-name="ITHit.WebDAV.Client.PageResults">
             <span class="title">
                 
-                    <a href="ITHit.WebDAV.Client.PagingAsyncResult.html">PagingAsyncResult</a>
+                    <a href="ITHit.WebDAV.Client.PageResults.html">PageResults</a>
                 
             </span>
             <ul class="members itemMembers">
             
             <span class="subtitle">Members</span>
             
-                <li data-name="ITHit.WebDAV.Client.PagingAsyncResult#TotalItems"><a href="ITHit.WebDAV.Client.PagingAsyncResult.html#TotalItems">TotalItems</a></li>
+                <li data-name="ITHit.WebDAV.Client.PageResults#Page"><a href="ITHit.WebDAV.Client.PageResults.html#Page">Page</a></li>
+            
+                <li data-name="ITHit.WebDAV.Client.PageResults#TotalItems"><a href="ITHit.WebDAV.Client.PageResults.html#TotalItems">TotalItems</a></li>
             
             </ul>
             <ul class="methods itemMembers">
@@ -3600,11 +3604,11 @@
             <tr>
                 <th>
                     <div class="title" style="padding-left: 20px">
-                        <span class="bull">&bull;</span> <a href="ITHit.WebDAV.Client.PagingAsyncResult.html">PagingAsyncResult</a>
+                        <span class="bull">&bull;</span> <a href="ITHit.WebDAV.Client.PageResults.html">PageResults</a>
                     </div>
                 </th>
                 <td>
-                    <div>Instance of this class is passed to callback function. It provides information about success or failure ofthe operation as well as you will use it to get the results of the asynchronous call.</div>
+                    <div>Array of file and folder items that correspond to the offset, number of items and sorting conditions requested from server. Provides contains a total number of items in this folder.</div>
                 </td>
             </tr>
         </table>

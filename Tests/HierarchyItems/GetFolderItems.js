@@ -51,9 +51,9 @@ ITHit.DefineClass('ITHit.WebDAV.Client.Tests.HierarchyItems.GetFolderItems', nul
             oFolder.GetPageAsync(null, offset, pageSize, sortColumns, function (oPagingAsyncResult) {
 
                 /** @type {ITHit.WebDAV.Client.HierarchyItem[]} aItems */
-                var aItems = oPagingAsyncResult.Result;                                // Items on the requested page.
+                var aItems = oPagingAsyncResult.Result.Page;                                // Items on the requested page.
                 /** @type {number} totalPages */
-                var totalPages = Math.ceil(oPagingAsyncResult.TotalNumber / pageSize); // Total number of pages.
+                var totalPages = Math.ceil(oPagingAsyncResult.Result.TotalItems / pageSize); // Total number of pages.
             });
         });
     }

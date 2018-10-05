@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Class: PagingAsyncResult</title>
+    <title>Class: PageResults</title>
     
     
     
@@ -1919,11 +1919,13 @@
             
                 <li data-name="ITHit.WebDAV.Client.Folder~GetPageAsyncCallback"><a href="ITHit.WebDAV.Client.Folder.html#GetPageAsyncCallback">GetPageAsyncCallback</a></li>
             
+                <li data-name="ITHit.WebDAV.Client.Folder~GetSearchPageAsyncCallback"><a href="ITHit.WebDAV.Client.Folder.html#GetSearchPageAsyncCallback">GetSearchPageAsyncCallback</a></li>
+            
+                <li data-name="ITHit.WebDAV.Client.Folder~GetSearchPageByQueryAsyncCallback"><a href="ITHit.WebDAV.Client.Folder.html#GetSearchPageByQueryAsyncCallback">GetSearchPageByQueryAsyncCallback</a></li>
+            
                 <li data-name="ITHit.WebDAV.Client.Folder~ItemExistsAsyncCallback"><a href="ITHit.WebDAV.Client.Folder.html#ItemExistsAsyncCallback">ItemExistsAsyncCallback</a></li>
             
                 <li data-name="ITHit.WebDAV.Client.Folder~OpenItemAsyncCallback"><a href="ITHit.WebDAV.Client.Folder.html#OpenItemAsyncCallback">OpenItemAsyncCallback</a></li>
-            
-                <li data-name="ITHit.WebDAV.Client.Folder~PageSearchByQueryAsyncCallback"><a href="ITHit.WebDAV.Client.Folder.html#PageSearchByQueryAsyncCallback">PageSearchByQueryAsyncCallback</a></li>
             
                 <li data-name="ITHit.WebDAV.Client.Folder~SearchAsyncCallback"><a href="ITHit.WebDAV.Client.Folder.html#SearchAsyncCallback">SearchAsyncCallback</a></li>
             
@@ -2410,17 +2412,19 @@
             
         </li>
     
-        <li class="item tree-item tree-closed" data-name="ITHit.WebDAV.Client.PagingAsyncResult">
+        <li class="item tree-item tree-closed" data-name="ITHit.WebDAV.Client.PageResults">
             <span class="title">
                 
-                    <a href="ITHit.WebDAV.Client.PagingAsyncResult.html">PagingAsyncResult</a>
+                    <a href="ITHit.WebDAV.Client.PageResults.html">PageResults</a>
                 
             </span>
             <ul class="members itemMembers">
             
             <span class="subtitle">Members</span>
             
-                <li data-name="ITHit.WebDAV.Client.PagingAsyncResult#TotalItems"><a href="ITHit.WebDAV.Client.PagingAsyncResult.html#TotalItems">TotalItems</a></li>
+                <li data-name="ITHit.WebDAV.Client.PageResults#Page"><a href="ITHit.WebDAV.Client.PageResults.html#Page">Page</a></li>
+            
+                <li data-name="ITHit.WebDAV.Client.PageResults#TotalItems"><a href="ITHit.WebDAV.Client.PageResults.html#TotalItems">TotalItems</a></li>
             
             </ul>
             <ul class="methods itemMembers">
@@ -2886,7 +2890,7 @@
 
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="ITHit.WebDAV.Client.PagingAsyncResult.html">Class: PagingAsyncResult</h1>
+        <h1 class="page-title" data-filename="ITHit.WebDAV.Client.PageResults.html">Class: PageResults</h1>
         
 
 
@@ -2895,7 +2899,7 @@
     
 <header>
     <h2>
-    PagingAsyncResult
+    PageResults
     
         Class
     
@@ -2916,7 +2920,7 @@
         
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="PagingAsyncResult">
+        <h4 class="name" id="PageResults">
             
             
         </h4>
@@ -2928,7 +2932,7 @@
 
     
     <div class="description">
-        Instance of this class is passed to callback function. It provides information about success or failure ofthe operation as well as you will use it to get the results of the asynchronous call.
+        Array of file and folder items that correspond to the offset, number of items and sorting conditions requested from server. Provides contains a total number of items in this folder.
     </div>
     
 
@@ -2997,6 +3001,51 @@
             
 <dt>
     <div class="nameContainer">
+        <h4 class="name" id="Page">Page<span class="type-signature type array.<ithit.webdav.client.hierarchyitem>">Array.&lt;<a href="ITHit.WebDAV.Client.HierarchyItem.html">ITHit.WebDAV.Client.HierarchyItem</a>></span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Items that correspond to the requested page and sorting.
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
         <h4 class="name" id="TotalItems">TotalItems<span class="type-signature type number">number</span> </h4>
     </div>
     
@@ -3005,7 +3054,7 @@
 <dd>
     
     <div class="description">
-        Total number of items.
+        Total number of items in the folder or in search results.
     </div>
     
     
