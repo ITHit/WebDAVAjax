@@ -6271,7 +6271,7 @@ webDavSession.OpenFileAsync(sFileAbsolutePath, null, function(oFileAsyncResult) 
 
     
     <div class="description">
-        This method returns all items contained in the folder, which may be very large. To limit amount of items returned and get only a single results page use GetPageAsync() function instead.
+        This method returns all items contained in the folder, which may be very large. To limit amount of items returned and get only a single results page use <a href="ITHit.WebDAV.Client.Folder.html#GetPageAsync">GetPageAsync</a> function instead.
     </div>
     
 
@@ -6355,7 +6355,7 @@ webDavSession.OpenFileAsync(sFileAbsolutePath, null, function(oFileAsyncResult) 
                         
                     
                 
-                Additional properties requested from server. Default is empty array.</td>
+                Additional properties requested from server. If null is specified, only default properties are returned.</td>
         </tr>
 	
 	
@@ -6477,7 +6477,7 @@ webDavSession.OpenFileAsync(sFileAbsolutePath, null, function(oFileAsyncResult) 
 
     
     <div class="description">
-        This method returns all items contained in the folder, which may be very large. To limit amount of items returned and get only a single results page use GetPageAsync() function instead.
+        This method returns all items contained in the folder, which may be very large. To limit amount of items returned and get only a single results page use <a href="ITHit.WebDAV.Client.Folder.html#GetPageAsync">GetPageAsync</a> function instead.
     </div>
     
 
@@ -6547,7 +6547,7 @@ webDavSession.OpenFileAsync(sFileAbsolutePath, null, function(oFileAsyncResult) 
             
             <td class="description last">
                 
-                Additional properties requested from server. Default is empty array.</td>
+                Additional properties requested from server. If null is specified, only default properties are returned.</td>
         </tr>
 	
 	
@@ -7685,7 +7685,7 @@ webDavSession.OpenFolderAsync(sFolderAbsolutePath, null, function(oFolderAsyncRe
         <h4 class="name" id="GetPageAsync">
             
             
-                GetPageAsync<span class="signature">(aProperties, offset, nResults, aOrderProperties, fCallback)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="ITHit.WebDAV.Client.Request.html">ITHit.WebDAV.Client.Request</a>}</span>
+                GetPageAsync<span class="signature">(<span class="optional">aProperties</span>, <span class="optional">nOffset</span>, <span class="optional">nResults</span>, <span class="optional">aOrderProperties</span>, fCallback)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="ITHit.WebDAV.Client.Request.html">ITHit.WebDAV.Client.Request</a>}</span>
             
         </h4>
     </div>
@@ -7696,7 +7696,7 @@ webDavSession.OpenFolderAsync(sFolderAbsolutePath, null, function(oFolderAsyncRe
 
     
     <div class="description">
-        Get children of ITHit.WebDAV.Client.Folder folder that supports paging and sorting. If boolean parameter is set to false only children of this folder are requested.
+        Gets specified number of children of this folder that correspond to requested offset and sorting. Use GetSupportedFeaturesAsync() function to detect if paging is supported.
     </div>
     
 
@@ -7743,14 +7743,21 @@ webDavSession.OpenFolderAsync(sFolderAbsolutePath, null, function(oFolderAsyncRe
             
             <td class="description last">
                 
-                Additional properties requested from server. Default is empty array.</td>
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                Additional properties requested from server. If null is specified, only default properties are returned.</td>
         </tr>
 	
 	
 	
         <tr>
             
-                <td class="name"><code>offset</code></td>
+                <td class="name"><code>nOffset</code></td>
             
             
             <td class="type">
@@ -7766,7 +7773,14 @@ webDavSession.OpenFolderAsync(sFolderAbsolutePath, null, function(oFolderAsyncRe
             
             <td class="description last">
                 
-                The number of items to skip before returning the remaining items. Start listing from from next item. Default is null</td>
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                The number of items to skip before returning the remaining items.</td>
         </tr>
 	
 	
@@ -7789,7 +7803,14 @@ webDavSession.OpenFolderAsync(sFolderAbsolutePath, null, function(oFolderAsyncRe
             
             <td class="description last">
                 
-                The number of items to return. Default is null.</td>
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                The number of items to return.</td>
         </tr>
 	
 	
@@ -7812,7 +7833,14 @@ webDavSession.OpenFolderAsync(sFolderAbsolutePath, null, function(oFolderAsyncRe
             
             <td class="description last">
                 
-                List of order properties. Default is empty array</td>
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                List of order properties.</td>
         </tr>
 	
 	
@@ -7834,6 +7862,11 @@ webDavSession.OpenFolderAsync(sFolderAbsolutePath, null, function(oFolderAsyncRe
             
             
             <td class="description last">
+                
+                    
+                    
+                        
+                    
                 
                 Function to call when operation is completed.</td>
         </tr>
@@ -9135,7 +9168,7 @@ webDavSession.OpenFileAsync(sFileAbsolutePath, null, function(oFileAsyncResult) 
         <h4 class="name" id="GetSearchPageAsync">
             
             
-                GetSearchPageAsync<span class="signature">(sSearchQuery, aAdditionalProperties, offset, nResults, fCallback)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="ITHit.WebDAV.Client.Request.html">ITHit.WebDAV.Client.Request</a>}</span>
+                GetSearchPageAsync<span class="signature">(sSearchQuery, <span class="optional">aProperties</span>, <span class="optional">nOffset</span>, <span class="optional">nResults</span>, fCallback)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="ITHit.WebDAV.Client.Request.html">ITHit.WebDAV.Client.Request</a>}</span>
             
         </h4>
     </div>
@@ -9146,7 +9179,7 @@ webDavSession.OpenFileAsync(sFileAbsolutePath, null, function(oFileAsyncResult) 
 
     
     <div class="description">
-        Searches folder by search string.
+        Searches folder by search string. Returns specified number of search result items that correspond to requested offset and sorting. Use GetSupportedFeaturesAsync() function to detect if paging is supported.
     </div>
     
 
@@ -9193,6 +9226,11 @@ webDavSession.OpenFileAsync(sFileAbsolutePath, null, function(oFileAsyncResult) 
             
             <td class="description last">
                 
+                    
+                    
+                        
+                    
+                
                 String of search query.</td>
         </tr>
 	
@@ -9200,7 +9238,7 @@ webDavSession.OpenFileAsync(sFileAbsolutePath, null, function(oFileAsyncResult) 
 	
         <tr>
             
-                <td class="name"><code>aAdditionalProperties</code></td>
+                <td class="name"><code>aProperties</code></td>
             
             
             <td class="type">
@@ -9216,14 +9254,21 @@ webDavSession.OpenFileAsync(sFileAbsolutePath, null, function(oFileAsyncResult) 
             
             <td class="description last">
                 
-                List of properties to be returned from server in search results with each item. Default is an empty array.</td>
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                Additional properties requested from server. If null is specified, only default properties are returned.</td>
         </tr>
 	
 	
 	
         <tr>
             
-                <td class="name"><code>offset</code></td>
+                <td class="name"><code>nOffset</code></td>
             
             
             <td class="type">
@@ -9239,7 +9284,14 @@ webDavSession.OpenFileAsync(sFileAbsolutePath, null, function(oFileAsyncResult) 
             
             <td class="description last">
                 
-                The number of items to skip before returning the remaining items. Start listing from from next item. Default is null</td>
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                The number of items to skip before returning the remaining items.</td>
         </tr>
 	
 	
@@ -9262,7 +9314,14 @@ webDavSession.OpenFileAsync(sFileAbsolutePath, null, function(oFileAsyncResult) 
             
             <td class="description last">
                 
-                The number of items to return. Default is null.</td>
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                The number of items to return.</td>
         </tr>
 	
 	
@@ -9284,6 +9343,11 @@ webDavSession.OpenFileAsync(sFileAbsolutePath, null, function(oFileAsyncResult) 
             
             
             <td class="description last">
+                
+                    
+                    
+                        
+                    
                 
                 Function to call when operation is completed.</td>
         </tr>
@@ -9390,7 +9454,7 @@ webDavSession.OpenFolderAsync(sFolderAbsolutePath, null, function (oFolderAsyncR
         <h4 class="name" id="GetSearchPageByQueryAsync">
             
             
-                GetSearchPageByQueryAsync<span class="signature">(oSearchQuery, offset, nResults, fCallback)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="ITHit.WebDAV.Client.Request.html">ITHit.WebDAV.Client.Request</a>}</span>
+                GetSearchPageByQueryAsync<span class="signature">(oSearchQuery, <span class="optional">nOffset</span>, <span class="optional">nResults</span>, fCallback)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="ITHit.WebDAV.Client.Request.html">ITHit.WebDAV.Client.Request</a>}</span>
             
         </h4>
     </div>
@@ -9401,7 +9465,7 @@ webDavSession.OpenFolderAsync(sFolderAbsolutePath, null, function (oFolderAsyncR
 
     
     <div class="description">
-        Searches folder by query.
+        Searches folder by query. Returns specified number of search result items that correspond to requested offset and sorting. Use GetSupportedFeaturesAsync() function to detect if paging is supported.
     </div>
     
 
@@ -9448,6 +9512,11 @@ webDavSession.OpenFolderAsync(sFolderAbsolutePath, null, function (oFolderAsyncR
             
             <td class="description last">
                 
+                    
+                    
+                        
+                    
+                
                 Object with search query conditions.</td>
         </tr>
 	
@@ -9455,7 +9524,7 @@ webDavSession.OpenFolderAsync(sFolderAbsolutePath, null, function (oFolderAsyncR
 	
         <tr>
             
-                <td class="name"><code>offset</code></td>
+                <td class="name"><code>nOffset</code></td>
             
             
             <td class="type">
@@ -9471,7 +9540,14 @@ webDavSession.OpenFolderAsync(sFolderAbsolutePath, null, function (oFolderAsyncR
             
             <td class="description last">
                 
-                The number of items to skip before returning the remaining items. Start listing from from next item. Default is null</td>
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                The number of items to skip before returning the remaining items.</td>
         </tr>
 	
 	
@@ -9494,7 +9570,14 @@ webDavSession.OpenFolderAsync(sFolderAbsolutePath, null, function (oFolderAsyncR
             
             <td class="description last">
                 
-                The number of items to return. Default is null.</td>
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                The number of items to return.</td>
         </tr>
 	
 	
@@ -9516,6 +9599,11 @@ webDavSession.OpenFolderAsync(sFolderAbsolutePath, null, function (oFolderAsyncR
             
             
             <td class="description last">
+                
+                    
+                    
+                        
+                    
                 
                 Function to call when operation is completed.</td>
         </tr>
@@ -12204,7 +12292,7 @@ webDavSession.OpenFileAsync(sFileAbsolutePath, null, function(oFileAsyncResult) 
         <h4 class="name" id="SearchAsync">
             
             
-                SearchAsync<span class="signature">(sSearchQuery, aAdditionalProperties, fCallback)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="ITHit.WebDAV.Client.Request.html">ITHit.WebDAV.Client.Request</a>}</span>
+                SearchAsync<span class="signature">(sSearchQuery, <span class="optional">aProperties</span>, fCallback)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="ITHit.WebDAV.Client.Request.html">ITHit.WebDAV.Client.Request</a>}</span>
             
         </h4>
     </div>
@@ -12215,7 +12303,7 @@ webDavSession.OpenFileAsync(sFileAbsolutePath, null, function(oFileAsyncResult) 
 
     
     <div class="description">
-        Searches folder by search string.
+        Searches folder by search string. To limit amount of items returned and get only a single results page use <a href="ITHit.WebDAV.Client.Folder.html#GetSearchPageAsync">GetSearchPageAsync</a> function instead.
     </div>
     
 
@@ -12262,6 +12350,11 @@ webDavSession.OpenFileAsync(sFileAbsolutePath, null, function(oFileAsyncResult) 
             
             <td class="description last">
                 
+                    
+                    
+                        
+                    
+                
                 String of search query.</td>
         </tr>
 	
@@ -12269,7 +12362,7 @@ webDavSession.OpenFileAsync(sFileAbsolutePath, null, function(oFileAsyncResult) 
 	
         <tr>
             
-                <td class="name"><code>aAdditionalProperties</code></td>
+                <td class="name"><code>aProperties</code></td>
             
             
             <td class="type">
@@ -12285,7 +12378,14 @@ webDavSession.OpenFileAsync(sFileAbsolutePath, null, function(oFileAsyncResult) 
             
             <td class="description last">
                 
-                List of properties to be returned from server in search results with each item. Default is an empty array.</td>
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                Additional properties requested from server. If null is specified, only default properties are returned.</td>
         </tr>
 	
 	
@@ -12307,6 +12407,11 @@ webDavSession.OpenFileAsync(sFileAbsolutePath, null, function(oFileAsyncResult) 
             
             
             <td class="description last">
+                
+                    
+                    
+                        
+                    
                 
                 Function to call when operation is completed.</td>
         </tr>
@@ -12424,7 +12529,7 @@ webDavSession.OpenFolderAsync(sFolderAbsolutePath, null, function(oFolderAsyncRe
 
     
     <div class="description">
-        This method returns all items found on the server, which may be very large. To limit amount of items returned and get only a single results page use GetSearchPageByQueryAsync() function instead.
+        This method returns all items found on the server, which may be very large. To limit amount of items returned and get only a single results page use <a href="ITHit.WebDAV.Client.Folder.html#GetSearchPageByQueryAsync">GetSearchPageByQueryAsync</a> function instead.
     </div>
     
 
