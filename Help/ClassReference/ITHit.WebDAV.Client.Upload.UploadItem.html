@@ -1276,6 +1276,8 @@
             
                 <li data-name="ITHit.WebDAV.Client.Upload.Settings#ConcurrentUploads"><a href="ITHit.WebDAV.Client.Upload.Settings.html#ConcurrentUploads">ConcurrentUploads</a></li>
             
+                <li data-name="ITHit.WebDAV.Client.Upload.Settings#DeleteOnCancel"><a href="ITHit.WebDAV.Client.Upload.Settings.html#DeleteOnCancel">DeleteOnCancel</a></li>
+            
                 <li data-name="ITHit.WebDAV.Client.Upload.Settings#State"><a href="ITHit.WebDAV.Client.Upload.Settings.html#State">State</a></li>
             
             </ul>
@@ -1357,6 +1359,8 @@
             
                 <li data-name="ITHit.WebDAV.Client.Upload.UploadItem#CancelAsync"><a href="ITHit.WebDAV.Client.Upload.UploadItem.html#CancelAsync">CancelAsync</a></li>
             
+                <li data-name="ITHit.WebDAV.Client.Upload.UploadItem#GetDeleteOnCancel"><a href="ITHit.WebDAV.Client.Upload.UploadItem.html#GetDeleteOnCancel">GetDeleteOnCancel</a></li>
+            
                 <li data-name="ITHit.WebDAV.Client.Upload.UploadItem#GetErrors"><a href="ITHit.WebDAV.Client.Upload.UploadItem.html#GetErrors">GetErrors</a></li>
             
                 <li data-name="ITHit.WebDAV.Client.Upload.UploadItem#GetFile"><a href="ITHit.WebDAV.Client.Upload.UploadItem.html#GetFile">GetFile</a></li>
@@ -1378,6 +1382,8 @@
                 <li data-name="ITHit.WebDAV.Client.Upload.UploadItem#PauseAsync"><a href="ITHit.WebDAV.Client.Upload.UploadItem.html#PauseAsync">PauseAsync</a></li>
             
                 <li data-name="ITHit.WebDAV.Client.Upload.UploadItem#RemoveListener"><a href="ITHit.WebDAV.Client.Upload.UploadItem.html#RemoveListener">RemoveListener</a></li>
+            
+                <li data-name="ITHit.WebDAV.Client.Upload.UploadItem#SetDeleteOnCancel"><a href="ITHit.WebDAV.Client.Upload.UploadItem.html#SetDeleteOnCancel">SetDeleteOnCancel</a></li>
             
                 <li data-name="ITHit.WebDAV.Client.Upload.UploadItem#SetRewrite"><a href="ITHit.WebDAV.Client.Upload.UploadItem.html#SetRewrite">SetRewrite</a></li>
             
@@ -1513,9 +1519,11 @@
             
                 <li data-name="ITHit.WebDAV.Client.DocManager.GetProtocolInstallFileNames"><a href="ITHit.WebDAV.Client.DocManager.html#GetProtocolInstallFileNames">GetProtocolInstallFileNames</a></li>
             
-                <li data-name="ITHit.WebDAV.Client.DocManager.GoogleEditDocument"><a href="ITHit.WebDAV.Client.DocManager.html#GoogleEditDocument">GoogleEditDocument</a></li>
+                <li data-name="ITHit.WebDAV.Client.DocManager.GSuiteEditDocument"><a href="ITHit.WebDAV.Client.DocManager.html#GSuiteEditDocument">GSuiteEditDocument</a></li>
             
                 <li data-name="ITHit.WebDAV.Client.DocManager.IsDavProtocolSupported"><a href="ITHit.WebDAV.Client.DocManager.html#IsDavProtocolSupported">IsDavProtocolSupported</a></li>
+            
+                <li data-name="ITHit.WebDAV.Client.DocManager.IsGSuiteDocument"><a href="ITHit.WebDAV.Client.DocManager.html#IsGSuiteDocument">IsGSuiteDocument</a></li>
             
                 <li data-name="ITHit.WebDAV.Client.DocManager.IsMicrosoftOfficeDocument"><a href="ITHit.WebDAV.Client.DocManager.html#IsMicrosoftOfficeDocument">IsMicrosoftOfficeDocument</a></li>
             
@@ -1582,7 +1590,7 @@
             
                 <li data-name="ITHit.WebDAV.Client.Features.Dasl"><a href="ITHit.WebDAV.Client.Features.html#Dasl">Dasl</a></li>
             
-                <li data-name="ITHit.WebDAV.Client.Features.GEdit"><a href="ITHit.WebDAV.Client.Features.html#GEdit">GEdit</a></li>
+                <li data-name="ITHit.WebDAV.Client.Features.GSuite"><a href="ITHit.WebDAV.Client.Features.html#GSuite">GSuite</a></li>
             
                 <li data-name="ITHit.WebDAV.Client.Features.Paging"><a href="ITHit.WebDAV.Client.Features.html#Paging">Paging</a></li>
             
@@ -2805,14 +2813,6 @@
             
                 <li data-name="ITHit.WebDAV.Client.WebDavSession#CreateFolderAsync"><a href="ITHit.WebDAV.Client.WebDavSession.html#CreateFolderAsync">CreateFolderAsync</a></li>
             
-                <li data-name="ITHit.WebDAV.Client.WebDavSession#GEdit"><a href="ITHit.WebDAV.Client.WebDavSession.html#GEdit">GEdit</a></li>
-            
-                <li data-name="ITHit.WebDAV.Client.WebDavSession#GEditAsync"><a href="ITHit.WebDAV.Client.WebDavSession.html#GEditAsync">GEditAsync</a></li>
-            
-                <li data-name="ITHit.WebDAV.Client.WebDavSession#GUnlock"><a href="ITHit.WebDAV.Client.WebDavSession.html#GUnlock">GUnlock</a></li>
-            
-                <li data-name="ITHit.WebDAV.Client.WebDavSession#GUnlockAsync"><a href="ITHit.WebDAV.Client.WebDavSession.html#GUnlockAsync">GUnlockAsync</a></li>
-            
                 <li data-name="ITHit.WebDAV.Client.WebDavSession#OpenFile"><a href="ITHit.WebDAV.Client.WebDavSession.html#OpenFile">OpenFile</a></li>
             
                 <li data-name="ITHit.WebDAV.Client.WebDavSession#OpenFileAsync"><a href="ITHit.WebDAV.Client.WebDavSession.html#OpenFileAsync">OpenFileAsync</a></li>
@@ -2842,10 +2842,6 @@
             <span class="subtitle">Typedefs</span>
             
                 <li data-name="ITHit.WebDAV.Client.WebDavSession~CreateFolderAsyncCallback"><a href="ITHit.WebDAV.Client.WebDavSession.html#CreateFolderAsyncCallback">CreateFolderAsyncCallback</a></li>
-            
-                <li data-name="ITHit.WebDAV.Client.WebDavSession~GEditAsyncCallback"><a href="ITHit.WebDAV.Client.WebDavSession.html#GEditAsyncCallback">GEditAsyncCallback</a></li>
-            
-                <li data-name="ITHit.WebDAV.Client.WebDavSession~GUnlockAsyncCallback"><a href="ITHit.WebDAV.Client.WebDavSession.html#GUnlockAsyncCallback">GUnlockAsyncCallback</a></li>
             
                 <li data-name="ITHit.WebDAV.Client.WebDavSession~OpenFileAsyncCallback"><a href="ITHit.WebDAV.Client.WebDavSession.html#OpenFileAsyncCallback">OpenFileAsyncCallback</a></li>
             
@@ -2979,7 +2975,7 @@
         <h4 class="name" id="UploadItem">
             
             
-                <span class="type-signature ">package</span>new ITHit.WebDAV.Client.Upload.UploadItem<span class="signature">(sUrl, oFsEntry, oBinding, oSession, oGroupManager)</span>
+                <span class="type-signature ">package</span>new ITHit.WebDAV.Client.Upload.UploadItem<span class="signature">(sUrl, oFsEntry, oBinding, oSession, oGroupManager, oSettings)</span>
             
         </h4>
     </div>
@@ -3120,6 +3116,29 @@
             
                 
 <span class="param-type"><a href="ITHit.WebDAV.Client.Upload.Groups.GroupManager.html">ITHit.WebDAV.Client.Upload.Groups.GroupManager</a></span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                </td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>oSettings</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type"><a href="ITHit.WebDAV.Client.Upload.Settings.html">ITHit.WebDAV.Client.Upload.Settings</a></span>
 
 
             
@@ -3682,6 +3701,96 @@
     
     
     
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="GetDeleteOnCancel">
+            
+            
+                GetDeleteOnCancel<span class="signature">()</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{boolean}</span>
+            
+        </h4>
+    </div>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Gets delete on cancel behavior.
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+
+<h5>Returns:</h5>
+<table class="params">
+    <tbody>
+    
+        <tr>
+            <td class="type">
+                <span class="param-type">
+                
+                            boolean
+                            
+                        
+                </span>
+            </td>
+            <td class="description last"></td>
+        </tr>
+    
+    </tbody>
+</table>
+
     
     
     
@@ -4797,6 +4906,145 @@
     
     
     
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="SetDeleteOnCancel">
+            
+            
+                SetDeleteOnCancel<span class="signature">(bDelete)</span>
+            
+        </h4>
+    </div>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Sets if item should be deleted on cancel. Can't be set true if item represents folder.
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>bDelete</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                </td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    <h5>Throws:</h5>
+    
+            
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        if sets true on folder.
+        </div>
+    </dt>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">ITHit.Exceptions.ArgumentException</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+</dl>
+
+
+        
     
     
     
