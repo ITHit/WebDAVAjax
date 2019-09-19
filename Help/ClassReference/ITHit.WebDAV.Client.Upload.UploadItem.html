@@ -1089,13 +1089,7 @@
             
             <span class="subtitle">Methods</span>
             
-                <li data-name="ITHit.WebDAV.Client.Upload.Events.UploadStarted#Overwrite"><a href="ITHit.WebDAV.Client.Upload.Events.UploadStarted.html#Overwrite">Overwrite</a></li>
-            
-                <li data-name="ITHit.WebDAV.Client.Upload.Events.UploadStarted#OverwriteAll"><a href="ITHit.WebDAV.Client.Upload.Events.UploadStarted.html#OverwriteAll">OverwriteAll</a></li>
-            
                 <li data-name="ITHit.WebDAV.Client.Upload.Events.UploadStarted#Skip"><a href="ITHit.WebDAV.Client.Upload.Events.UploadStarted.html#Skip">Skip</a></li>
-            
-                <li data-name="ITHit.WebDAV.Client.Upload.Events.UploadStarted#SkipAll"><a href="ITHit.WebDAV.Client.Upload.Events.UploadStarted.html#SkipAll">SkipAll</a></li>
             
                 <li data-name="ITHit.WebDAV.Client.Upload.Events.UploadStarted#Upload"><a href="ITHit.WebDAV.Client.Upload.Events.UploadStarted.html#Upload">Upload</a></li>
             
@@ -1369,11 +1363,11 @@
             
                 <li data-name="ITHit.WebDAV.Client.Upload.UploadItem#GetName"><a href="ITHit.WebDAV.Client.Upload.UploadItem.html#GetName">GetName</a></li>
             
+                <li data-name="ITHit.WebDAV.Client.Upload.UploadItem#GetOverwrite"><a href="ITHit.WebDAV.Client.Upload.UploadItem.html#GetOverwrite">GetOverwrite</a></li>
+            
                 <li data-name="ITHit.WebDAV.Client.Upload.UploadItem#GetProgress"><a href="ITHit.WebDAV.Client.Upload.UploadItem.html#GetProgress">GetProgress</a></li>
             
                 <li data-name="ITHit.WebDAV.Client.Upload.UploadItem#GetRelativePath"><a href="ITHit.WebDAV.Client.Upload.UploadItem.html#GetRelativePath">GetRelativePath</a></li>
-            
-                <li data-name="ITHit.WebDAV.Client.Upload.UploadItem#GetRewrite"><a href="ITHit.WebDAV.Client.Upload.UploadItem.html#GetRewrite">GetRewrite</a></li>
             
                 <li data-name="ITHit.WebDAV.Client.Upload.UploadItem#GetState"><a href="ITHit.WebDAV.Client.Upload.UploadItem.html#GetState">GetState</a></li>
             
@@ -1385,9 +1379,9 @@
             
                 <li data-name="ITHit.WebDAV.Client.Upload.UploadItem#SetDeleteOnCancel"><a href="ITHit.WebDAV.Client.Upload.UploadItem.html#SetDeleteOnCancel">SetDeleteOnCancel</a></li>
             
-                <li data-name="ITHit.WebDAV.Client.Upload.UploadItem#SetRewrite"><a href="ITHit.WebDAV.Client.Upload.UploadItem.html#SetRewrite">SetRewrite</a></li>
+                <li data-name="ITHit.WebDAV.Client.Upload.UploadItem#SetFailed"><a href="ITHit.WebDAV.Client.Upload.UploadItem.html#SetFailed">SetFailed</a></li>
             
-                <li data-name="ITHit.WebDAV.Client.Upload.UploadItem#SetSkip"><a href="ITHit.WebDAV.Client.Upload.UploadItem.html#SetSkip">SetSkip</a></li>
+                <li data-name="ITHit.WebDAV.Client.Upload.UploadItem#SetOverwrite"><a href="ITHit.WebDAV.Client.Upload.UploadItem.html#SetOverwrite">SetOverwrite</a></li>
             
                 <li data-name="ITHit.WebDAV.Client.Upload.UploadItem#StartAsync"><a href="ITHit.WebDAV.Client.Upload.UploadItem.html#StartAsync">StartAsync</a></li>
             
@@ -4169,6 +4163,96 @@
             
 <dt>
     <div class="nameContainer">
+        <h4 class="name" id="GetOverwrite">
+            
+            
+                GetOverwrite<span class="signature">()</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{boolean}</span>
+            
+        </h4>
+    </div>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Gets if the item will be overwritten if it exists on the server.
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+
+<h5>Returns:</h5>
+<table class="params">
+    <tbody>
+    
+        <tr>
+            <td class="type">
+                <span class="param-type">
+                
+                            boolean
+                            
+                        
+                </span>
+            </td>
+            <td class="description last"></td>
+        </tr>
+    
+    </tbody>
+</table>
+
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
         <h4 class="name" id="GetProgress">
             
             
@@ -4330,96 +4414,6 @@
                 <span class="param-type">
                 
                             string
-                            
-                        
-                </span>
-            </td>
-            <td class="description last"></td>
-        </tr>
-    
-    </tbody>
-</table>
-
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="GetRewrite">
-            
-            
-                GetRewrite<span class="signature">()</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{boolean}</span>
-            
-        </h4>
-    </div>
-
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        Gets rewrite behavior.
-    </div>
-    
-
-    
-    
-    
-    
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-
-<h5>Returns:</h5>
-<table class="params">
-    <tbody>
-    
-        <tr>
-            <td class="type">
-                <span class="param-type">
-                
-                            boolean
                             
                         
                 </span>
@@ -5055,10 +5049,10 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="SetRewrite">
+        <h4 class="name" id="SetFailed">
             
             
-                SetRewrite<span class="signature">(<span class="optional">bRewrite</span>)</span>
+                SetFailed<span class="signature">(oError)</span>
             
         </h4>
     </div>
@@ -5069,7 +5063,7 @@
 
     
     <div class="description">
-        Sets rewrite behavior. Can't be set true if item represents folder.
+        Sets failed state.Populates item's error with provided error instance.
     </div>
     
 
@@ -5090,8 +5084,6 @@
 		<th>Type</th>
 		
 		
-		<th>Default</th>
-		
 		
 		<th class="last">Description</th>
 	</tr>
@@ -5102,36 +5094,23 @@
 	
         <tr>
             
-                <td class="name"><code>bRewrite</code></td>
+                <td class="name"><code>oError</code></td>
             
             
             <td class="type">
             
                 
-<span class="param-type">boolean</span>
+<span class="param-type"><a href="ITHit.WebDAV.Client.Exceptions.WebDavException.html">ITHit.WebDAV.Client.Exceptions.WebDavException</a></span>
 
 
             
             </td>
             
             
-                <td class="default">
-                
-                    false
-                
-                </td>
-            
             
             <td class="description last">
                 
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                </td>
+                The error instance that will be registered as fail reason.</td>
         </tr>
 	
 	
@@ -5172,9 +5151,44 @@
     
     
     
+    <h5>Throws:</h5>
+    
+            
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        - Argument must be child of <a href="ITHit.WebDAV.Client.Exceptions.WebDavException.html">ITHit.WebDAV.Client.Exceptions.WebDavException</a>.
+        </div>
+    </dt>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">ITHit.Exceptions.ArgumentException</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+</dl>
+
+
+        
     
     
     
+    
+        <h5>Example</h5>
+        
+
+    
+    <pre class="prettyprint"><code>var oUploader = new ITHit.WebDAV.Client.Upload.Uploader();oUploader.Queue.OnUploadItemsCreated = function(oUploadItemsCreated) {    var sErrorMessage = 'Added to queue in failed state';     var oWebDavException = new ITHit.WebDAV.Client.Exceptions.WebDavException(sMessage);     /&#42;&#42; &#64;typedef {ITHit.WebDAV.Client.Upload.UploadItem[]} aItemsToUpload &#42;/    oUploadItemsCreated.Items.forEach(function(oItem) {        oItem.SetFailed(oWebDavException);    }     oUploadItemsCreated.Upload(oUploadItemsCreated.Items);});</code></pre>
+    
+
     
 </dd>
 
@@ -5182,10 +5196,10 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="SetSkip">
+        <h4 class="name" id="SetOverwrite">
             
             
-                SetSkip<span class="signature">()</span>
+                SetOverwrite<span class="signature">()</span>
             
         </h4>
     </div>
@@ -5196,7 +5210,7 @@
 
     
     <div class="description">
-        Sets skip state. Skipped items will not be added to queue or automatically uploaded if they already in queue.
+        Sets if the item will be overwritten if it exists on the server. Default is false.
     </div>
     
 
@@ -5204,6 +5218,47 @@
     
     
     
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                </td>
+        </tr>
+	
+	
+	</tbody>
+</table>
     
     
     
@@ -5575,7 +5630,7 @@
 
     
     <div class="description">
-        Callback function to be called before <a href="ITHit.WebDAV.Client.Upload.UploadItem.html">ITHit.WebDAV.Client.Upload.UploadItem</a> begins upload and waited until one of action called.
+        Callback function called before <a href="ITHit.WebDAV.Client.Upload.UploadItem.html">ITHit.WebDAV.Client.Upload.UploadItem</a> started upload.You will validate item in this event and present user interface if user interaction is necessary.In this event you can check if each item exists on the server and specify if item should be overwritten or skipped.You can also validate file size, file extension, file upload path and file name.To continue upload the <a href="ITHit.WebDAV.Client.Upload.Events.UploadStarted.html#Upload">ITHit.WebDAV.Client.Upload.Events.UploadStarted#Upload</a> function should be called.To skip upload the <a href="ITHit.WebDAV.Client.Upload.Events.UploadStarted.html#Skip">ITHit.WebDAV.Client.Upload.Events.UploadStarted#Skip</a> function should be called.
     </div>
     
 

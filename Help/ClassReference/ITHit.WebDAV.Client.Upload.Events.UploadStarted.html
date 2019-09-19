@@ -1089,13 +1089,7 @@
             
             <span class="subtitle">Methods</span>
             
-                <li data-name="ITHit.WebDAV.Client.Upload.Events.UploadStarted#Overwrite"><a href="ITHit.WebDAV.Client.Upload.Events.UploadStarted.html#Overwrite">Overwrite</a></li>
-            
-                <li data-name="ITHit.WebDAV.Client.Upload.Events.UploadStarted#OverwriteAll"><a href="ITHit.WebDAV.Client.Upload.Events.UploadStarted.html#OverwriteAll">OverwriteAll</a></li>
-            
                 <li data-name="ITHit.WebDAV.Client.Upload.Events.UploadStarted#Skip"><a href="ITHit.WebDAV.Client.Upload.Events.UploadStarted.html#Skip">Skip</a></li>
-            
-                <li data-name="ITHit.WebDAV.Client.Upload.Events.UploadStarted#SkipAll"><a href="ITHit.WebDAV.Client.Upload.Events.UploadStarted.html#SkipAll">SkipAll</a></li>
             
                 <li data-name="ITHit.WebDAV.Client.Upload.Events.UploadStarted#Upload"><a href="ITHit.WebDAV.Client.Upload.Events.UploadStarted.html#Upload">Upload</a></li>
             
@@ -1369,11 +1363,11 @@
             
                 <li data-name="ITHit.WebDAV.Client.Upload.UploadItem#GetName"><a href="ITHit.WebDAV.Client.Upload.UploadItem.html#GetName">GetName</a></li>
             
+                <li data-name="ITHit.WebDAV.Client.Upload.UploadItem#GetOverwrite"><a href="ITHit.WebDAV.Client.Upload.UploadItem.html#GetOverwrite">GetOverwrite</a></li>
+            
                 <li data-name="ITHit.WebDAV.Client.Upload.UploadItem#GetProgress"><a href="ITHit.WebDAV.Client.Upload.UploadItem.html#GetProgress">GetProgress</a></li>
             
                 <li data-name="ITHit.WebDAV.Client.Upload.UploadItem#GetRelativePath"><a href="ITHit.WebDAV.Client.Upload.UploadItem.html#GetRelativePath">GetRelativePath</a></li>
-            
-                <li data-name="ITHit.WebDAV.Client.Upload.UploadItem#GetRewrite"><a href="ITHit.WebDAV.Client.Upload.UploadItem.html#GetRewrite">GetRewrite</a></li>
             
                 <li data-name="ITHit.WebDAV.Client.Upload.UploadItem#GetState"><a href="ITHit.WebDAV.Client.Upload.UploadItem.html#GetState">GetState</a></li>
             
@@ -1385,9 +1379,9 @@
             
                 <li data-name="ITHit.WebDAV.Client.Upload.UploadItem#SetDeleteOnCancel"><a href="ITHit.WebDAV.Client.Upload.UploadItem.html#SetDeleteOnCancel">SetDeleteOnCancel</a></li>
             
-                <li data-name="ITHit.WebDAV.Client.Upload.UploadItem#SetRewrite"><a href="ITHit.WebDAV.Client.Upload.UploadItem.html#SetRewrite">SetRewrite</a></li>
+                <li data-name="ITHit.WebDAV.Client.Upload.UploadItem#SetFailed"><a href="ITHit.WebDAV.Client.Upload.UploadItem.html#SetFailed">SetFailed</a></li>
             
-                <li data-name="ITHit.WebDAV.Client.Upload.UploadItem#SetSkip"><a href="ITHit.WebDAV.Client.Upload.UploadItem.html#SetSkip">SetSkip</a></li>
+                <li data-name="ITHit.WebDAV.Client.Upload.UploadItem#SetOverwrite"><a href="ITHit.WebDAV.Client.Upload.UploadItem.html#SetOverwrite">SetOverwrite</a></li>
             
                 <li data-name="ITHit.WebDAV.Client.Upload.UploadItem#StartAsync"><a href="ITHit.WebDAV.Client.Upload.UploadItem.html#StartAsync">StartAsync</a></li>
             
@@ -2983,6 +2977,10 @@
 <dd>
 
     
+    <div class="description">
+        This object is passed to <a href="ITHit.WebDAV.Client.Upload.UploadItem.html#OnUploadStartedCallback">ITHit.WebDAV.Client.Upload.UploadItem~OnUploadStartedCallback</a>.You can validate these item as well as specify if item should be overwritten.To continue upload the <a href="ITHit.WebDAV.Client.Upload.Events.UploadStarted.html#Upload">ITHit.WebDAV.Client.Upload.Events.UploadStarted#Upload</a> function should be called.To skip upload the <a href="ITHit.WebDAV.Client.Upload.Events.UploadStarted.html#Skip">ITHit.WebDAV.Client.Upload.Events.UploadStarted#Skip</a> function should be called.
+    </div>
+    
 
     
     
@@ -3151,140 +3149,6 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="Overwrite">
-            
-            
-                Overwrite<span class="signature">()</span>
-            
-        </h4>
-    </div>
-
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        Overwrites item. Ends callback handling.
-    </div>
-    
-
-    
-    
-    
-    
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="OverwriteAll">
-            
-            
-                OverwriteAll<span class="signature">()</span>
-            
-        </h4>
-    </div>
-
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        Overwrites all items. Ends callback handling.
-    </div>
-    
-
-    
-    
-    
-    
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
         <h4 class="name" id="Skip">
             
             
@@ -3299,74 +3163,7 @@
 
     
     <div class="description">
-        Skips item upload. Ends callback handling.
-    </div>
-    
-
-    
-    
-    
-    
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="SkipAll">
-            
-            
-                SkipAll<span class="signature">()</span>
-            
-        </h4>
-    </div>
-
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        Skips all items. Ends callback handling.
+        Change item state to <a href="ITHit.WebDAV.Client.Upload.State.html#Skipped">ITHit.WebDAV.Client.Upload.State.Skipped</a>.
     </div>
     
 
@@ -3433,7 +3230,7 @@
 
     
     <div class="description">
-        Uploads item. Ends callback handling.
+        Continues items upload.If item should not upload call <a href="ITHit.WebDAV.Client.Upload.Events.UploadStarted.html#Skip">ITHit.WebDAV.Client.Upload.Events.UploadStarted#Skip</a> method.If any items in the upload list should be overwritten call ITHit.WebDAV.Client.Upload.UploadItem#SetOverwrite(true) on item.
     </div>
     
 
