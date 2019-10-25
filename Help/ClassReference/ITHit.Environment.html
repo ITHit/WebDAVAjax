@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Class: LockedException</title>
+    <title>Class: Environment</title>
     
     
     
@@ -2748,7 +2748,7 @@
 
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="ITHit.WebDAV.Client.Exceptions.LockedException.html">Class: LockedException</h1>
+        <h1 class="page-title" data-filename="ITHit.Environment.html">Class: Environment</h1>
         
 
 
@@ -2757,7 +2757,7 @@
     
 <header>
     <h2>
-    LockedException
+    Environment
     
         Class
     
@@ -2766,7 +2766,7 @@
 
     
         <h3 class="subsection-title">Namespace</h3>
-        <div class="description">ITHit.WebDAV.Client.Exceptions</div>
+        <div class="description">ITHit</div>
     
 </header>  
 
@@ -2778,7 +2778,7 @@
         
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="LockedException">
+        <h4 class="name" id="Environment">
             
             
         </h4>
@@ -2790,7 +2790,7 @@
 
     
     <div class="description">
-        The item is locked. Initializes a new instance of the LockedException class with a specified error message,a reference to the inner exception that is the cause of this exception, href of the item and multistatusresponse caused the error.
+        Detects environment in which JavaScript is running, such as operating system and web browser.
     </div>
     
 
@@ -2842,12 +2842,6 @@
     
     </div>
     
-    
-        <h3 class="subsection-title">Extends</h3>
-        
-        <ul>
-            <li><a href="ITHit.WebDAV.Client.Exceptions.WebDavHttpException.html">ITHit.WebDAV.Client.Exceptions.WebDavHttpException</a></li>
-        </ul>
     
     
     
@@ -2865,7 +2859,7 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="Error">Error<span class="type-signature type ithit.webdav.client.error"><a href="ITHit.WebDAV.Client.Error.html">ITHit.WebDAV.Client.Error</a></span> </h4>
+        <h4 class="name" id="OS"><span class="type-signature static">static</span>ITHit.Environment.OS<span class="type-signature type string">string</span> </h4>
     </div>
     
     
@@ -2873,142 +2867,7 @@
 <dd>
     
     <div class="description">
-        Error contains IError with additional info, if error information was available in response.
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="Multistatus">Multistatus<span class="type-signature type ithit.webdav.client.multistatus"><a href="ITHit.WebDAV.Client.Multistatus.html">ITHit.WebDAV.Client.Multistatus</a></span> </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Multistatus Contains <a href="ITHit.WebDAV.Client.Multistatus.html">ITHit.WebDAV.Client.Multistatus</a> with elements that had errors, if multistatus information was available in response.
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="Status">Status<span class="type-signature type ithit.webdav.client.httpstatus"><a href="ITHit.WebDAV.Client.HttpStatus.html">ITHit.WebDAV.Client.HttpStatus</a></span> </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Http status with wich request failed.
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="Uri">Uri<span class="type-signature type string">string</span> </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Uri for which request failed.
+        Provides operating system name.Could be: "Windows", "Linux", "MacOS", "UNIX", "IOS", "Android" or null if OS can not be detected.
     </div>
     
     
