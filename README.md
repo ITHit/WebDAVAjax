@@ -43,7 +43,7 @@ function edit() {
         'Current',                        // Which browser to copy cookies from: 'Current', 'All', 'None'
         '.AspNet.ApplicationCookie',      // Cookie(s) to copy. Must be persistent.
         '/Account/Login',                 // URL to navigate to if any cookie from the list is not found.
-        'Edit'                            // Command to execute: 'Edit', 'OpenWith'
+        'Edit'                            // Command to execute: 'Edit', 'OpenWith', 'Print'
     );
 }
      
