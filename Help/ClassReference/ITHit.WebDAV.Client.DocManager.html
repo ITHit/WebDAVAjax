@@ -3585,7 +3585,7 @@ ITHit.WebDAV.Client.DocManager.EditDocument(sDocumentUrl, sMountPoint, fProtocol
         <h4 class="name" id="GSuiteEditDocument">
             
             
-                <span class="type-signature static">static</span>ITHit.WebDAV.Client.DocManager.GSuiteEditDocument<span class="signature">(sDocumentUrl, oContainerDomElement)</span>
+                <span class="type-signature static">static</span>ITHit.WebDAV.Client.DocManager.GSuiteEditDocument<span class="signature">(sDocumentUrl, oContainerDomElement, <span class="optional">errorCallback</span>)</span>
             
         </h4>
     </div>
@@ -3643,6 +3643,11 @@ ITHit.WebDAV.Client.DocManager.EditDocument(sDocumentUrl, sMountPoint, fProtocol
             
             <td class="description last">
                 
+                    
+                    
+                        
+                    
+                
                 URL of the document to open for editing from server. Must be a full URL including the domain name.</td>
         </tr>
 	
@@ -3666,7 +3671,42 @@ ITHit.WebDAV.Client.DocManager.EditDocument(sDocumentUrl, sMountPoint, fProtocol
             
             <td class="description last">
                 
+                    
+                    
+                        
+                    
+                
                 HTML DOM element where the G Suite online editor will be loaded. If this parameter is omitted or null is passed the editor will be created in a new tab/window.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>errorCallback</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                Function to call if document opening failed.</td>
         </tr>
 	
 	
@@ -3720,7 +3760,7 @@ ITHit.WebDAV.Client.DocManager.EditDocument(sDocumentUrl, sMountPoint, fProtocol
         <h4 class="name" id="GSuitePreviewDocument">
             
             
-                <span class="type-signature static">static</span>ITHit.WebDAV.Client.DocManager.GSuitePreviewDocument<span class="signature">(sDocumentUrl, oContainerDomElement)</span>
+                <span class="type-signature static">static</span>ITHit.WebDAV.Client.DocManager.GSuitePreviewDocument<span class="signature">(sDocumentUrl, oContainerDomElement, <span class="optional">errorCallback</span>)</span>
             
         </h4>
     </div>
@@ -3778,6 +3818,11 @@ ITHit.WebDAV.Client.DocManager.EditDocument(sDocumentUrl, sMountPoint, fProtocol
             
             <td class="description last">
                 
+                    
+                    
+                        
+                    
+                
                 URL of the document to open for preview. Must be a full URL including the domain name.</td>
         </tr>
 	
@@ -3801,7 +3846,42 @@ ITHit.WebDAV.Client.DocManager.EditDocument(sDocumentUrl, sMountPoint, fProtocol
             
             <td class="description last">
                 
+                    
+                    
+                        
+                    
+                
                 HTML DOM element where the G Suite preview will be loaded. If this parameter is omitted or null is passed the preview will be created in a new tab/window.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>errorCallback</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                Function to call if document opening failed.</td>
         </tr>
 	
 	
