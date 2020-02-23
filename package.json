@@ -1,6 +1,6 @@
 {
   "name": "webdav.client",
-  "version": "5.11.5275",
+  "version": "5.11.5278",
   "description": "WebDAV ajax library for opening documents from a web page and managing WebDAV servers.",
   "main": "ITHitWebDAVClient.js",
   "keywords": [
