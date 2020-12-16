@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Class: WebDavRequest</title>
+    <title>Class: SPSManager</title>
     
     
     
@@ -2780,7 +2780,7 @@
 
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="ITHit.WebDAV.Client.WebDavRequest.html">Class: WebDavRequest</h1>
+        <h1 class="page-title" data-filename="ITHit.WebDAV.Client.SPSManager.html">Class: SPSManager</h1>
         
 
 
@@ -2789,7 +2789,7 @@
     
 <header>
     <h2>
-    WebDavRequest
+    SPSManager
     
         Class
     
@@ -2810,7 +2810,7 @@
         
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="WebDavRequest">
+        <h4 class="name" id="SPSManager">
             
             
         </h4>
@@ -2822,7 +2822,7 @@
 
     
     <div class="description">
-        This class represents asynchronous request to WebDAV server. The instance of this class is returned from mostasynchronous methods of the library. You can use it to cancel the request calling Abort() method of this classas well as to show progress attaching to Progress event.
+        This class provides methods for opening documents for editing directly from Sharepoint site and saving back to sitewithout download and upload steps. This includes editing Microsoft Office documents as well as any other filetypes and works on Windows, Mac OS X and Linux.
     </div>
     
 
@@ -2885,7 +2885,265 @@
     
     
     
+        <h3 class="subsection-title">Members</h3>
+        
+        <dl>
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="Version"><span class="type-signature static">static</span>ITHit.WebDAV.Client.SPSManager.Version</h4>
+    </div>
     
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Version of SPS Library
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        </dl>
+    
+    
+    
+        <h3 class="subsection-title">Methods</h3>
+        
+        <dl>
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="SharepointEditDocument">
+            
+            
+                <span class="type-signature static">static</span>ITHit.WebDAV.Client.SPSManager.SharepointEditDocument<span class="signature">(pageContext, sDocumentUrls, <span class="optional">errorCallback</span>, <span class="optional">sCommand</span>)</span>
+            
+        </h4>
+    </div>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Opens document from Sharepoint sites for editing or printing using davX: protocol and prompts to install the protocol it if not found.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>pageContext</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">PageContext</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                    
+                        
+                    
+                
+                The SharePoint page context object. https://docs.microsoft.com/en-us/javascript/api/sp-page-context/pagecontext</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>sDocumentUrls</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                    
+                        
+                    
+                
+                Array of document URLs to be opened for editing from server. All documents must be located under the same sharepoint site. Must be a full URL(s) including the domain name.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>errorCallback</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                Function to call if document opening failed. Typically you will request the protocol installation in this callback.If not specified a default message offering protocol installation will be displayed.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>sCommand</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                Command to use when opening the document. Supported options are:<ul><li> <code>'Edit'</code> - Opens a document for editing.<li> <code>'OpenWith'</code> - Show system 'Open With' dialog to select application to be used to open a document. This option is supported on Windows only.<li> <code>'Print'</code> - Prints a document. The application that prints a document is running in a minimized state and automatically closes if printing is successful. If printing fails, the application remains open. To print multiple documents, pass a list of documents as a first parameter. This option is supported on Windows only.</ul>Default is <code>'Edit'</code>.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        </dl>
     
     
     

@@ -22,11 +22,25 @@ QUnitRunner.test('Get bytes uploaded on created file', function (test) {
 
             // Async variant
             QUnit.stop();
-            oFile.ResumableUpload.GetBytesUploadedAsync(function(oAsyncResult) {
+
+            oFile.GetSupportedFeaturesAsync(function (oAsyncResult) {
                 QUnit.start();
 
-                test.strictEqual(oAsyncResult.IsSuccess, true, 'Check success of get bytes request');
-                test.strictEqual(oAsyncResult.Result, 6, 'Check content length in result');
+                /** @typedef {ITHit.WebDAV.Client.OptionsInfo} oOptionsInfo */
+                var oOptionsInfo = oAsyncResult.Result;
+
+                if ((oOptionsInfo.Features & ITHit.WebDAV.Client.Features.ResumableUpload) === 0) {
+                    ITHitTests.skip(test, 'Server does not support resumable upload.');
+                    return;
+                }
+
+                QUnit.stop();
+                oFile.ResumableUpload.GetBytesUploadedAsync(function (oAsyncResult) {
+                    QUnit.start();
+
+                    test.strictEqual(oAsyncResult.IsSuccess, true, 'Check success of get bytes request');
+                    test.strictEqual(oAsyncResult.Result, 6, 'Check content length in result');
+                });
             });
         });
     });
