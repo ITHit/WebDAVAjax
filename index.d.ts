@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------
-// IT Hit WebDAV Ajax Library v5.21.5846.0
+// IT Hit WebDAV Ajax Library v5.21.5850.0
 // Copyright © 2020 IT Hit LTD. All rights reserved.
 // License: https://www.webdavsystem.com/ajax/
 // -----------------------------------------------------------------------
@@ -56,7 +56,7 @@ export namespace ITHit{
 		 * @api
 		 * @param {ITHit.Logger~EventHandler} fHandler Handler function.
 		 */ 
- function RemoveListener(fHandler?: () => void): void; 
+ function RemoveListener(fHandler?: () => void | null): void; 
  /**
 		 * Writs a message to log with a specified log level. Default log level is {@link ITHit.LogLevel#Info}
 		 * @api
@@ -945,7 +945,7 @@ export namespace ITHit{
 	 * @throws ITHit.Exception
 	 */ 
  class Property  { 
-	 constructor(sName: string | ITHit.WebDAV.Client.PropertyName, sValue?: string, sNamespace?: string); 
+	 constructor(sName: string | ITHit.WebDAV.Client.PropertyName, sValue?: string | null, sNamespace?: string | null); 
  /**
 	 * Property Name.
 	 * @api
@@ -1030,24 +1030,10 @@ export namespace ITHit{
  * @enum {string}
  * @class ITHit.WebDAV.Client.ResourceType
  */ 
- class ResourceType  { 
-	 /**
-		 * Item is folder.
-		 * @api
-		 * @readonly
-		 * @type {string}
-		 */ 
- static readonly Folder: string 
- readonly Folder: string 
- /**
-		 * Item is file.
-		 * @api
-		 * @readonly
-		 * @type {string}
-		 */ 
- static readonly File: string 
- readonly File: string 
- }/**
+ enum ResourceType{ 
+	 Folder = "Folder",
+	 File = "Resource",
+	 }/**
  * List of WebDAV properties.
  * @api
  * @class ITHit.WebDAV.Client.PropertyList
@@ -1062,7 +1048,7 @@ export namespace ITHit{
      * @param {boolean} [bIgnoreCase] Specifies if the search is case sensitive or case insensitive.
      * @returns {boolean}
      */ 
- Has(oPropName: ITHit.WebDAV.Client.PropertyName, bIgnoreCase?: boolean): boolean; 
+ Has(oPropName: ITHit.WebDAV.Client.PropertyName, bIgnoreCase?: boolean | null): boolean; 
  /**
      * Gets property value found by property name and namespace. Returns null if property with such name does not exist.
      * @api
@@ -1070,7 +1056,7 @@ export namespace ITHit{
      * @param {boolean} [bIgnoreCase] Specifies if the search is case sensitive or case insensitive.
      * @returns {(string|null)} String representing property value or null if property with such name does not exist.
      */ 
- Find(oPropName: ITHit.WebDAV.Client.PropertyName, bIgnoreCase?: boolean): string | null; 
+ Find(oPropName: ITHit.WebDAV.Client.PropertyName, bIgnoreCase?: boolean | null): string | null; 
  }/**
  * Represents information about errors occurred in different elements.
  * @api
@@ -1151,22 +1137,10 @@ export namespace ITHit{
  * @enum {string}
  * @class ITHit.WebDAV.Client.LockScope
  */ 
- class LockScope  { 
-	 /**
-		 * Exclusive lock. No one else can obtain the lock.
-		 * @api
-		 * @type {string}
-		 */ 
- static Exclusive: string 
- Exclusive: string 
- /**
-		 * Shared lock. It will be possible for another clients to get the shared locks.
-		 * @api
-		 * @type {string}
-		 */ 
- static Shared: string 
- Shared: string 
- }/**
+ enum LockScope{ 
+	 Exclusive = "Exclusive",
+	 Shared = "Shared",
+	 }/**
  * Represents pair of resource uri - lock token. Is used to access locked resources.
  * @api
  * @class ITHit.WebDAV.Client.LockUriTokenPair
@@ -1432,7 +1406,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~RefreshAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- RefreshAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ RefreshAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Copies this item to destination folder.
 		 * @api
@@ -1445,17 +1419,17 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.LockUriTokenPair[]} [oLockTokens] Lock tokens for destination folder.
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~CopyToAsyncCallback} fCallback Function to call when operation is completed.
 		 */ 
- CopyToAsync(oDestinationFolder: ITHit.WebDAV.Client.Folder, sDestinationName: string, bDeep: boolean, bOverwrite: boolean, oLockTokens?: ITHit.WebDAV.Client.LockUriTokenPair[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): void; 
+ CopyToAsync(oDestinationFolder: ITHit.WebDAV.Client.Folder, sDestinationName: string, bDeep: boolean, bOverwrite: boolean, oLockTokens?: ITHit.WebDAV.Client.LockUriTokenPair[] | null, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): void; 
  /**
 		 * Deletes this item.
 		 * @api
 		 * @examplecode ITHit.WebDAV.Client.Tests.HierarchyItems.Delete.Delete
 		 * @examplecode ITHit.WebDAV.Client.TSExamples.HierarchyItems.Delete.Delete
-		 * @param {ITHit.WebDAV.Client.LockUriTokenPair} oLockTokens Lock tokens for this item or any locked child item.
+		 * @param {ITHit.WebDAV.Client.LockUriTokenPair | null} oLockTokens Lock tokens for this item or any locked child item.
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~DeleteAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- DeleteAsync(oLockTokens: ITHit.WebDAV.Client.LockUriTokenPair, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ DeleteAsync(oLockTokens: ITHit.WebDAV.Client.LockUriTokenPair | null, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Returns names of all custom properties exposed by this item.
 		 * @api
@@ -1464,7 +1438,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~GetPropertyNamesAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- GetPropertyNamesAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ GetPropertyNamesAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Retrieves values of specific properties.
 		 * @api
@@ -1474,7 +1448,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~GetPropertyValuesAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- GetPropertyValuesAsync(aNames: ITHit.WebDAV.Client.PropertyName[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ GetPropertyValuesAsync(aNames: ITHit.WebDAV.Client.PropertyName[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Retrieves all custom properties exposed by the item.
 		 * @api
@@ -1483,7 +1457,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~GetAllPropertiesAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- GetAllPropertiesAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ GetAllPropertiesAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Retrieves parent hierarchy item of this item.
 		 * @api
@@ -1493,14 +1467,14 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~GetParentAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- GetParentAsync(aProperties: ITHit.WebDAV.Client.PropertyName[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ GetParentAsync(aProperties: ITHit.WebDAV.Client.PropertyName[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Retrieves media type independent links.
 		 * @api
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~GetSourceAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- GetSourceAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ GetSourceAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Locks the item. If the lock was successfully applied, the server will return a lock token. You will pass this
 		 * lock token back to the server when updating and unlocking the item. The actual lock time applied by the server
@@ -1515,7 +1489,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~LockAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- LockAsync(sLockScope: string, bDeep: boolean, sOwner: string, iTimeout: number, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ LockAsync(sLockScope: string, bDeep: boolean, sOwner: string, iTimeout: number, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Moves this item to another location.
 		 * @api
@@ -1528,7 +1502,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~MoveToAsyncCallback} fCallback Function to call when operation is completed.
 		 * @return {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- MoveToAsync(oDestinationFolder: ITHit.WebDAV.Client.Folder, sDestinationName: string, bOverwrite: boolean, oLockTokens: string | ITHit.WebDAV.Client.LockUriTokenPair[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ MoveToAsync(oDestinationFolder: ITHit.WebDAV.Client.Folder, sDestinationName: string, bOverwrite: boolean, oLockTokens: string | ITHit.WebDAV.Client.LockUriTokenPair[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Prolongs the lock.
 		 * @api
@@ -1539,7 +1513,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~RefreshLockAsyncCallback} fCallback Function to call when operation is completed.
 		 * @return {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- RefreshLockAsync(sLockToken: string, iTimeout: number, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ RefreshLockAsync(sLockToken: string, iTimeout: number, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Gets features supported by this item, such as WebDAV class support.
 		 * @api
@@ -1548,7 +1522,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~GetSupportedFeaturesAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- GetSupportedFeaturesAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ GetSupportedFeaturesAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Removes the lock.
 		 * @api
@@ -1558,7 +1532,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~UnlockAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- UnlockAsync(sLockToken: string, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ UnlockAsync(sLockToken: string, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Updates values of properties exposed by this item.
 		 * @api
@@ -1572,7 +1546,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~UpdatePropertiesAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.WebDavRequest|null} WebDAV request
 		 */ 
- UpdatePropertiesAsync(oPropertiesToAddOrUpdate: ITHit.WebDAV.Client.Property[], oPropertiesToDelete: ITHit.WebDAV.Client.PropertyName[], sLockToken?: string, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.WebDavRequest | null; 
+ UpdatePropertiesAsync(oPropertiesToAddOrUpdate: ITHit.WebDAV.Client.Property[], oPropertiesToDelete: ITHit.WebDAV.Client.PropertyName[], sLockToken?: string | null, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.WebDavRequest | null; 
  }/**
  * The class represents set of extensions to be edited with Microsoft Office.
  * @api
@@ -1679,7 +1653,7 @@ export namespace ITHit{
              * @param {string} [sCookieNames] <span class="optional">v3 Beta and later only.</span> Coma separated list of cookie names to search for. Microsoft Office requires persistent cookie (with expiration date), it does not support session cookies.
              * @param {string} [sLoginUrl] <span class="optional">v3 Beta and later only.</span> Login URL to redirect to in case any cookies specified in <code>sCookieNames</code> parameter are not found.
 			 */ 
- function OpenFolderInOsFileManager(sFolderUrl: string, sMountUrl?: string, errorCallback?: Function, reserved?: string, sSearchIn?: string, sCookieNames?: string, sLoginUrl?: string): void; 
+ function OpenFolderInOsFileManager(sFolderUrl: string, sMountUrl?: string | null, errorCallback?: Function | null, reserved?: string | null, sSearchIn?: string | null, sCookieNames?: string | null, sLoginUrl?: string | null): void; 
  /**
 			 * Extracts extension and returns true if URL points to Microsoft Office Document.
 			 * @api
@@ -1730,7 +1704,7 @@ export namespace ITHit{
 			 * @param {function} [errorCallback] Function to call if document opening failed. Typically you will request the protocol installation in this callback. This callback is executed for non-Microsoft Office documents only.
              * If not specified a default message offering protocol installation will be displayed.      
 			 */ 
- function EditDocument(sDocumentUrl: string, sMountUrl?: string, errorCallback?: Function): void; 
+ function EditDocument(sDocumentUrl: string, sMountUrl?: string | null, errorCallback?: Function | null): void; 
  /**
 			 * Extracts extension and returns true if the document can be edited in G Suite editor or document preview generated via G Suite.
 			 * @api
@@ -1745,7 +1719,7 @@ export namespace ITHit{
              * @param {DOM} oContainerDomElement HTML DOM element where the G Suite online editor will be loaded. If this parameter is omitted or null is passed the editor will be created in a new tab/window.
 			 * @param {function} [errorCallback] Function to call if document opening failed.
             */ 
- function GSuiteEditDocument(sDocumentUrl: string, oContainerDomElement: any, errorCallback?: Function): void; 
+ function GSuiteEditDocument(sDocumentUrl: string, oContainerDomElement: any, errorCallback?: Function | null): void; 
  /**
 			 * <p>Preview MS Office document with G Suite Online Tool.</p>             
              * @api
@@ -1753,7 +1727,7 @@ export namespace ITHit{
              * @param {DOM} oContainerDomElement HTML DOM element where the G Suite preview will be loaded. If this parameter is omitted or null is passed the preview will be created in a new tab/window.
 			 * @param {function} [errorCallback] Function to call if document opening failed.
             */ 
- function GSuitePreviewDocument(sDocumentUrl: string, oContainerDomElement: any, errorCallback?: Function): void; 
+ function GSuitePreviewDocument(sDocumentUrl: string, oContainerDomElement: any, errorCallback?: Function | null): void; 
  /**
 			 * <p>Opens document for editing or printing using davX: protocol and prompts to install the protocol it if not found.</p>
              * <i class="optional">The following functionality is supported in v3 Beta and later only:</i>
@@ -1795,7 +1769,7 @@ export namespace ITHit{
 			 * &lt;/body&gt;
 			 * &lt;/html&gt;
 			 * @api
-			 * @param {string} sDocumentUrls Array of document URLs to be opened for editing from server. All documents must be located under the same mount URL (specified in <code>sMountUrl</code> parameter). Must be a full URL(s) including the domain name.
+			 * @param {string | string[]} sDocumentUrls Array of document URLs to be opened for editing from server. All documents must be located under the same mount URL (specified in <code>sMountUrl</code> parameter). Must be a full URL(s) including the domain name.
              * @param {string} [sMountUrl] URL to mount file system to before opening the folder. Usually this is your WebDAV server root folder. If this perameter is not specified file system will be mounted to the folder in which document is located.
 			 * @param {function} [errorCallback] Function to call if document opening failed. Typically you will request the protocol installation in this callback.
              * If not specified a default message offering protocol installation will be displayed.
@@ -1818,7 +1792,7 @@ export namespace ITHit{
              * </ul>
              * Default is <code>null</code>.       
 			 */ 
- function DavProtocolEditDocument(sDocumentUrls: string, sMountUrl?: string, errorCallback?: Function, reserved?: string, sSearchIn?: string, sCookieNames?: string, sLoginUrl?: string, sCommand?: string): void; 
+ function DavProtocolEditDocument(sDocumentUrls: string | string[], sMountUrl?: string | null, errorCallback?: Function | null, reserved?: string | null, sSearchIn?: string | null, sCookieNames?: string | null, sLoginUrl?: string | null, sCommand?: string | null): void; 
  }class DocManager  { 
 	 /**
 			 * Collection of extensions of files which are opened with Microsoft Office.
@@ -1851,7 +1825,7 @@ export namespace ITHit{
 	 * @param {ITHit.WebDAV.Client.ResumableUpload~GetBytesUploadedAsyncCallback} fCallback Function to call when operation is completed.
 	 * @returns {ITHit.WebDAV.Client.Request} Request object.
 	 */ 
- GetBytesUploadedAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ GetBytesUploadedAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 	 * Cancels upload of the file.
 	 * @api
@@ -1859,7 +1833,7 @@ export namespace ITHit{
 	 * @param {ITHit.WebDAV.Client.ResumableUpload~CancelUploadAsyncCallback} fCallback Function to call when operation is completed.
 	 * @returns {ITHit.WebDAV.Client.Request} Request object.
 	 */ 
- CancelUploadAsync(mLockTokens: string, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ CancelUploadAsync(mLockTokens: string, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  }/**
  * Information about lock set on an item.
  * @api
@@ -1901,7 +1875,7 @@ export namespace ITHit{
              * @param {ITHit.WebDAV.Client.File~GEditAsyncCallback} fCallback Function to call when operation is completed.
              * @returns {ITHit.WebDAV.Client.Request} Request object.
              */ 
- function GEditAsync(oRequest: ITHit.WebDAV.Client.Request, sHref: string, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ function GEditAsync(oRequest: ITHit.WebDAV.Client.Request, sHref: string, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		     * Removes the lock and update file.
 		     * @api
@@ -1912,7 +1886,7 @@ export namespace ITHit{
 		     * @throws ITHit.WebDAV.Client.Exceptions.NotFoundException The item doesn't exist on the server.
 		     * @throws ITHit.WebDAV.Client.Exceptions.WebDavException Unexpected error occurred.
 		     */ 
- function GUnlock(oRequest: ITHit.WebDAV.Client.Request, sHref: string, sLockToken?: string): void; 
+ function GUnlock(oRequest: ITHit.WebDAV.Client.Request, sHref: string, sLockToken?: string | null): void; 
  /**
              * Removes the lock and update file.
              * @api
@@ -1923,7 +1897,7 @@ export namespace ITHit{
              * @param {ITHit.WebDAV.Client.File~GUnlockAsyncCallback} fCallback Function to call when operation is completed.
              * @returns {ITHit.WebDAV.Client.Request} Request object.
              */ 
- function GUnlockAsync(oRequest: ITHit.WebDAV.Client.Request, sHref: string, sLockToken: string, sRevisionID: string, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ function GUnlockAsync(oRequest: ITHit.WebDAV.Client.Request, sHref: string, sLockToken: string, sRevisionID: string, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  }class File extends ITHit.WebDAV.Client.HierarchyItem { 
 	 /**
 		 * Length of the file.
@@ -1957,7 +1931,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.File~ReadContentAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- ReadContentAsync(iBytesFrom: number, iBytesCount: number, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ ReadContentAsync(iBytesFrom: number, iBytesCount: number, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Writes file content.
 		 * @api
@@ -1969,7 +1943,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.File~WriteContentAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- WriteContentAsync(sContent: string, sLockToken: string, sMimeType: string, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ WriteContentAsync(sContent: string, sLockToken: string, sMimeType: string, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Retrieves item versions.
 		 * @examplecode ITHit.WebDAV.Client.Tests.Versions.GetVersions.GetVersions
@@ -1978,7 +1952,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.File~GetVersionsAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- GetVersionsAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ GetVersionsAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Update to version.
 		 * @examplecode ITHit.WebDAV.Client.Tests.Versions.ManageVersions.UpdateToVersion
@@ -1988,7 +1962,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.File~UpdateToVersionAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- UpdateToVersionAsync(mVersion: string | ITHit.WebDAV.Client.Version, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ UpdateToVersionAsync(mVersion: string | ITHit.WebDAV.Client.Version, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Enables / disables version control for this file.
 		 * @api
@@ -1999,7 +1973,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.File~PutUnderVersionControlAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- PutUnderVersionControlAsync(bEnable: boolean, mLockToken: string, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ PutUnderVersionControlAsync(bEnable: boolean, mLockToken: string, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Current WebDAV session.
 		 * @api
@@ -2089,7 +2063,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~RefreshAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- RefreshAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ RefreshAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Copies this item to destination folder.
 		 * @api
@@ -2102,17 +2076,17 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.LockUriTokenPair[]} [oLockTokens] Lock tokens for destination folder.
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~CopyToAsyncCallback} fCallback Function to call when operation is completed.
 		 */ 
- CopyToAsync(oDestinationFolder: ITHit.WebDAV.Client.Folder, sDestinationName: string, bDeep: boolean, bOverwrite: boolean, oLockTokens?: ITHit.WebDAV.Client.LockUriTokenPair[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): void; 
+ CopyToAsync(oDestinationFolder: ITHit.WebDAV.Client.Folder, sDestinationName: string, bDeep: boolean, bOverwrite: boolean, oLockTokens?: ITHit.WebDAV.Client.LockUriTokenPair[] | null, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): void; 
  /**
 		 * Deletes this item.
 		 * @api
 		 * @examplecode ITHit.WebDAV.Client.Tests.HierarchyItems.Delete.Delete
 		 * @examplecode ITHit.WebDAV.Client.TSExamples.HierarchyItems.Delete.Delete
-		 * @param {ITHit.WebDAV.Client.LockUriTokenPair} oLockTokens Lock tokens for this item or any locked child item.
+		 * @param {ITHit.WebDAV.Client.LockUriTokenPair | null} oLockTokens Lock tokens for this item or any locked child item.
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~DeleteAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- DeleteAsync(oLockTokens: ITHit.WebDAV.Client.LockUriTokenPair, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ DeleteAsync(oLockTokens: ITHit.WebDAV.Client.LockUriTokenPair | null, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Returns names of all custom properties exposed by this item.
 		 * @api
@@ -2121,7 +2095,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~GetPropertyNamesAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- GetPropertyNamesAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ GetPropertyNamesAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Retrieves values of specific properties.
 		 * @api
@@ -2131,7 +2105,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~GetPropertyValuesAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- GetPropertyValuesAsync(aNames: ITHit.WebDAV.Client.PropertyName[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ GetPropertyValuesAsync(aNames: ITHit.WebDAV.Client.PropertyName[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Retrieves all custom properties exposed by the item.
 		 * @api
@@ -2140,7 +2114,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~GetAllPropertiesAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- GetAllPropertiesAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ GetAllPropertiesAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Retrieves parent hierarchy item of this item.
 		 * @api
@@ -2150,14 +2124,14 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~GetParentAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- GetParentAsync(aProperties: ITHit.WebDAV.Client.PropertyName[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ GetParentAsync(aProperties: ITHit.WebDAV.Client.PropertyName[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Retrieves media type independent links.
 		 * @api
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~GetSourceAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- GetSourceAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ GetSourceAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Locks the item. If the lock was successfully applied, the server will return a lock token. You will pass this
 		 * lock token back to the server when updating and unlocking the item. The actual lock time applied by the server
@@ -2172,7 +2146,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~LockAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- LockAsync(sLockScope: string, bDeep: boolean, sOwner: string, iTimeout: number, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ LockAsync(sLockScope: string, bDeep: boolean, sOwner: string, iTimeout: number, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Moves this item to another location.
 		 * @api
@@ -2185,7 +2159,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~MoveToAsyncCallback} fCallback Function to call when operation is completed.
 		 * @return {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- MoveToAsync(oDestinationFolder: ITHit.WebDAV.Client.Folder, sDestinationName: string, bOverwrite: boolean, oLockTokens: string | ITHit.WebDAV.Client.LockUriTokenPair[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ MoveToAsync(oDestinationFolder: ITHit.WebDAV.Client.Folder, sDestinationName: string, bOverwrite: boolean, oLockTokens: string | ITHit.WebDAV.Client.LockUriTokenPair[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Prolongs the lock.
 		 * @api
@@ -2196,7 +2170,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~RefreshLockAsyncCallback} fCallback Function to call when operation is completed.
 		 * @return {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- RefreshLockAsync(sLockToken: string, iTimeout: number, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ RefreshLockAsync(sLockToken: string, iTimeout: number, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Gets features supported by this item, such as WebDAV class support.
 		 * @api
@@ -2205,7 +2179,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~GetSupportedFeaturesAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- GetSupportedFeaturesAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ GetSupportedFeaturesAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Removes the lock.
 		 * @api
@@ -2215,7 +2189,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~UnlockAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- UnlockAsync(sLockToken: string, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ UnlockAsync(sLockToken: string, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Updates values of properties exposed by this item.
 		 * @api
@@ -2229,7 +2203,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~UpdatePropertiesAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.WebDavRequest|null} WebDAV request
 		 */ 
- UpdatePropertiesAsync(oPropertiesToAddOrUpdate: ITHit.WebDAV.Client.Property[], oPropertiesToDelete: ITHit.WebDAV.Client.PropertyName[], sLockToken?: string, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.WebDavRequest | null; 
+ UpdatePropertiesAsync(oPropertiesToAddOrUpdate: ITHit.WebDAV.Client.Property[], oPropertiesToDelete: ITHit.WebDAV.Client.PropertyName[], sLockToken?: string | null, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.WebDavRequest | null; 
  }/**
      * @classdesc Represents a search request.
 	 * @constructs
@@ -2307,7 +2281,7 @@ export namespace ITHit{
          * @param {ITHit.WebDAV.Client.Folder~CreateFolderAsyncCallback} fCallback Function to call when operation is completed.
          * @returns {ITHit.WebDAV.Client.Request} Request object.
          */ 
- CreateFolderAsync(sName: string, sLockTokens?: string, aProperties?: ITHit.WebDAV.Client.PropertyName[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ CreateFolderAsync(sName: string, sLockTokens?: string | null, aProperties?: ITHit.WebDAV.Client.PropertyName[] | null, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
          * Creates a new file with a specified name as a child of this folder.
          * @api
@@ -2320,7 +2294,7 @@ export namespace ITHit{
          * @param {ITHit.WebDAV.Client.Folder~CreateFileAsyncCallback} fCallback Function to call when operation is completed.
          * @returns {ITHit.WebDAV.Client.Request} Request object.
          */ 
- CreateFileAsync(sName: string, sLockTokens: string, sContent: string, aProperties: ITHit.WebDAV.Client.PropertyName[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ CreateFileAsync(sName: string, sLockTokens: string, sContent: string, aProperties: ITHit.WebDAV.Client.PropertyName[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
          * Gets specified number of children of this folder that correspond to requested offset and sorting. Use GetSupportedFeaturesAsync() function to detect if paging is supported.
          * @api      
@@ -2333,7 +2307,7 @@ export namespace ITHit{
          * @param {ITHit.WebDAV.Client.Folder~GetPageAsyncCallback} fCallback Function to call when operation is completed.
          * @returns {ITHit.WebDAV.Client.Request} Request object.       
          */ 
- GetPageAsync(aProperties?: ITHit.WebDAV.Client.PropertyName[], nOffset?: number, nResults?: number, aOrderProperties?: ITHit.WebDAV.Client.OrderProperty[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ GetPageAsync(aProperties?: ITHit.WebDAV.Client.PropertyName[] | null, nOffset?: number | null, nResults?: number | null, aOrderProperties?: ITHit.WebDAV.Client.OrderProperty[] | null, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
          * This method returns all items contained in the folder, which may be very large. To limit amount of items returned and get only a single results page use [GetPageAsync]{@link ITHit.WebDAV.Client.Folder#GetPageAsync} function instead.
          * @api
@@ -2344,7 +2318,7 @@ export namespace ITHit{
          * @param {ITHit.WebDAV.Client.Folder~GetChildrenAsyncCallback} fCallback Function to call when operation is completed.
          * @returns {ITHit.WebDAV.Client.Request} Request object.
          */ 
- GetChildrenAsync(bRecursively: boolean, aProperties: ITHit.WebDAV.Client.PropertyName[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ GetChildrenAsync(bRecursively: boolean, aProperties: ITHit.WebDAV.Client.PropertyName[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
          * Gets the specified folder from server.
          * @api
@@ -2352,7 +2326,7 @@ export namespace ITHit{
          * @param {ITHit.WebDAV.Client.Folder~GetFolderAsyncCallback} fCallback Function to call when operation is completed.
          * @returns {ITHit.WebDAV.Client.Request} Request object.
          */ 
- GetFolderAsync(sName: string, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ GetFolderAsync(sName: string, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
          * Gets the specified file from server.
          * @examplecode ITHit.WebDAV.Client.Tests.HierarchyItems.GetItemByFolder.GetFile
@@ -2362,7 +2336,7 @@ export namespace ITHit{
          * @param {ITHit.WebDAV.Client.Folder~GetFileAsyncCallback} fCallback Function to call when operation is completed.
          * @returns {ITHit.WebDAV.Client.Request} Request object.
          */ 
- GetFileAsync(sName: string, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ GetFileAsync(sName: string, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
          * Gets the specified item from server.
          * @api
@@ -2370,7 +2344,7 @@ export namespace ITHit{
          * @param {ITHit.WebDAV.Client.Folder~GetItemAsyncCallback} fCallback Function to call when operation is completed.
          * @returns {ITHit.WebDAV.Client.Request} Request object.
          */ 
- GetItemAsync(sName: string, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ GetItemAsync(sName: string, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
          * Checks whether specified item exists in the folder.
          * @api
@@ -2380,7 +2354,7 @@ export namespace ITHit{
          * @param {ITHit.WebDAV.Client.Folder~ItemExistsAsyncCallback} fCallback Function to call when operation is completed.
          * @returns {ITHit.WebDAV.Client.Request} Request object.
          */ 
- ItemExistsAsync(sName: string, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ ItemExistsAsync(sName: string, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
          * This method returns all items found on the server, which may be very large. To limit amount of items returned and get only a single results page use [GetSearchPageByQueryAsync]{@link ITHit.WebDAV.Client.Folder#GetSearchPageByQueryAsync} function instead.
          * @api
@@ -2390,7 +2364,7 @@ export namespace ITHit{
          * @param {ITHit.WebDAV.Client.Folder~SearchByQueryAsyncCallback} fCallback Function to call when operation is completed.
          * @returns {ITHit.WebDAV.Client.Request} Request object.
          */ 
- SearchByQueryAsync(oSearchQuery: ITHit.WebDAV.Client.SearchQuery, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ SearchByQueryAsync(oSearchQuery: ITHit.WebDAV.Client.SearchQuery, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
          * Searches folder by query. Returns specified number of search result items that correspond to requested offset and sorting. Use GetSupportedFeaturesAsync() function to detect if paging is supported.
          * @api
@@ -2402,7 +2376,7 @@ export namespace ITHit{
          * @param {ITHit.WebDAV.Client.Folder~GetSearchPageByQueryAsyncCallback} fCallback Function to call when operation is completed.
          * @returns {ITHit.WebDAV.Client.Request} Request object.
          */ 
- GetSearchPageByQueryAsync(oSearchQuery: ITHit.WebDAV.Client.SearchQuery, nOffset?: number, nResults?: number, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ GetSearchPageByQueryAsync(oSearchQuery: ITHit.WebDAV.Client.SearchQuery, nOffset?: number | null, nResults?: number | null, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
          * Searches folder by search string. To limit amount of items returned and get only a single results page use [GetSearchPageAsync]{@link ITHit.WebDAV.Client.Folder#GetSearchPageAsync} function instead.
          * @api
@@ -2413,7 +2387,7 @@ export namespace ITHit{
          * @param {ITHit.WebDAV.Client.Folder~SearchAsyncCallback} fCallback Function to call when operation is completed.
          * @returns {ITHit.WebDAV.Client.Request} Request object.
          */ 
- SearchAsync(sSearchQuery: string, aProperties?: ITHit.WebDAV.Client.PropertyName[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ SearchAsync(sSearchQuery: string, aProperties?: ITHit.WebDAV.Client.PropertyName[] | null, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
          * Searches folder by search string. Returns specified number of search result items that correspond to requested offset and sorting. Use GetSupportedFeaturesAsync() function to detect if paging is supported.
          * @api
@@ -2426,7 +2400,7 @@ export namespace ITHit{
          * @param {ITHit.WebDAV.Client.Folder~GetSearchPageAsyncCallback} fCallback Function to call when operation is completed.
          * @returns {ITHit.WebDAV.Client.Request} Request object.
          */ 
- GetSearchPageAsync(sSearchQuery: string, aProperties?: ITHit.WebDAV.Client.PropertyName[], nOffset?: number, nResults?: number, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ GetSearchPageAsync(sSearchQuery: string, aProperties?: ITHit.WebDAV.Client.PropertyName[] | null, nOffset?: number | null, nResults?: number | null, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Current WebDAV session.
 		 * @api
@@ -2516,7 +2490,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~RefreshAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- RefreshAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ RefreshAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Copies this item to destination folder.
 		 * @api
@@ -2529,17 +2503,17 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.LockUriTokenPair[]} [oLockTokens] Lock tokens for destination folder.
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~CopyToAsyncCallback} fCallback Function to call when operation is completed.
 		 */ 
- CopyToAsync(oDestinationFolder: ITHit.WebDAV.Client.Folder, sDestinationName: string, bDeep: boolean, bOverwrite: boolean, oLockTokens?: ITHit.WebDAV.Client.LockUriTokenPair[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): void; 
+ CopyToAsync(oDestinationFolder: ITHit.WebDAV.Client.Folder, sDestinationName: string, bDeep: boolean, bOverwrite: boolean, oLockTokens?: ITHit.WebDAV.Client.LockUriTokenPair[] | null, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): void; 
  /**
 		 * Deletes this item.
 		 * @api
 		 * @examplecode ITHit.WebDAV.Client.Tests.HierarchyItems.Delete.Delete
 		 * @examplecode ITHit.WebDAV.Client.TSExamples.HierarchyItems.Delete.Delete
-		 * @param {ITHit.WebDAV.Client.LockUriTokenPair} oLockTokens Lock tokens for this item or any locked child item.
+		 * @param {ITHit.WebDAV.Client.LockUriTokenPair | null} oLockTokens Lock tokens for this item or any locked child item.
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~DeleteAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- DeleteAsync(oLockTokens: ITHit.WebDAV.Client.LockUriTokenPair, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ DeleteAsync(oLockTokens: ITHit.WebDAV.Client.LockUriTokenPair | null, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Returns names of all custom properties exposed by this item.
 		 * @api
@@ -2548,7 +2522,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~GetPropertyNamesAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- GetPropertyNamesAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ GetPropertyNamesAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Retrieves values of specific properties.
 		 * @api
@@ -2558,7 +2532,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~GetPropertyValuesAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- GetPropertyValuesAsync(aNames: ITHit.WebDAV.Client.PropertyName[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ GetPropertyValuesAsync(aNames: ITHit.WebDAV.Client.PropertyName[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Retrieves all custom properties exposed by the item.
 		 * @api
@@ -2567,7 +2541,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~GetAllPropertiesAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- GetAllPropertiesAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ GetAllPropertiesAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Retrieves parent hierarchy item of this item.
 		 * @api
@@ -2577,14 +2551,14 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~GetParentAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- GetParentAsync(aProperties: ITHit.WebDAV.Client.PropertyName[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ GetParentAsync(aProperties: ITHit.WebDAV.Client.PropertyName[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Retrieves media type independent links.
 		 * @api
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~GetSourceAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- GetSourceAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ GetSourceAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Locks the item. If the lock was successfully applied, the server will return a lock token. You will pass this
 		 * lock token back to the server when updating and unlocking the item. The actual lock time applied by the server
@@ -2599,7 +2573,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~LockAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- LockAsync(sLockScope: string, bDeep: boolean, sOwner: string, iTimeout: number, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ LockAsync(sLockScope: string, bDeep: boolean, sOwner: string, iTimeout: number, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Moves this item to another location.
 		 * @api
@@ -2612,7 +2586,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~MoveToAsyncCallback} fCallback Function to call when operation is completed.
 		 * @return {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- MoveToAsync(oDestinationFolder: ITHit.WebDAV.Client.Folder, sDestinationName: string, bOverwrite: boolean, oLockTokens: string | ITHit.WebDAV.Client.LockUriTokenPair[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ MoveToAsync(oDestinationFolder: ITHit.WebDAV.Client.Folder, sDestinationName: string, bOverwrite: boolean, oLockTokens: string | ITHit.WebDAV.Client.LockUriTokenPair[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Prolongs the lock.
 		 * @api
@@ -2623,7 +2597,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~RefreshLockAsyncCallback} fCallback Function to call when operation is completed.
 		 * @return {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- RefreshLockAsync(sLockToken: string, iTimeout: number, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ RefreshLockAsync(sLockToken: string, iTimeout: number, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Gets features supported by this item, such as WebDAV class support.
 		 * @api
@@ -2632,7 +2606,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~GetSupportedFeaturesAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- GetSupportedFeaturesAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ GetSupportedFeaturesAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Removes the lock.
 		 * @api
@@ -2642,7 +2616,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~UnlockAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- UnlockAsync(sLockToken: string, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ UnlockAsync(sLockToken: string, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Updates values of properties exposed by this item.
 		 * @api
@@ -2656,7 +2630,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~UpdatePropertiesAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.WebDavRequest|null} WebDAV request
 		 */ 
- UpdatePropertiesAsync(oPropertiesToAddOrUpdate: ITHit.WebDAV.Client.Property[], oPropertiesToDelete: ITHit.WebDAV.Client.PropertyName[], sLockToken?: string, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.WebDavRequest | null; 
+ UpdatePropertiesAsync(oPropertiesToAddOrUpdate: ITHit.WebDAV.Client.Property[], oPropertiesToDelete: ITHit.WebDAV.Client.PropertyName[], sLockToken?: string | null, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.WebDavRequest | null; 
  }/**
 	 * Represents a version on a WebDAV server.
 	 * @api
@@ -2689,7 +2663,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.Version~UpdateToThisVersionAsync} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- UpdateToThisAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ UpdateToThisAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Read file content. To download only a part of a file you can specify 2 parameters in ReadContent call.
 		 * First parameter is the starting byte (zero-based) at witch to start content download, the second – amount
@@ -2702,7 +2676,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.File~ReadContentAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- ReadContentAsync(iBytesFrom: number, iBytesCount: number, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ ReadContentAsync(iBytesFrom: number, iBytesCount: number, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Writes file content.
 		 * @api
@@ -2712,14 +2686,14 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.File~WriteContentAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- WriteContentAsync(sContent: string, sLockToken: string, sMimeType: string, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ WriteContentAsync(sContent: string, sLockToken: string, sMimeType: string, fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Refreshes item loading data from server.
 		 * @api
 		 * @param {ITHit.WebDAV.Client.HierarchyItem~RefreshAsyncCallback} fCallback Function to call when operation is completed.
 		 * @returns {ITHit.WebDAV.Client.Request} Request object.
 		 */ 
- RefreshAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ RefreshAsync(fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
 		 * Length of the file.
          * @api
@@ -2871,24 +2845,35 @@ export namespace ITHit{
 		 */ 
  Progress: ITHit.WebDAV.Client.RequestProgress 
  /**
-		 * @api
-		 * @param {string} sEventName
-		 * @param {function} fCallback
-		 * @param {object} [oContext]
-		 */ 
- AddListener(sEventName: string, fCallback: Function, oContext?: object): void; 
+         * Progress info object, auto updated on `OnUploadProgress` event.
+         * @public
+         * @type {ITHit.WebDAV.Client.RequestProgress}
+         */ 
+ UploadProgress: ITHit.WebDAV.Client.RequestProgress 
  /**
 		 * @api
 		 * @param {string} sEventName
 		 * @param {function} fCallback
 		 * @param {object} [oContext]
 		 */ 
- RemoveListener(sEventName: string, fCallback: Function, oContext?: object): void; 
+ AddListener(sEventName: string, fCallback: Function, oContext?: object | null): void; 
+ /**
+		 * @api
+		 * @param {string} sEventName
+		 * @param {function} fCallback
+		 * @param {object} [oContext]
+		 */ 
+ RemoveListener(sEventName: string, fCallback: Function, oContext?: object | null): void; 
  /**
 		 * Cancels asynchronous request. The Finish event and the callback function will be called immediately after this method call.
 		 * @api
 		 */ 
  Abort(): void; 
+ /**
+         * Cancels asynchronous request. The Finish event and the callback function will not be called after this method call.
+         * @public
+         */ 
+ AbortAsync(): void; 
  }/**
          * @classdesc Session for accessing WebDAV servers.
          * @example
@@ -2981,14 +2966,14 @@ export namespace ITHit{
          * @param {function} fCallback
          * @param {object} [oContext]
          */ 
- AddListener(sEventName: string, fCallback: Function, oContext?: object): void; 
+ AddListener(sEventName: string, fCallback: Function, oContext?: object | null): void; 
  /**
          * @api
          * @param {string} sEventName
          * @param {function} fCallback
          * @param {object} [oContext]
          */ 
- RemoveListener(sEventName: string, fCallback: Function, oContext?: object): void; 
+ RemoveListener(sEventName: string, fCallback: Function, oContext?: object | null): void; 
  /**
          * Load File object corresponding to path.
          * @api
@@ -2997,7 +2982,7 @@ export namespace ITHit{
          * @param {ITHit.WebDAV.Client.WebDavSession~OpenFileAsyncCallback} fCallback Function to call when operation is completed.
          * @returns {ITHit.WebDAV.Client.Request} Request object.
          */ 
- OpenFileAsync(sPath: string, aProperties: ITHit.WebDAV.Client.PropertyName[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): ITHit.WebDAV.Client.Request; 
+ OpenFileAsync(sPath: string, aProperties: ITHit.WebDAV.Client.PropertyName[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
  /**
          * Returns Folder object corresponding to path.
          * @examplecode ITHit.WebDAV.Client.Tests.HierarchyItems.GetItemBySession.GetFolder
@@ -3007,7 +2992,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.PropertyName[]} aProperties Additional properties requested from server. Default is empty array.
          * @param {ITHit.WebDAV.Client.WebDavSession~OpenFolderAsyncCallback} fCallback Function to call when operation is completed.
          */ 
- OpenFolderAsync(sPath: string, aProperties: ITHit.WebDAV.Client.PropertyName[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): void; 
+ OpenFolderAsync(sPath: string, aProperties: ITHit.WebDAV.Client.PropertyName[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): void; 
  /**
          * Returns HierarchyItem object corresponding to path.
          * @api
@@ -3015,7 +3000,7 @@ export namespace ITHit{
 		 * @param {ITHit.WebDAV.Client.PropertyName[]} aProperties Additional properties requested from server. Default is empty array.
          * @param {ITHit.WebDAV.Client.WebDavSession~OpenItemAsyncCallback} fCallback Function to call when operation is completed.
          */ 
- OpenItemAsync(sPath: string, aProperties: ITHit.WebDAV.Client.PropertyName[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): void; 
+ OpenItemAsync(sPath: string, aProperties: ITHit.WebDAV.Client.PropertyName[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): void; 
  /**
          * Creates folder corresponding to path.
          * @api
@@ -3023,5 +3008,1075 @@ export namespace ITHit{
          * @param {ITHit.WebDAV.Client.PropertyName[]} aProperties Additional properties requested from server. Default is empty array.
          * @param {ITHit.WebDAV.Client.WebDavSession~CreateFolderAsyncCallback} fCallback Function to call when operation is completed.
          */ 
- CreateFolderAsync(sPath: string, aProperties: ITHit.WebDAV.Client.PropertyName[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void): void; 
- }}}}
+ CreateFolderAsync(sPath: string, aProperties: ITHit.WebDAV.Client.PropertyName[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): void; 
+ } 
+ namespace Upload{ 
+	 /**
+     * Upload state.
+     * @api
+     * @enum {string}
+     * @readonly
+     * @class ITHit.WebDAV.Client.Upload.State
+     */ 
+ enum State{ 
+	 Uploading = "Uploading",
+	 Canceled = "Canceled",
+	 Paused = "Paused",
+	 Queued = "Queued",
+	 Failed = "Failed",
+	 Completed = "Completed",
+	 Retrying = "Retrying",
+	 Skipped = "Skipped",
+	 }/**
+     * This class represents progress state of upload.
+     * @api
+     * @class ITHit.WebDAV.Client.Upload.Progress
+     */ 
+ class Progress  { 
+	 /**
+             * Bytes uploaded.
+             * @api
+             * @type {!number}
+             */ 
+ UploadedBytes: number 
+ /**
+             * Total bytes to upload.
+             * @api
+             * @type {!number}
+             */ 
+ TotalBytes: number 
+ /**
+             * Elapsed time in seconds.
+             * @api
+             * @type {!number}
+             */ 
+ ElapsedTime: number 
+ /**
+             * Time left in seconds.
+             * @api
+             * @type {!number}
+             */ 
+ RemainingTime: number 
+ /**
+             * Progress in percents.
+             * @api
+             * @type {!number}
+             */ 
+ Completed: number 
+ /**
+             * Speed in bytes/s.
+             * @api
+             * @type {!number}
+             */ 
+ Speed: number 
+ }/**
+             * This class represents file or folder in unify form.
+             * @public
+             * @alias ITHit.WebDAV.Client.Upload.FSEntry
+             * @constructs
+             *
+             * @param {string} sPath The path without resource name.
+             * @param {File} [oFile] The file object.
+             */ 
+ namespace FSEntry{ 
+	 /**
+             * @public
+             * @readonly
+             */ 
+ function PathSeparator(): void; 
+ /**
+             * Creates entry.
+             * @public
+             * @param {string[]} aPathParts
+             * @param {File} [oFile]
+             * @return {ITHit.WebDAV.Client.Upload.FSEntry}
+             */ 
+ function CreateFromPathParts(aPathParts: string[], oFile?: File | null): ITHit.WebDAV.Client.Upload.FSEntry; 
+ }class FSEntry  { 
+	 constructor(sPath: string, oFile?: File | null); 
+ /**
+             * Returns relative path of entry on file system.
+             * @public
+             * @return {string}
+             */ 
+ GetRelativePath(): string; 
+ }/**
+     * Represents a file or folder being uploaded. Provides functions to discover item state, get info about upload
+     * progress as well as to pause, resume and cancel upload.
+     * @api
+     * @class ITHit.WebDAV.Client.Upload.UploadItem
+     * @param {string} sUrl
+     * @param {ITHit.WebDAV.Client.Upload.FSEntry} oFsEntry
+     * @param {ITHit.WebDAV.Client.Upload.Controls.HtmlControl} oBinding
+     * @param {ITHit.WebDAV.Client.Upload.UploaderSession} oSession
+     * @param {ITHit.WebDAV.Client.Upload.Groups.GroupManager} oGroupManager
+     * @param {ITHit.WebDAV.Client.Upload.Settings} oSettings
+     */ 
+ class UploadItem  { 
+	 constructor(sUrl: string, oFsEntry: ITHit.WebDAV.Client.Upload.FSEntry, oBinding: ITHit.WebDAV.Client.Upload.Controls.HtmlControl, oSession: ITHit.WebDAV.Client.Upload.UploaderSession, oGroupManager: ITHit.WebDAV.Client.Upload.Groups.GroupManager, oSettings: ITHit.WebDAV.Client.Upload.Settings); 
+ /**
+ * Event reporting that upload item state changed.
+ * @api
+ * @event ITHit.WebDAV.Client.Upload.UploadItem#OnStateChanged
+ * @property {ITHit.WebDAV.Client.Upload.UploadItem} Sender Upload item instance.
+ * @property {string} Name Event name.
+ * @property {ITHit.WebDAV.Client.Upload.State} OldState Previous state.
+ * @property {ITHit.WebDAV.Client.Upload.State} NewState Actual state.
+ * @example
+ * /&#x002A&#x002A @typedef {ITHit.WebDAV.Client.Upload.UploadItem} oItem &#x002A/
+ * var oItem = oUploader.Queue.GetByUrl(sSomeUrl);
+ * oItem.AddListener('OnStateChanged', function (oStateChanged) {
+ *         console.log('Upload to:' + oStateChanged.Sender.GetUrl() +  ', changed state to :' + oStateChanged.NewState);
+ *     });
+ *
+ */ 
+ /**
+ * Event reporting that upload item progress changed.
+ * @api
+ * @event ITHit.WebDAV.Client.Upload.UploadItem#OnProgressChanged
+ * @property {ITHit.WebDAV.Client.Upload.UploadItem} Sender Upload item instance.
+ * @property {string} Name Event name.
+ * @property {ITHit.WebDAV.Client.Upload.Progress} OldProgress Previous progress.
+ * @property {ITHit.WebDAV.Client.Upload.Progress} NewProgress Actual progress.
+ * @example
+ * /&#x002A&#x002A @typedef {ITHit.WebDAV.Client.Upload.UploadItem} oItem &#x002A/
+ * var oItem = oUploader.Queue.GetByUrl(sSomeUrl);
+ * oItem.AddListener('OnProgressChanged', function (oProgressChanged) {
+ *         console.log('Upload to:' + oStateChanged.Sender.GetUrl() +  ', completed by:' + oProgressChanged.NewProgress.Completed + '%');
+ *     });
+ *
+ */ 
+ /**
+ * Event reporting that upload error occurred.
+ * @api
+ * @event ITHit.WebDAV.Client.Upload.UploadItem#OnError
+ * @property {ITHit.WebDAV.Client.Upload.UploadItem} Sender Upload item instance.
+ * @property {string} Name Event name.
+ * @property {Error|ITHit.WebDAV.Client.Exceptions.WebDavException} Error.
+ * @example
+ * /&#x002A&#x002A @typedef {ITHit.WebDAV.Client.Upload.UploadItem} oItem &#x002A/
+ * var oItem = oUploader.Queue.GetByUrl(sSomeUrl);
+ * oItem.AddListener('OnError', function (oOnError) {
+ *         console.log('Upload to:' + oOnError.Sender.GetUrl() +  ', failed with error:' + oOnError.Error.toString());
+ *     });
+ *
+ */ 
+ /**
+ * Event fired before {@link ITHit.WebDAV.Client.Upload.UploadItem} started upload.
+ * You will validate item in this event and present user interface if user interaction is necessary.
+ * In this event you can check if each item exists on the server and specify if item should be overwritten or skipped.
+ * You can also validate file size, file extension, file upload path and file name.
+ *
+ * To continue upload the {@link ITHit.WebDAV.Client.Upload.Events.BeforeUploadStarted#Upload} function should be called.
+ * To skip upload the {@link ITHit.WebDAV.Client.Upload.Events.BeforeUploadStarted#Skip} function should be called.
+ * @api
+ * @event ITHit.WebDAV.Client.Upload.UploadItem#OnBeforeUploadStarted
+ * @type {ITHit.WebDAV.Client.Upload.Events.BeforeUploadStarted}
+ * @example
+ * /&#x002A&#x002A @typedef {ITHit.WebDAV.Client.Upload.UploadItem} oItem &#x002A/
+ * var oItem = oUploader.Queue.GetByUrl(sSomeUrl);
+ * oItem.AddListener('OnBeforeUploadStarted', function(oBeforeUploadStarted) {
+ *   WebDAVController.WebDavSession.OpenItemAsync(sHref,
+ *       [],
+ *       function(oAsyncResult) {
+ *           if (oAsyncResult.IsSuccess) {
+ *              oItem.SetSkip(true);
+ *           }
+ *
+ *           oBeforeUploadStarted.Done();
+ *       });
+ * });
+ */ 
+ /**
+ * Event fired when is possible to retry failed upload and waited until one of action called.
+ * @api
+ * @event ITHit.WebDAV.Client.Upload.UploadItem#OnUploadError
+ * @type {ITHit.WebDAV.Client.Upload.Events.UploadError}
+ * @example
+ * /&#x002A&#x002A @typedef {ITHit.WebDAV.Client.Upload.UploadItem} oItem &#x002A/
+ * var oItem = oUploader.Queue.GetByUrl(sSomeUrl);
+ * AddListener('OnUploadError', function(oUploadError) {
+ *   setTimeout(function() {
+ *    oUploadError.Retry();
+ *  }, 2000)
+ * });
+ */ 
+ /**
+ * Callback function to be called when action performed.
+ * @api
+ * @callback ITHit.WebDAV.Client.Upload.UploadItem~AsyncCallback
+ */ 
+ /**
+             * Gets [File]{@link https://www.w3.org/TR/FileAPI/} object. Returns null in case of a folder.
+             * @api
+             * @return {(File | null )}
+             */ 
+ GetFile(): File | null; 
+ /**
+             * Get target url.
+             * @api
+             * @return {string} File or folder target upload URL.
+             */ 
+ GetUrl(): string; 
+ /**
+             * Gets file or folder name with extension.
+             * @api
+             * @return {string} File or folder name.
+             */ 
+ GetName(): string; 
+ /**
+             * Gets relative path.
+             * @api
+             * @return {string} File or folder relative path.
+             */ 
+ GetRelativePath(): string; 
+ /**
+             * Gets current upload state.
+             * @api
+             * @return {(ITHit.WebDAV.Client.Upload.State | string)}
+             */ 
+ GetState(): ITHit.WebDAV.Client.Upload.State | string; 
+ /**
+             * Gets object that describes upload progress.
+             * @api
+             * @return {ITHit.WebDAV.Client.Upload.Progress }
+             */ 
+ GetProgress(): ITHit.WebDAV.Client.Upload.Progress; 
+ /**
+             * Gets all upload errors.
+             * @api
+             * @return {(Error[]|ITHit.WebDAV.Client.Exceptions.WebDavException[])}
+             */ 
+ GetErrors(): Error[] | ITHit.WebDAV.Client.Exceptions.WebDavException[]; 
+ /**
+             * Gets last upload error.
+             * @api
+             * @return {(Error|ITHit.WebDAV.Client.Exceptions.WebDavException)}
+             */ 
+ GetLastError(): Error | ITHit.WebDAV.Client.Exceptions.WebDavException; 
+ /**
+             * Stores custom data.
+             * @api
+             * @type {Object}
+             */ 
+ CustomData: Object 
+ /**
+             * Sets if the item is overwritten if it exists on the server. 
+             * If false is passed and the file exists on the server upload will fail and the UploadItem will be set in the error state. Default is false.
+             * @api
+             * @param {boolean} Pass true to force the file to be overwritten. Pass false to make upload fail if file exists. 
+             */ 
+ SetOverwrite(Pass: boolean): void; 
+ /**
+             * Adds HTTP header to upload. Note that depending on your web server and web browser, 
+             * maximum allowed request header size or size of all headers in total may be limited.
+             * @api
+             * @param {String} sName Header name.
+             * @param {String} sValue Header value. 
+             */ 
+ AddHeader(sName: String, sValue: String): void; 
+ /**
+             * Gets if the item will be overwritten if it exists on the server.
+             * @api
+             * @return {boolean} True if the file on the server will be overwritten. Otherwise - false. Default is false.
+             */ 
+ GetOverwrite(): boolean; 
+ /**
+             * Sets if the file should be deleted if upload is canceled. 
+             * By default, the file is deleted if the upload is canceled. To override this behavior, call this method passing false as a parameter. 
+             * This function must be called on files only.
+             * @api
+             * @param {boolean} bDelete Specifies if the file should be deleted on cancel. Typically you will pass false if the file existed before upload. 
+             * You will pass true to set the default behavior and delete the file when the upload is canceled.
+             * @throws {ITHit.Exceptions.ArgumentException} Thrown if this function is called on folder item.
+             */ 
+ SetDeleteOnCancel(bDelete: boolean): void; 
+ /**
+             * Gets if the file is deleted when the upload is canceled.
+             * @api
+             * @return {boolean} True if file is deleted when upload is canceled. Otherwise - false. Default is true.
+             */ 
+ GetDeleteOnCancel(): boolean; 
+ /**
+             * Sets failed state.
+             * Populates item's error with provided error instance.
+             * @api
+             * @param {ITHit.WebDAV.Client.Exceptions.WebDavException} oError - The error instance that will be set as a failure description.
+             * @throws {ITHit.Exceptions.ArgumentException} - Thrown if argument is not derived from {@link ITHit.WebDAV.Client.Exceptions.WebDavException}.
+             * @example
+             * var oUploader = new ITHit.WebDAV.Client.Upload.Uploader();
+             * oUploader.Queue.OnUploadItemsCreated = function(oUploadItemsCreated) {
+             *     var sErrorMessage = 'Added to queue in failed state';
+             *      var oWebDavException = new ITHit.WebDAV.Client.Exceptions.WebDavException(sMessage);
+             *
+             *      /&#42;&#42; &#64;typedef {ITHit.WebDAV.Client.Upload.UploadItem[]} aItemsToUpload &#42;/
+             *     oUploadItemsCreated.Items.forEach(function(oItem) {
+             *         oItem.SetFailed(oWebDavException);
+             *     }
+             *
+             *      oUploadItemsCreated.Upload(oUploadItemsCreated.Items);
+             * });
+             *
+             */ 
+ SetFailed(oError: ITHit.WebDAV.Client.Exceptions.WebDavException): void; 
+ /**
+             * Begins upload.
+             * @api
+             * @param {ITHit.WebDAV.Client.Upload.UploadItem~AsyncCallback} [fCallback] The callback to call when upload is paused.
+             */ 
+ StartAsync(fCallback?: () => void | null): void; 
+ /**
+             * Pauses upload.
+             * @api
+             * @param {ITHit.WebDAV.Client.Upload.UploadItem~AsyncCallback} [fCallback] The callback to call when upload is paused.
+             */ 
+ PauseAsync(fCallback?: () => void | null): void; 
+ /**
+             * Aborts upload.
+             * @api
+             * @param {number} [iTryCount] Number of times to try to delete the file if the file did not exist on the server before upload.
+             * Pass 0 to not try to delete the file. Default is: 5.
+             * @param {number} [iDelayAttempt] Delay between attempts to delete in milliseconds. Default is: 500.
+             * @param {ITHit.WebDAV.Client.Upload.UploadItem~AsyncCallback} [fCallback] The callback to call when upload is cancelled.
+             */ 
+ CancelAsync(iTryCount?: number | null, iDelayAttempt?: number | null, fCallback?: () => void | null): void; 
+ /**
+             * Add event handlers.
+             * @api
+             * @param {string} sEventName The event name to handle.
+             * @param {Function} fCallback The callback to call.
+             * @param {object} [oContext] The context to callback is called with.
+             */ 
+ AddListener(sEventName: string, fCallback: Function, oContext?: object | null): void; 
+ /**
+             * Remove event listener.
+             * @api
+             * @param {string} sEventName The event name to remove.
+             * @param {Function} fCallback The callback to call.
+             * @param {object} [oContext] The context to callback is called with.
+             */ 
+ RemoveListener(sEventName: string, fCallback: Function, oContext?: object | null): void; 
+ /**
+             * @public
+             * @return {ITHit.WebDAV.Client.Upload.Groups.GroupManager}
+             */ 
+ GetGroup(): ITHit.WebDAV.Client.Upload.Groups.GroupManager; 
+ }/**
+             * @alias ITHit.WebDAV.Client.Upload.FileSpan
+             * @constructs
+             * @public
+             * @param {Blob} oFile
+             * @param {number} [iStart]
+             * @param {(number | null)} [iEnd]
+             */ 
+ class FileSpan  { 
+	 constructor(oFile: Blob, iStart?: number | null, iEnd?: number | null); 
+ /**
+             * Gets start of the span.
+             * @public
+             * @return {number}
+             */ 
+ GetStart(): number; 
+ /**
+             * Sets start of the span.
+             * @public
+             * @param {number} iStart
+             */ 
+ SetStart(iStart: number): void; 
+ /**
+             * Gets end of the span. Match end of file if null.
+             * @public
+             * @return {number}
+             */ 
+ GetEnd(): number; 
+ /**
+             * Sets end of the span. Match end of file if null.
+             * @public
+             * @param {(number | null)} iEnd
+             */ 
+ SetEnd(iEnd: number | null): void; 
+ }/**
+     * @public
+     * @class ITHit.WebDAV.Client.Upload.UploaderSession
+     * @extends ITHit.WebDAV.Client.WebDavSession
+     */ 
+ class UploaderSession extends ITHit.WebDAV.Client.WebDavSession { 
+	 /**
+             * Returns progress report corresponding to path.
+             * @public
+             * @param {string} sUrl The url to resource.
+             * @param {ITHit.WebDAV.Client.UploaderSession~GetProgressReportAsyncCallback} fCallback
+             * @param {Object} [thisArg]
+             * @return {* | ITHit.WebDAV.Client.Request} Request object.
+             */ 
+ GetProgressReportAsync(sUrl: string, fCallback: (oResult: ITHit.WebDAV.Client.AsyncResult) => void, thisArg?: Object | null): any | ITHit.WebDAV.Client.Request; 
+ /**
+             * The OnBeforeRequestSend event is fired before request is being submitted to server and provides all
+             * information that is used when creating the request such as URL, HTTP verb, headers and request body.
+             * @api
+             * @examplecode ITHit.WebDAV.Client.Tests.WebDavSession.Events.BeforeRequestSend
+             * @examplecode ITHit.WebDAV.Client.TSExamples.WebDavSession.Events.BeforeRequestSend
+             * @event ITHit.WebDAV.Client.WebDavSession#OnBeforeRequestSend
+             * @property {string} Method Request method
+             * @property {string} Href Request absolute path
+             * @property {object} Headers Key-value object with headers
+             * @property {string} Body Request Body
+             */ 
+ /**
+             * The OnResponse event fires when the data is received from server. In your event handler you can update
+             * any data received from server.
+             * @api
+             * @examplecode ITHit.WebDAV.Client.Tests.WebDavSession.Events.Response
+             * @examplecode ITHit.WebDAV.Client.TSExamples.WebDavSession.Events.Response
+             * @event ITHit.WebDAV.Client.WebDavSession#OnResponse
+             * @property {number} Status Response status code
+             * @property {string} StatusDescription Response status description
+             * @property {object} Headers Key-value object with headers
+             * @property {string} Body Response Body
+             */ 
+ /**
+         * @api
+         * @param {string} sEventName
+         * @param {function} fCallback
+         * @param {object} [oContext]
+         */ 
+ AddListener(sEventName: string, fCallback: Function, oContext?: object | null): void; 
+ /**
+         * @api
+         * @param {string} sEventName
+         * @param {function} fCallback
+         * @param {object} [oContext]
+         */ 
+ RemoveListener(sEventName: string, fCallback: Function, oContext?: object | null): void; 
+ /**
+         * Load File object corresponding to path.
+         * @api
+         * @param {string} sPath Path to the file.
+		 * @param {ITHit.WebDAV.Client.PropertyName[]} aProperties Additional properties requested from server. Default is empty array.
+         * @param {ITHit.WebDAV.Client.WebDavSession~OpenFileAsyncCallback} fCallback Function to call when operation is completed.
+         * @returns {ITHit.WebDAV.Client.Request} Request object.
+         */ 
+ OpenFileAsync(sPath: string, aProperties: ITHit.WebDAV.Client.PropertyName[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): ITHit.WebDAV.Client.Request; 
+ /**
+         * Returns Folder object corresponding to path.
+         * @examplecode ITHit.WebDAV.Client.Tests.HierarchyItems.GetItemBySession.GetFolder
+         * @examplecode ITHit.WebDAV.Client.TSExamples.HierarchyItems.GetItemBySession.GetFolder
+         * @api
+         * @param {string} sPath Path to the folder.
+		 * @param {ITHit.WebDAV.Client.PropertyName[]} aProperties Additional properties requested from server. Default is empty array.
+         * @param {ITHit.WebDAV.Client.WebDavSession~OpenFolderAsyncCallback} fCallback Function to call when operation is completed.
+         */ 
+ OpenFolderAsync(sPath: string, aProperties: ITHit.WebDAV.Client.PropertyName[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): void; 
+ /**
+         * Returns HierarchyItem object corresponding to path.
+         * @api
+         * @param {string} sPath Path to the resource.
+		 * @param {ITHit.WebDAV.Client.PropertyName[]} aProperties Additional properties requested from server. Default is empty array.
+         * @param {ITHit.WebDAV.Client.WebDavSession~OpenItemAsyncCallback} fCallback Function to call when operation is completed.
+         */ 
+ OpenItemAsync(sPath: string, aProperties: ITHit.WebDAV.Client.PropertyName[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): void; 
+ /**
+         * Creates folder corresponding to path.
+         * @api
+         * @param {string} sPath Path to the resource.
+         * @param {ITHit.WebDAV.Client.PropertyName[]} aProperties Additional properties requested from server. Default is empty array.
+         * @param {ITHit.WebDAV.Client.WebDavSession~CreateFolderAsyncCallback} fCallback Function to call when operation is completed.
+         */ 
+ CreateFolderAsync(sPath: string, aProperties: ITHit.WebDAV.Client.PropertyName[], fCallback?: (oResult: ITHit.WebDAV.Client.AsyncResult) => void | null): void; 
+ }/**
+ * This class provides settings for Uploader.
+ * @api
+ * @class ITHit.WebDAV.Client.Upload.Settings
+ */ 
+ class Settings  { 
+	 /**
+             * Number of active uploads same time.
+             * Number of concurrent uploads.
+             * @api
+             * @type {number}
+             * @default 2
+             */ 
+ ConcurrentUploads: number 
+ /**
+             * Default queue state.
+             * @api
+             * @type {(ITHit.WebDAV.Client.Upload.State.Queued|string)}
+             * @default ITHit.WebDAV.Client.Upload.State.Queued
+             */ 
+ State: ITHit.WebDAV.Client.Upload.State.Queued | string 
+ /**
+             * Default cancel behaviour.
+             * @api
+             * @type {!boolean}
+             * @default true
+             */ 
+ DeleteOnCancel: boolean 
+ }/**
+     * List of items being uploaded. Each item in the list describes the file
+     * or folder upload state and provides methods for managing upload.
+     * @api
+     * @class ITHit.WebDAV.Client.Upload.Queue
+     * @fires ITHit.WebDAV.Client.Upload.Queue#OnQueueChanged
+     */ 
+ class Queue  { 
+	 /**
+ * Event reporting that queue changed. Fired when item is added or deleted from queue.
+ * @api
+ * @event ITHit.WebDAV.Client.Upload.Queue#OnQueueChanged
+ * @property {ITHit.WebDAV.Client.Upload.Queue} Sender The queue instance.
+ * @property {string} Name Event name.
+ * @property {ITHit.WebDAV.Client.Upload.UploadItem[]} AddedItems Added items.
+ * @property {ITHit.WebDAV.Client.Upload.UploadItem[]} RemovedItems Removed items.
+ * @example
+ *              var oUploader = new ITHit.WebDAV.Client.Upload.Uploader();
+ *              oUploader.Queue.AddListener('OnQueueChanged', function (oQueueChanged) {
+ *
+ *                  oQueueChanged.AddedItems.forEach(function(element) {
+ *                      console.log('Upload added:' + element.GetName());
+ *                  });
+ *               };
+ */ 
+ /**
+ * Event fired {@link ITHit.WebDAV.Client.Upload.UploadItem}s are created.
+ * You will validate files selected for upload in this event and present user interface if user interaction is necessary.
+ * In this event you can check if each item exists on the server and specify if item should be overwritten or skipped.
+ * You can also validate file size, file extension, file upload path and file name.
+ *
+ * To continue upload the {@link ITHit.WebDAV.Client.Upload.Events.UploadItemsCreated#Upload} function with the list of items to be uploaded should be called.
+ * @api
+ * @event ITHit.WebDAV.Client.Upload.Queue#OnUploadItemsCreated
+ * @type {ITHit.WebDAV.Client.Upload.Events.UploadItemsCreated}
+ * @example
+ * var oUploader = new ITHit.WebDAV.Client.Upload.Uploader();
+ * oUploader.Queue.AddListener('OnUploadItemsCreated', function(oUploadItemsCreated) {
+ *     var aIgnoredNames = ['file1.txt', 'file2.txt'];
+ *
+ *     /&#42;&#42; &#64;typedef {ITHit.WebDAV.Client.Upload.UploadItem[]} aItems &#42;/
+ *     var aItems = oUploadItemsCreated.Items;
+ *      /&#42;&#42; &#64;typedef {ITHit.WebDAV.Client.Upload.UploadItem[]} aItemsToUpload &#42;/
+ *     var aItemsToUpload = aItems.filter(function(oItem) {
+ *         aIgnoredNames.indexOf(oItem.GetName()) < 0
+ *     }
+ *
+ *      oUploadItemsCreated.Upload(aItemsToUpload);
+ * });
+ *
+ */ 
+ /**
+             * Associated uploader.
+             * @api
+             * @type {ITHit.WebDAV.Client.Upload.Uploader}
+             */ 
+ Uploader: ITHit.WebDAV.Client.Upload.Uploader 
+ /**
+             * Adds uploads to the queue.
+             * @public
+             * @param {string} sUrl Url to upload.
+             * @param {ITHit.WebDAV.Client.Upload.FSEntry[]} aFSEntries Items to Upload.
+             * @param {ITHit.WebDAV.Client.Upload.Controls.HtmlControl} [oSource] Source of items.
+             */ 
+ AddGroup(sUrl: string, aFSEntries: ITHit.WebDAV.Client.Upload.FSEntry[], oSource?: ITHit.WebDAV.Client.Upload.Controls.HtmlControl | null): void; 
+ /**
+             * @api
+             * Restart queued upload of {@link ITHit.WebDAV.Client.Upload.UploadItem}s collection.
+             * @param {ITHit.WebDAV.Client.Upload.UploadItem[]} aUploadItems Collection restart.
+             */ 
+ Restart(aUploadItems: ITHit.WebDAV.Client.Upload.UploadItem[]): void; 
+ /**
+             * Removes upload file from queue.
+             * @param {string} sUrl The url of UploadItem to remove.
+             * @api
+             */ 
+ RemoveByUrl(sUrl: string): void; 
+ /**
+             * Add event handlers.
+             * @api
+             * @param {string} sEventName The event name to handle.
+             * @param {Function} fCallback The callback to call.
+             * @param {Object} [oContext] The context to callback is called with.
+             */ 
+ AddListener(sEventName: string, fCallback: Function, oContext?: Object | null): void; 
+ /**
+             * Removes event listener.
+             * @api
+             * @param {string} sEventName The event name to remove.
+             * @param {Function} fCallback The callback to remove.
+             * @param {Object} [oContext] The context to callback is called with.
+             */ 
+ RemoveListener(sEventName: string, fCallback: Function, oContext?: Object | null): void; 
+ }/**
+     * Instance of this class store drop zones and provide methods to creating
+     * and removing them
+     * @api
+     * @class ITHit.WebDAV.Client.Upload.DropZoneCollection
+     */ 
+ class DropZoneCollection  { 
+	 /**
+             * @api
+             * @type {ITHit.WebDAV.Client.Upload.Uploader}
+             */ 
+ Uploader: ITHit.WebDAV.Client.Upload.Uploader 
+ /**
+             * Bind HTML element as drop zone.
+             * @api
+             * @example
+             *  &lt;!DOCTYPE html&gt;
+             *  &lt;html&gt;
+             *  &lt;head&gt;
+             *      &lt;script type="text/javascript"&gt;
+             *              var oUploader = new ITHit.WebDAV.Client.Upload.Uploader();
+             *              oUploader.DropZones.AddById('ithit-dropzone');
+             *      &lt;/script&gt;
+             *  &lt;/head&gt;
+             *  &lt;body
+             *      &lt;div id="ithit-dropzone"&gt;
+             *          Drop file to upload&lt;
+             *      &lt;/div&gt;
+             *  &lt;/body&gt;
+             *  &lt;/html&gt;
+             * @param {string} sElementId Id of HTML element.
+             * @return {ITHit.WebDAV.Client.Upload.Controls.DropZone} Created drop zone.
+             */ 
+ AddById(sElementId: string): ITHit.WebDAV.Client.Upload.Controls.DropZone; 
+ /**
+             * Get drop zone by Id.
+             * @api
+             * @param {string} sElementId Id of HTML element.
+             * @return {(ITHit.WebDAV.Client.Upload.Controls.DropZone | undefined)} Found drop zone or undefined.
+             */ 
+ GetById(sElementId: string): ITHit.WebDAV.Client.Upload.Controls.DropZone | undefined; 
+ /**
+             * Remove HTML element from drop zone Controls by id.
+             * @api
+             * @param {string} sElementId Id of HTML element.
+             */ 
+ RemoveById(sElementId: string): void; 
+ /**
+             * Add event handlers.
+             * @public
+             * @param {string} sEventName The event name to handle.
+             * @param {Function} fCallback The callback to call.
+             * @param {Object} [oContext] The context to callback is called with.
+             */ 
+ AddListener(sEventName: string, fCallback: Function, oContext?: Object | null): void; 
+ /**
+             * Removes event listener.
+             * @public
+             * @param {string} sEventName The event name to remove.
+             * @param {Function} fCallback The callback to remove.
+             * @param {Object} [oContext] The context to callback is called with.
+             */ 
+ RemoveListener(sEventName: string, fCallback: Function, oContext?: Object | null): void; 
+ /**
+             * Event reporting that collection changed. Fired when item is added or deleted from collection.
+             * @public
+             * @event ITHit.WebDAV.Client.Upload.DropZoneCollection#OnCollectionChanged
+             * @property {ITHit.WebDAV.Client.Upload.DropZoneCollection} Sender The collection instance.
+             * @property {ITHit.WebDAV.Client.Upload.Controls.DropZone[]} AddedItems Added items.
+             * @property {ITHit.WebDAV.Client.Upload.Controls.DropZone[]} RemovedItems Removed items.
+             */ 
+ }/**
+     * List of upload inputs. Contains items of {@link ITHit.WebDAV.Client.Upload.Controls.Input}  type.
+     * @api
+     * @class ITHit.WebDAV.Client.Upload.InputCollection
+     */ 
+ class InputCollection  { 
+	 /**
+             * @api
+             * @type {ITHit.WebDAV.Client.Upload.Uploader}
+             */ 
+ Uploader: ITHit.WebDAV.Client.Upload.Uploader 
+ /**
+             * Bind HTML element as input.
+             * @api
+             * @example
+             *  &lt;!DOCTYPE html&gt;
+             *  &lt;html&gt;
+             *  &lt;head&gt;
+             *      &lt;script type="text/javascript"&gt;
+             *              var oUploader = new ITHit.WebDAV.Client.Upload.Uploader();
+             *              oUploader.Inputs.AddById('ithit-input');
+             *      &lt;/script&gt;
+             *  &lt;/head&gt;
+             *  &lt;body
+             *      &lt;input id="ithit-input" type="file"&gt;
+             *  &lt;/body&gt;
+             *  &lt;/html&gt;
+             * @param {string} sElementId Id of HTML element.
+             * @return {ITHit.WebDAV.Client.Upload.Controls.Input} Created input object.
+             */ 
+ AddById(sElementId: string): ITHit.WebDAV.Client.Upload.Controls.Input; 
+ /**
+             * Get input object by Id.
+             * @api
+             * @param {string} sElementId Id of HTML element.
+             * @return {ITHit.WebDAV.Client.Upload.Controls.Input | undefined} Founded input or undefined.
+             */ 
+ GetById(sElementId: string): ITHit.WebDAV.Client.Upload.Controls.Input | undefined; 
+ /**
+             * Remove HTML element from input Controls by id.
+             * @api
+             * @param {string} sElementId Id of HTML element.
+             */ 
+ RemoveById(sElementId: string): void; 
+ /**
+             * Add event handlers.
+             * @public
+             * @param {string} sEventName The event name to handle.
+             * @param {Function} fCallback The callback to call.
+             * @param {Object} [oContext] The context to callback is called with.
+             */ 
+ AddListener(sEventName: string, fCallback: Function, oContext?: Object | null): void; 
+ /**
+             * Removes event listener.
+             * @public
+             * @param {string} sEventName The event name to remove.
+             * @param {Function} fCallback The callback to remove.
+             * @param {Object} [oContext] The context to callback is called with.
+             */ 
+ RemoveListener(sEventName: string, fCallback: Function, oContext?: Object | null): void; 
+ /**
+             * Event reporting that collection changed. Fired when item is added or deleted from collection.
+             * @public
+             * @event ITHit.WebDAV.Client.Upload.InputCollection#OnCollectionChanged
+             * @property {ITHit.WebDAV.Client.Upload.InputCollection} Sender The collection instance.
+             * @property {ITHit.WebDAV.Client.Upload.Controls.Input[]} AddedItems Added items.
+             * @property {ITHit.WebDAV.Client.Upload.Controls.Input[]} RemovedItems Removed items.
+             */ 
+ }/**
+             * Create uploader instance.
+             * @example
+             *  &lt;!DOCTYPE html&gt;
+             *  &lt;html lang="en"&gt;
+             *  &lt;head&gt;
+             *      &lt;title&gt;IT Hit WebDAV Uploader&lt;/title&gt;
+             *      &lt;script src="ITHitWebDAVClient.js" type="text/javascript"&gt;&lt;/script&gt;
+             *      &lt;link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"&gt;
+             *      &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"&gt;&lt;/script&gt;
+             *      &lt;script type="text/javascript"&gt;
+             *          function UploaderGridView(sSelector) {
+             *              this.Uploader = new ITHit.WebDAV.Client.Upload.Uploader();
+             *              this.Uploader.DropZones.AddById('ithit-dropzone');
+             *              this.Uploader = oUploader;
+             *              this.Uploader.Queue.AddListener('OnQueueChanged', '_CollectionChange', this);
+             *              this.$table = $(sSelector);
+             *              this.rows = [];
+             *          };
+             *
+             *          /&#x002A&#x002A
+             *          * Observes adding and deleting of UploadItem and creates and removes rows in table.
+             *          * @param {ITHit.WebDAV.Client.Upload.Queue#OnQueueChanged} oQueueChanged
+             *          &#x002A/
+             *          UploaderGridView.prototype._CollectionChange = function(oQueueChanged) {
+             *              $.each(oQueueChanged.AddedItems, function(index, value) {
+             *                  var row = new UploaderGridRow(value);
+             *                  this.rows.push(row);
+             *                  this.$table.append(row.$el);
+             *              }.bind(this));
+             *
+             *              $.each(oQueueChanged.RemovedItems, function(index, value) {
+             *                  var aRows = $.grep(this.rows, function(oElem) { return value === oElem.UploadItem; });
+             *                  var iIndex = this.rows.indexOf(aRows[0]);
+             *                  this.rows.splice(iIndex, 1);
+             *                  aRows[0].$el.remove();
+             *              }.bind(this));
+             *          };
+             *
+             *          /&#x002A&#x002A
+             *          * Represents table row and subscribes for upload change.
+             *          * @param {ITHit.WebDAV.Client.Upload.oUploadItem} oUploadItem
+             *          &#x002A/
+             *          function UploaderGridRow(oUploadItem) {
+             *              this.$el = $('<tr></tr>');
+             *              this.oUploadItem = oUploadItem;
+             *              this.oUploadItem.AddListener('OnProgressChanged', '_OnProgress', this);
+             *              this.oUploadItem.AddListener('OnStateChanged', '_OnStateChange', this);
+             *              this._Render(oUploadItem);
+             *          };
+             *
+             *
+             *          /&#x002A&#x002A
+             *          * Creates upload details view.
+             *          * @param {ITHit.WebDAV.Client.Upload.oUploadItem} oUploadItem
+             *          &#x002A/
+             *          UploaderGridRow.prototype._Render = function(oUploadItem) {
+             *          /&#x002A&#x002A @typedef {ITHit.WebDAV.Client.Upload.Progress} oProgress &#x002A/
+             *              var oProgress = oUploadItem.GetProgress();
+             *              var columns = [
+             *                  oUploadItem.GetName(),
+             *                  oUploadItem.GetUrl(),
+             *                  oUploadItem.GetSize(),
+             *                  oProgress.UploadedBytes,
+             *                  oProgress.Completed,
+             *                  oProgress.ElapsedTime,
+             *                  oProgress.RemainingTime,
+             *                  oProgress.Speed,
+             *                  oUploadItem.GetState()
+             *              ];
+             *
+             *              var $columns = [];
+             *              columns.forEach(function(item) {
+             *                  var $column = $('&lt;td&gt;&lt;/td&gt;');
+             *                  $column.html(item);
+             *                  $columns.push($column);
+             *              });
+             *
+             *              var $actions = $('&lt;td&gt;&lt;/td&gt;');
+             *              this._RenderActions(oUploadItem).forEach(function(item) {
+             *                  $actions.append(item);
+             *              });
+             *
+             *              $columns.push($actions);
+             *              this.$el.empty();
+             *              this.$el.append($columns);
+             *          };
+             *
+             *          /&#x002A&#x002A
+             *          * Creates upload actions view.
+             *          * @param {ITHit.WebDAV.Client.Upload.oUploadItem} oUploadItem
+             *          &#x002A/
+             *          UploaderGridRow.prototype._RenderActions = function(oUploadItem) {
+             *              var actions = [];
+             *              actions.push($('&lt;a&gt;&lt;/a&gt;').
+             *                  html('&lt;span class="glyphicon glyphicon-play"&gt;&lt;/span&gt;').
+             *                  attr('href', 'javascript:void(0)').
+             *                  on('click', oUploadItem.StartAsync.bind(oUploadItem)));
+             *
+             *              actions.push($('&lt;a&gt;&lt;/a&gt;').
+             *                  html('&lt;span class="glyphicon glyphicon-stop"&gt;&lt;/span&gt;').
+             *                  attr('href', 'javascript:void(0)').
+             *                  on('click',oUploadItem.CancelAsync.bind(oUploadItem)));
+             *          };
+             *
+             *          /&#x002A&#x002A
+             *          * Handles UploadItem state change.
+             *          * @param {ITHit.WebDAV.Client.Upload.UploadItem#OnStateChanged} oStateChangedEvent
+             *          &#x002A/
+             *          UploaderGridRow.prototype._OnStateChange = function(oStateChangedEvent) {
+             *              this._Render(oStateChangedEvent.Sender);
+             *          };
+             *
+             *          /&#x002A&#x002A
+             *          * Handles UploadItem progress change.
+             *          * @param {ITHit.WebDAV.Client.Upload.UploadItem#OnProgressChanged} oProgressEvent
+             *          &#x002A/
+             *          UploaderGridRow.prototype._OnProgress = function(oProgressEvent) {
+             *              this._Render(oProgressEvent.Sender);
+             *          };
+             *
+             *          var sUploadUrl = 'https://webdavserver/path/';
+             *          var oUploaderGrid = new UploaderGridView(oUploader, '.ithit-grid-uploads');
+             *          oUploaderGrid.Uploader.SetUploadUrl(sUploadUrl);
+             *      &lt;/script&gt;
+             *  &lt;/head&gt;
+             *  &lt;body id="it-hit-dropzone"&gt;
+             *      &lt;table class="table table-responsive ithit-grid-uploads"&gt;
+             *          &lt;thead&gt;
+             *              &lt;tr&gt;
+             *                  &lt;th&gt;Display Name&lt;/th&gt;
+             *                  &lt;th&gt;Download Url&lt;/th&gt;
+             *                  &lt;th&gt;Size&lt;/th&gt;
+             *                  &lt;th&gt;Uploaded Bytes&lt;/th&gt;
+             *                  &lt;th&gt;Completed&lt;/th&gt;
+             *                  &lt;th&gt;Elapsed TimeSpan&lt;/th&gt;
+             *                  &lt;th&gt;Remaining TimeSpan&lt;/th&gt;
+             *                  &lt;th&gt;Speed&lt;/th&gt;
+             *                  &lt;th&gt;State&lt;/th&gt;
+             *                  &lt;th&gt;Actions&lt;/th&gt;
+             *              &lt;/tr&gt;
+             *          &lt;/thead&gt;
+             *          &lt;tbody&gt;
+             *          &lt;/tbody&gt;
+             *      &lt;/table&gt;
+             *  &lt;/body&gt;
+             *  &lt;/html&gt;
+             * @classdesc This class provides methods for managing file drop
+             * zones, inputs and upload queue.
+             * @api
+             * @class ITHit.WebDAV.Client.Upload.Uploader
+             * @constructs
+             */ 
+ class Uploader  { 
+	 /**
+             * Collection of associated drop zones.
+             * @api
+             * @readonly
+             * @type { ITHit.WebDAV.Client.Upload.DropZoneCollection }
+             */ 
+ readonly DropZones: ITHit.WebDAV.Client.Upload.DropZoneCollection 
+ /**
+             * Collection of associated inputs.
+             * @api
+             * @readonly
+             * @type { ITHit.WebDAV.Client.Upload.InputCollection }
+             */ 
+ readonly Inputs: ITHit.WebDAV.Client.Upload.InputCollection 
+ /**
+             * Queue of uploads.
+             * @api
+             * @readonly
+             * @type {ITHit.WebDAV.Client.Upload.Queue}
+             */ 
+ readonly Queue: ITHit.WebDAV.Client.Upload.Queue 
+ /**
+             * Default settings for uploads.
+             * @api
+             * @type { ITHit.WebDAV.Client.Upload.Settings }
+             */ 
+ Settings: ITHit.WebDAV.Client.Upload.Settings 
+ /**
+             * Set upload url for drop zones and inputs.
+             * @api
+             * @param {string} sUrl Url to upload.
+             */ 
+ SetUploadUrl(sUrl: string): void; 
+ /**
+             * Get upload url for drop zones and inputs.
+             * @api
+             * @return {string} Upload url.
+             */ 
+ GetUploadUrl(): string; 
+ } 
+ namespace Controls{ 
+	 /**
+     * @api
+     * Instance of this class provides binding for HTMLElement.
+     * @class ITHit.WebDAV.Client.Upload.Controls.HtmlControl
+     */ 
+ class HtmlControl  { 
+	 /**
+             * Id attribute.
+             * @api
+             * @type {string}
+             */ 
+ Id: string 
+ /**
+             * Associated HTML Element
+             * @api
+             * @type {HTMLElement}
+             */ 
+ HtmlElement: HTMLElement 
+ /**
+             * Add event handlers.
+             * @public
+             * @param {string} sEventName The event name to handle.
+             * @param {Function} fCallback The callback to call.
+             * @param {Object} [oContext] The context to callback is called with.
+             */ 
+ AddListener(sEventName: string, fCallback: Function, oContext?: Object | null): void; 
+ /**
+             * Removes event listener.
+             * @public
+             * @param {string} sEventName The event name to remove.
+             * @param {Function} fCallback The callback to remove.
+             * @param {Object} [oContext] The context to callback is called with.
+             */ 
+ RemoveListener(sEventName: string, fCallback: Function, oContext?: Object | null): void; 
+ /**
+             * Event reporting that file handling finished..
+             * @public
+             * @event ITHit.WebDAV.Client.Upload.Controls.HtmlControl#OnFileInputHandled
+             * @property {ITHit.WebDAV.Client.Upload.Controls.HtmlControl} Source The source of event.
+             * @property {ITHit.WebDAV.Client.AsyncResult} AsyncResult Result.
+             * @property {ITHit.WebDAV.Client.Upload.FSEntry[]} AsyncResult.Result Current uploader
+             */ 
+ }/**
+     * This class provides methods for creation of {@link ITHit.WebDAV.Client.Upload.FSEntryFactory}s.
+     * @public
+     * @class ITHit.WebDAV.Client.Upload.Controls.FSEntryFactory
+     */ 
+ class FSEntryFactory  { 
+	 }/**
+     * Instance of this class provides metadata for drop zone.
+     * @api
+     * @class ITHit.WebDAV.Client.Upload.Controls.DropZone
+     * @extends ITHit.WebDAV.Client.Upload.Controls.HtmlControl
+     */ 
+ class DropZone extends ITHit.WebDAV.Client.Upload.Controls.HtmlControl { 
+	 /**
+             * Id attribute.
+             * @api
+             * @type {string}
+             */ 
+ Id: string 
+ /**
+             * Associated HTML Element
+             * @api
+             * @type {HTMLElement}
+             */ 
+ HtmlElement: HTMLElement 
+ /**
+             * Add event handlers.
+             * @public
+             * @param {string} sEventName The event name to handle.
+             * @param {Function} fCallback The callback to call.
+             * @param {Object} [oContext] The context to callback is called with.
+             */ 
+ AddListener(sEventName: string, fCallback: Function, oContext?: Object | null): void; 
+ /**
+             * Removes event listener.
+             * @public
+             * @param {string} sEventName The event name to remove.
+             * @param {Function} fCallback The callback to remove.
+             * @param {Object} [oContext] The context to callback is called with.
+             */ 
+ RemoveListener(sEventName: string, fCallback: Function, oContext?: Object | null): void; 
+ /**
+             * Event reporting that file handling finished..
+             * @public
+             * @event ITHit.WebDAV.Client.Upload.Controls.HtmlControl#OnFileInputHandled
+             * @property {ITHit.WebDAV.Client.Upload.Controls.HtmlControl} Source The source of event.
+             * @property {ITHit.WebDAV.Client.AsyncResult} AsyncResult Result.
+             * @property {ITHit.WebDAV.Client.Upload.FSEntry[]} AsyncResult.Result Current uploader
+             */ 
+ }/**
+ * Instance of this class provides metadata for input.
+ * @class ITHit.WebDAV.Client.Upload.Controls.Input
+ * @extends ITHit.WebDAV.Client.Upload.Controls.HtmlControl
+ * @api
+ */ 
+ class Input extends ITHit.WebDAV.Client.Upload.Controls.HtmlControl { 
+	 /**
+             * Id attribute.
+             * @api
+             * @type {string}
+             */ 
+ Id: string 
+ /**
+             * Associated HTML Element
+             * @api
+             * @type {HTMLElement}
+             */ 
+ HtmlElement: HTMLElement 
+ /**
+             * Add event handlers.
+             * @public
+             * @param {string} sEventName The event name to handle.
+             * @param {Function} fCallback The callback to call.
+             * @param {Object} [oContext] The context to callback is called with.
+             */ 
+ AddListener(sEventName: string, fCallback: Function, oContext?: Object | null): void; 
+ /**
+             * Removes event listener.
+             * @public
+             * @param {string} sEventName The event name to remove.
+             * @param {Function} fCallback The callback to remove.
+             * @param {Object} [oContext] The context to callback is called with.
+             */ 
+ RemoveListener(sEventName: string, fCallback: Function, oContext?: Object | null): void; 
+ /**
+             * Event reporting that file handling finished..
+             * @public
+             * @event ITHit.WebDAV.Client.Upload.Controls.HtmlControl#OnFileInputHandled
+             * @property {ITHit.WebDAV.Client.Upload.Controls.HtmlControl} Source The source of event.
+             * @property {ITHit.WebDAV.Client.AsyncResult} AsyncResult Result.
+             * @property {ITHit.WebDAV.Client.Upload.FSEntry[]} AsyncResult.Result Current uploader
+             */ 
+ }} 
+ namespace Groups{ 
+	 /**
+     * @public
+     * @class ITHit.WebDAV.Client.Upload.Groups.GroupManager
+     */ 
+ class GroupManager  { 
+	 }}}}}}
