@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------
-// IT Hit WebDAV Ajax Library v5.21.5864.0
+// IT Hit WebDAV Ajax Library v5.21.5873.0
 // Copyright © 2020 IT Hit LTD. All rights reserved.
 // License: https://www.webdavsystem.com/ajax/
 // -----------------------------------------------------------------------
@@ -3231,6 +3231,12 @@ export namespace ITHit{
              */ 
  GetRelativePath(): string; 
  /**
+             * Check if upload item represents a folder item.
+             * @api
+             * @return {boolean} True if item is a folder. Otherwise - false.
+             */ 
+ IsFolder(): boolean; 
+ /**
              * Gets current upload state.
              * @api
              * @return {(ITHit.WebDAV.Client.Upload.State | string)}
@@ -4079,4 +4085,297 @@ export namespace ITHit{
      * @class ITHit.WebDAV.Client.Upload.Groups.GroupManager
      */ 
  class GroupManager  { 
-	 }}}}}}
+	 }} 
+ namespace Events{ 
+	 /**
+     * @class ITHit.WebDAV.Client.Upload.Events.BaseEvent
+     * @public
+     * @abstract
+     */ 
+ class BaseEvent  { 
+	 /**
+             * Event name.
+             * @public
+             * @type {string}
+             */ 
+ Name: string 
+ /**
+             * Event source.
+             * @public
+             * @type {Object}
+             */ 
+ Sender: Object 
+ }/**
+     * This class provides state change event data;
+     * @api
+     * @class ITHit.WebDAV.Client.Upload.Events.StateChanged
+     * @extends ITHit.WebDAV.Client.Upload.Events.BaseEvent
+     */ 
+ class StateChanged extends ITHit.WebDAV.Client.Upload.Events.BaseEvent { 
+	 /**
+             * Previous state.
+             * @api
+             * @type {ITHit.WebDAV.Client.Upload.State}
+             */ 
+ OldState: ITHit.WebDAV.Client.Upload.State 
+ /**
+             * Actual state.
+             * @api
+             * @type {ITHit.WebDAV.Client.Upload.State}
+             */ 
+ NewState: ITHit.WebDAV.Client.Upload.State 
+ /**
+             * Event name.
+             * @public
+             * @type {string}
+             */ 
+ Name: string 
+ /**
+             * Event source.
+             * @public
+             * @type {Object}
+             */ 
+ Sender: Object 
+ }/**
+     * This class provides state change event data;
+     * @api
+     * @class ITHit.WebDAV.Client.Upload.Events.ProgressChanged
+     * @extends ITHit.WebDAV.Client.Upload.Events.BaseEvent
+     */ 
+ class ProgressChanged extends ITHit.WebDAV.Client.Upload.Events.BaseEvent { 
+	 /**
+             * Previous progress.
+             * @api
+             * @type {ITHit.WebDAV.Client.Upload.Progress}
+             */ 
+ OldProgress: ITHit.WebDAV.Client.Upload.Progress 
+ /**
+             * Actual progress.
+             * @api
+             * @type {ITHit.WebDAV.Client.Upload.Progress}
+             */ 
+ NewProgress: ITHit.WebDAV.Client.Upload.Progress 
+ /**
+             * Event name.
+             * @public
+             * @type {string}
+             */ 
+ Name: string 
+ /**
+             * Event source.
+             * @public
+             * @type {Object}
+             */ 
+ Sender: Object 
+ }/**
+     * @api
+     * This object represent base class for parameters of events that is waiting for user action.
+     * @class ITHit.WebDAV.Client.Upload.Events.AsyncEvent
+     * @extends ITHit.WebDAV.Client.Upload.Events.BaseEvent
+     */ 
+ class AsyncEvent extends ITHit.WebDAV.Client.Upload.Events.BaseEvent { 
+	 /**
+             * Event name.
+             * @api
+             * @type {string}
+             */ 
+ Name: string 
+ /**
+             * Event source.
+             * @api
+             * @type {Object}
+             */ 
+ Sender: Object 
+ /**
+             * This methods return value that indicates that event already processed.
+             * @api
+             * @return {boolean} - True if event was processed, false otherwise.
+             */ 
+ GetIsHandled(): boolean; 
+ }/**
+     * This object is passed to {@link ITHit.WebDAV.Client.Upload.UploadItem#event:OnBeforeUploadStarted}.
+     * You can validate these item as well as specify if item should be overwritten.
+     * To continue upload the {@link ITHit.WebDAV.Client.Upload.Events.BeforeUploadStarted#Upload} function should be called.
+     * To skip upload the {@link ITHit.WebDAV.Client.Upload.Events.BeforeUploadStarted#Skip} function should be called.
+     * @api
+     * @class ITHit.WebDAV.Client.Upload.Events.BeforeUploadStarted
+     * @extends ITHit.WebDAV.Client.Upload.Events.AsyncEvent
+     */ 
+ class BeforeUploadStarted extends ITHit.WebDAV.Client.Upload.Events.AsyncEvent { 
+	 /**
+             * Change item state to {@link ITHit.WebDAV.Client.Upload.State.Skipped}.
+             * @api
+             */ 
+ Skip(): void; 
+ /**
+             * Continues items upload.
+             * If item should not upload call {@link ITHit.WebDAV.Client.Upload.Events.BeforeUploadStarted#Skip} method.
+             * If any items in the upload list should be overwritten call {@link ITHit.WebDAV.Client.Upload.UploadItem#SetOverwrite(true)} on item.
+             * @api
+             */ 
+ Upload(): void; 
+ /**
+             * Event name.
+             * @api
+             * @type {string}
+             */ 
+ Name: string 
+ /**
+             * Event source.
+             * @api
+             * @type {Object}
+             */ 
+ Sender: Object 
+ /**
+             * This methods return value that indicates that event already processed.
+             * @api
+             * @return {boolean} - True if event was processed, false otherwise.
+             */ 
+ GetIsHandled(): boolean; 
+ }/**
+     * @api
+     * @class ITHit.WebDAV.Client.Upload.Events.QueueChanged
+     * @extends ITHit.WebDAV.Client.Upload.Events.BaseEvent
+     */ 
+ class QueueChanged extends ITHit.WebDAV.Client.Upload.Events.BaseEvent { 
+	 /**
+             * Added items.
+             * @api
+             * @type {ITHit.WebDAV.Client.Upload.UploadItem[]}
+             */ 
+ AddedItems: ITHit.WebDAV.Client.Upload.UploadItem[] 
+ /**
+             * Removed items.
+             * @api
+             * @type {ITHit.WebDAV.Client.Upload.UploadItem[]}
+             */ 
+ RemovedItems: ITHit.WebDAV.Client.Upload.UploadItem[] 
+ /**
+             * Event name.
+             * @public
+             * @type {string}
+             */ 
+ Name: string 
+ /**
+             * Event source.
+             * @public
+             * @type {Object}
+             */ 
+ Sender: Object 
+ }/**
+             * @api
+             * @alias ITHit.WebDAV.Client.Upload.Events.UploadError
+             * @extends ITHit.WebDAV.Client.Upload.Events.AsyncEvent
+             * @constructs
+             * @param {ITHit.WebDAV.Client.Upload.UploadItem} oSender
+             * @param {Error|ITHit.WebDAV.Client.Exceptions.WebDavException} oError
+             * @param {ITHit.WebDAV.Client.Upload.Events.UploadError~ResultCallback} fCallback
+             */ 
+ class UploadError extends ITHit.WebDAV.Client.Upload.Events.AsyncEvent { 
+	 constructor(oSender: ITHit.WebDAV.Client.Upload.UploadItem, oError: Error | ITHit.WebDAV.Client.Exceptions.WebDavException, fCallback?: (oResult: string) => void | null); 
+ /**
+             * Error object.
+             * @api
+             * @type {Error|ITHit.WebDAV.Client.Exceptions.WebDavException}
+             */ 
+ Error: Error | ITHit.WebDAV.Client.Exceptions.WebDavException 
+ /**
+             * Skips retry. UploadItem becomes failed.
+             * @api
+             */ 
+ Skip(): void; 
+ /**
+             * Retry upload.
+             * @api
+             */ 
+ Retry(): void; 
+ /**
+             * Event name.
+             * @api
+             * @type {string}
+             */ 
+ Name: string 
+ /**
+             * Event source.
+             * @api
+             * @type {Object}
+             */ 
+ Sender: Object 
+ /**
+             * This methods return value that indicates that event already processed.
+             * @api
+             * @return {boolean} - True if event was processed, false otherwise.
+             */ 
+ GetIsHandled(): boolean; 
+ }/**
+     * This class provides state change event data;
+     * @public
+     * @class ITHit.WebDAV.Client.Upload.Events.Error
+     * @extends ITHit.WebDAV.Client.Upload.Events.BaseEvent
+     */ 
+ class Error extends ITHit.WebDAV.Client.Upload.Events.BaseEvent { 
+	 /**
+             * Error object.
+             * @public
+             * @type {Error|ITHit.WebDAV.Client.Exceptions.WebDavException}
+             */ 
+ Error: Error | ITHit.WebDAV.Client.Exceptions.WebDavException 
+ /**
+             * Event name.
+             * @public
+             * @type {string}
+             */ 
+ Name: string 
+ /**
+             * Event source.
+             * @public
+             * @type {Object}
+             */ 
+ Sender: Object 
+ }/**
+             * This object is passed to {@link ITHit.WebDAV.Client.Upload.Queue#event:OnUploadItemsCreated}  and contains list of items selected by user for upload.
+             * You can validate these items as well as specify if item should be overwritten.
+             * To continue upload the UploadItemsCreated.Upload() function with the list of items to be uploaded should be called.
+             * @api
+             * @alias ITHit.WebDAV.Client.Upload.Events.UploadItemsCreated
+             * @extends ITHit.WebDAV.Client.Upload.Events.AsyncEvent
+             * @constructs
+             * @param {ITHit.WebDAV.Client.Upload.UploadItem} oSender
+             * @param {ITHit.WebDAV.Client.Upload.UploadItem[]} aItems
+             * @param {ITHit.WebDAV.Client.Upload.Events.UploadItemsCreated~ResultCallback} fCallback
+             */ 
+ class UploadItemsCreated extends ITHit.WebDAV.Client.Upload.Events.AsyncEvent { 
+	 constructor(oSender: ITHit.WebDAV.Client.Upload.UploadItem, aItems: ITHit.WebDAV.Client.Upload.UploadItem[], fCallback?: (oResult?: () => void | null) => void); 
+ /**
+             * Added items.
+             * @api
+             * @type {ITHit.WebDAV.Client.Upload.UploadItem[]}
+             */ 
+ Items: ITHit.WebDAV.Client.Upload.UploadItem[] 
+ /**
+             * Continues items upload. Pass a list of items to upload.
+             * If any items should not upload do not include them in this list.
+             * If any items in the upload list should be overwritten call {@link ITHit.WebDAV.Client.Upload.UploadItem#SetOverwrite(true)}) on each item.
+             * @api
+             * @param {ITHit.WebDAV.Client.Upload.UploadItem[]} aItems - The list of items to be uploaded.  Items not listed here will be skipped.
+             */ 
+ Upload(aItems: ITHit.WebDAV.Client.Upload.UploadItem[]): void; 
+ /**
+             * Event name.
+             * @api
+             * @type {string}
+             */ 
+ Name: string 
+ /**
+             * Event source.
+             * @api
+             * @type {Object}
+             */ 
+ Sender: Object 
+ /**
+             * This methods return value that indicates that event already processed.
+             * @api
+             * @return {boolean} - True if event was processed, false otherwise.
+             */ 
+ GetIsHandled(): boolean; 
+ }}}}}}
