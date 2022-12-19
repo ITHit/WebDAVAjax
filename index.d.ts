@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------
-// IT Hit WebDAV Ajax Library v5.21.5890.0
+// IT Hit WebDAV Ajax Library v5.21.5892.0
 // Copyright © 2020 IT Hit LTD. All rights reserved.
 // License: https://www.webdavsystem.com/ajax/
 // -----------------------------------------------------------------------
@@ -70,7 +70,9 @@ export namespace ITHit{
  namespace WebDAV{ 
 	 /**
  * This namespace provides classes for accessing WebDAV server items, file structure management, properties management and items locking.
+ * @public
  * @namespace ITHit.WebDAV.Client
+ * @class ITHit.WebDAV.Client
  */ 
  namespace Client{ 
 	 /**
@@ -4378,4 +4380,13 @@ export namespace ITHit{
              * @return {boolean} - True if event was processed, false otherwise.
              */ 
  GetIsHandled(): boolean; 
- }}}}}}
+ }}}}class Client  { 
+	 /**
+ * License Id
+ * @public
+ * @name ITHit.WebDAV.Client.LicenseId
+ * @type {string}
+ */ 
+ static LicenseId: string 
+ LicenseId: string 
+ }}}
