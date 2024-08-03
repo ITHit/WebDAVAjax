@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------
-// IT Hit WebDAV Ajax Library v5.21.6001.0
+// IT Hit WebDAV Ajax Library v6.0.8730.0
 // Copyright © 2020 IT Hit LTD. All rights reserved.
 // License: https://www.webdavsystem.com/ajax/
 // -----------------------------------------------------------------------
@@ -1627,6 +1627,12 @@ export namespace ITHit{
              * @return {Array.<string>} An array with file names of the protocol installer.
 			 */ 
  function GetProtocolInstallFileNames(): string[]; 
+ /**
+            * Gets Uri of the protocol installer depending on OS.
+            * @api
+            * @return {string} Uri of the protocol installer.
+            */ 
+ function GetProtocolInstallUri(): string; 
  /**
             * Returns true if protocol application installer is supported for the OS on which this function is called, false - otherwise.
             * @api
