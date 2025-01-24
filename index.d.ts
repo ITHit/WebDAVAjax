@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------
-// IT Hit WebDAV Ajax Library v6.0.8748.0
+// IT Hit WebDAV Ajax Library v6.0.8752.0
 // Copyright © 2020 IT Hit LTD. All rights reserved.
 // License: https://www.webdavsystem.com/ajax/
 // -----------------------------------------------------------------------
@@ -1821,6 +1821,13 @@ export namespace ITHit{
 			 */ 
  static ProtocolTimeoutMs: number 
  ProtocolTimeoutMs: number 
+ /**
+			 * WebDAV protocol name.
+			 * @api
+			 * @type {string}
+			 */ 
+ static ProtocolName: string 
+ ProtocolName: string 
  }/**
  * Provides support partial uploads and resuming broken uploads.
  * @api
@@ -3217,9 +3224,9 @@ export namespace ITHit{
  /**
              * Gets [File]{@link https://www.w3.org/TR/FileAPI/} object. Returns null in case of a folder.
              * @api
-             * @return {(File | null )}
+             * @return {(globalThis.File | null )}
              */ 
- GetFile(): File | null; 
+ GetFile(): globalThis.File | null; 
  /**
              * Get target url.
              * @api
