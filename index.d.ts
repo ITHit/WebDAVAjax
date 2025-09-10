@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------
-// IT Hit WebDAV Ajax Library v6.0.8762.0
+// IT Hit WebDAV Ajax Library v6.0.8766.0
 // Copyright © 2020 IT Hit LTD. All rights reserved.
 // License: https://www.webdavsystem.com/ajax/
 // -----------------------------------------------------------------------
@@ -2941,17 +2941,19 @@ export namespace ITHit{
          */ 
  namespace WebDavSession{ 
 	 /**
-             * Version of AJAX Library
-             * @api
-             */ 
- function Version(): void; 
- /**
             * Protocol Version of AJAX Library
             * @api
             */ 
  function ProtocolVersion(): void; 
  }class WebDavSession  { 
 	 /**
+             * Version of AJAX Library
+             * @api
+             * @type {string}
+             */ 
+ static Version: string 
+ Version: string 
+ /**
              * The OnBeforeRequestSend event is fired before request is being submitted to server and provides all
              * information that is used when creating the request such as URL, HTTP verb, headers and request body.
              * @api
