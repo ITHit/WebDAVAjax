@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------
-// IT Hit WebDAV Ajax Library v6.0.8766.0
+// IT Hit WebDAV Ajax Library v6.0.8910.0
 // Copyright © 2020 IT Hit LTD. All rights reserved.
 // License: https://www.webdavsystem.com/ajax/
 // -----------------------------------------------------------------------
@@ -3433,6 +3433,13 @@ export namespace ITHit{
              * @return {* | ITHit.WebDAV.Client.Request} Request object.
              */ 
  GetProgressReportAsync(sUrl: string, fCallback: (oResult: ITHit.WebDAV.Client.AsyncResult) => void, thisArg?: Object | null): any | ITHit.WebDAV.Client.Request; 
+ /**
+             * Returns progress report corresponding to path.
+             * @public
+             * @param {string} sUrl The url to resource.
+             * @return {* | ITHit.WebDAV.Client.Request} Request object.
+             */ 
+ GetProgressReport(sUrl: string): any | ITHit.WebDAV.Client.Request; 
  /**
              * The OnBeforeRequestSend event is fired before request is being submitted to server and provides all
              * information that is used when creating the request such as URL, HTTP verb, headers and request body.
