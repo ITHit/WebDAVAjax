@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------
-// IT Hit WebDAV Ajax Library v6.0.8920.0
+// IT Hit WebDAV Ajax Library v6.1.8927.0
 // Copyright © 2020 IT Hit LTD. All rights reserved.
 // License: https://www.webdavsystem.com/ajax/
 // -----------------------------------------------------------------------
@@ -1791,6 +1791,7 @@ export namespace ITHit{
              * @param {string} [sCookieNames] <span class="optional">v3 Beta and later only.</span> Coma separated list of cookie names to search for. Microsoft Office requires persistent cookie (with expiration date), it does not support session cookies.
              * @param {string} [sLoginUrl] <span class="optional">v3 Beta and later only.</span> Login URL to redirect to in case any cookies specified in <code>sCookieNames</code> parameter are not found.
              * @param {string} [sCommand] <span class="optional">v3 Beta and later only.</span> Command to use when opening the document. Supported options are:
+             * @param {boolean} [bDriveVisible] <span class="optional">v6.1 and later only.</span> Specifies whether the mounted drive is visible in Windows Explorer. Set to <code>false</code> to hide the drive. Default is <code>false</code>.
              * <ul>
              * <li> <code>null</code> - Chooses an appropriate verb to open a document in the associated application.
              * <li> <code>'Edit'</code> - Opens a document for editing.
@@ -1798,9 +1799,9 @@ export namespace ITHit{
              * <li> <code>'OpenWith'</code> - Show system 'Open With' dialog to select application to be used to open a document. This option is supported on Windows only.
              * <li> <code>'Print'</code> - Prints a document. The application that prints a document is running in a minimized state and automatically closes if printing is successful. If printing fails, the application remains open. To print multiple documents, pass a list of documents as a first parameter. This option is supported on Windows only.
              * </ul>
-             * Default is <code>null</code>.       
+             * Default is <code>null</code>.             
 			 */ 
- function DavProtocolEditDocument(sDocumentUrls: string | string[], sMountUrl?: string | null, errorCallback?: Function | null, reserved?: string | null, sSearchIn?: string | null, sCookieNames?: string | null, sLoginUrl?: string | null, sCommand?: string | null): void; 
+ function DavProtocolEditDocument(sDocumentUrls: string | string[], sMountUrl?: string | null, errorCallback?: Function | null, reserved?: string | null, sSearchIn?: string | null, sCookieNames?: string | null, sLoginUrl?: string | null, sCommand?: string | null, bDriveVisible?: boolean | null): void; 
  }class DocManager  { 
 	 /**
 			 * Collection of extensions of files which are opened with Microsoft Office.

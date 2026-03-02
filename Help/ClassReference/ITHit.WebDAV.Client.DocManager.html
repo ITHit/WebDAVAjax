@@ -990,14 +990,14 @@
         
         <div class="nav nav-tabs">
             
-            <a class="nav-tab active" data-toggle="tab" href="#menuJavaScript_pmubplbqwlb">JavaScript</a>
+            <a class="nav-tab active" data-toggle="tab" href="#menuJavaScript_memfnbzzy6">JavaScript</a>
             
-            <a class="nav-tab " data-toggle="tab" href="#menuTypeScript_pmubplbqwlb">TypeScript</a>
+            <a class="nav-tab " data-toggle="tab" href="#menuTypeScript_memfnbzzy6">TypeScript</a>
             
         </div>
     <div class="tab-content">
     
-  <div id="menuJavaScript_pmubplbqwlb" class="tab-pane active">
+  <div id="menuJavaScript_memfnbzzy6" class="tab-pane active">
 
     
     <pre class="prettyprint" data-lang="javascript"><code>var sDocumentUrl = 'http://localhost:87654/myfile.rtf';
@@ -1014,7 +1014,7 @@ ITHit.WebDAV.Client.DocManager.EditDocument(sDocumentUrl, sMountPoint, fProtocol
 
  </div>
 
-  <div id="menuTypeScript_pmubplbqwlb" class="tab-pane ">
+  <div id="menuTypeScript_memfnbzzy6" class="tab-pane ">
 
     
     <pre class="prettyprint" data-lang="typescript"><code>import { ITHit } from "webdav.client";
@@ -1145,7 +1145,7 @@ ITHit.WebDAV.Client.DocManager.EditDocument(sDocumentUrl, sMountPoint, fProtocol
             <h4 class="name" id=".DavProtocolEditDocument">
                 
                 
-                    <span class="type-signature static">static</span> ITHit.WebDAV.Client.DocManager.DavProtocolEditDocument<span class="signature">(sDocumentUrls, <span class="optional">sMountUrl</span>, <span class="optional">errorCallback</span>, <span class="optional">reserved</span>, <span class="optional">sSearchIn</span>, <span class="optional">sCookieNames</span>, <span class="optional">sLoginUrl</span>, <span class="optional">sCommand</span>)</span>
+                    <span class="type-signature static">static</span> ITHit.WebDAV.Client.DocManager.DavProtocolEditDocument<span class="signature">(sDocumentUrls, <span class="optional">sMountUrl</span>, <span class="optional">errorCallback</span>, <span class="optional">reserved</span>, <span class="optional">sSearchIn</span>, <span class="optional">sCookieNames</span>, <span class="optional">sLoginUrl</span>, <span class="optional">sCommand</span>, <span class="optional">bDriveVisible</span>)</span>
                 
             </h4>
             <span class="toc-nav-name">DavProtocolEditDocument</span> 
@@ -1423,7 +1423,37 @@ ITHit.WebDAV.Client.DocManager.EditDocument(sDocumentUrl, sMountPoint, fProtocol
                         
                     
                 
-                <span class="optional">v3 Beta and later only.</span> Command to use when opening the document. Supported options are:<ul><li> <code>null</code> - Chooses an appropriate verb to open a document in the associated application.<li> <code>'Edit'</code> - Opens a document for editing.<li> <code>'Open'</code> - Opens a document in the associated application. Not applicable for some applications.<li> <code>'OpenWith'</code> - Show system 'Open With' dialog to select application to be used to open a document. This option is supported on Windows only.<li> <code>'Print'</code> - Prints a document. The application that prints a document is running in a minimized state and automatically closes if printing is successful. If printing fails, the application remains open. To print multiple documents, pass a list of documents as a first parameter. This option is supported on Windows only.</ul>Default is <code>null</code>.</td>
+                <span class="optional">v3 Beta and later only.</span> Command to use when opening the document. Supported options are:</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>bDriveVisible</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <span class="optional">v6.1 and later only.</span> Specifies whether the mounted drive is visible in Windows Explorer. Set to <code>false</code> to hide the drive. Default is <code>false</code>.<ul><li> <code>null</code> - Chooses an appropriate verb to open a document in the associated application.<li> <code>'Edit'</code> - Opens a document for editing.<li> <code>'Open'</code> - Opens a document in the associated application. Not applicable for some applications.<li> <code>'OpenWith'</code> - Show system 'Open With' dialog to select application to be used to open a document. This option is supported on Windows only.<li> <code>'Print'</code> - Prints a document. The application that prints a document is running in a minimized state and automatically closes if printing is successful. If printing fails, the application remains open. To print multiple documents, pass a list of documents as a first parameter. This option is supported on Windows only.</ul>Default is <code>null</code>.</td>
         </tr>
 	
 	
