@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------
-// IT Hit WebDAV Ajax Library v6.2.8934.0
+// IT Hit WebDAV Ajax Library v6.2.8935.0
 // Copyright © 2020 IT Hit LTD. All rights reserved.
 // License: https://www.webdavsystem.com/ajax/
 // -----------------------------------------------------------------------

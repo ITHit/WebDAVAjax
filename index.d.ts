@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------
-// IT Hit WebDAV Ajax Library v6.2.8934.0
+// IT Hit WebDAV Ajax Library v6.2.8935.0
 // Copyright © 2020 IT Hit LTD. All rights reserved.
 // License: https://www.webdavsystem.com/ajax/
 // -----------------------------------------------------------------------
@@ -1755,16 +1755,19 @@ export namespace ITHit{
              *
              *     // Adds session key to remote storage URI.
              *     var afterMapPathFunc = function(remoteUri) {     
-             *         var sMountUrl = 'http://localhost:87654/session/123456789';
-             *         
-             *         var match = sMountUrl.match(/^(https?:\/\/[^\/]+)(\/session\/[^\/]+)(\/.*)?$/i);
+             *         // Extract origin (protocol + host)
+             *         var match = remoteUri.match(/^(https?:\/\/[^\/]+)(\/.*)?$/i);
              *         if (!match) return remoteUri;
-             *
+             * 
              *         var origin = match[1];
-             *         var sessionWithId = match[2];
-             *         if (remoteUri.indexOf(origin) !== 0) return remoteUri;
-             *
-             *         return origin + sessionWithId + remoteUri.substring(origin.length);
+             *         var path = match[2] || "/";
+             * 
+             *         // If your real-life application you will generate session key with your server-side rendering:
+             *         // var sessionKey = '/session/<%= Session.SessionID %>';    
+             *         var sessionKey = '/session/1234567'; // replace with your dynamic logic
+             * 
+             *         // Return new URL with session inserted
+             *         return origin + sessionKey + path;
              *     };
              *
              *     // Removes session key from local path. 
@@ -1782,7 +1785,7 @@ export namespace ITHit{
 			 *             '.AspNet.ApplicationCookie',              // Cookie(s) to copy.
 			 *             '/Account/Login',                         // URL to navigate to if any cookie from the list is not found.
 			 *             'Edit',                                   // Command to execute: 'Edit', 'OpenWith', 'Print'
-			 *             false,                                    // DriveVisible
+			 *             false,                                    // Hide drive in OS file manager.
              *             afterMapPathFunc,                        // Function to modify remote URI after mapping
              *             afterReverseMapPathFunc                  // Function to modify path after reverse mapping
 			 *         );
@@ -1823,8 +1826,8 @@ export namespace ITHit{
              * </ul>
              * Default is <code>null</code>.  
              * @param {boolean}  [bDriveVisible] <span class="optional">v6.1 and later only.</span> Specifies whether the mounted drive is visible in Windows Explorer. Set to <code>false</code> to hide the drive. Default is <code>false</code>.
-             * @param {function} [fAfterMapPathFunc] JavaScript function called after local path is mapped into remote storage URI. In this function you can modify the remote storage URI. For example you can add your session key to the URI, to support URL-authentication. Default is <code>null</code>.
-             * @param {function} [fAfterReverseMapPathFunc] JavaScript function called after remote storage URI is mapped into local path. In this function you can modify the local path. For example, remove your session key, so it does not being present in your file system as a folder. Default is <code>null</code>.           
+             * @param {function} [fAfterMapPathFunc] <span class="optional">v6.2 and later only.</span> JavaScript function called after local path is mapped into remote storage URI. In this function you can modify the remote storage URI. For example you can add your session key to the URI, to support URL-authentication. Default is <code>null</code>.
+             * @param {function} [fAfterReverseMapPathFunc] <span class="optional">v6.2 and later only.</span> JavaScript function called after remote storage URI is mapped into local path. In this function you can modify the local path. For example, remove your session key, so it does not being present in your file system as a folder. Default is <code>null</code>.           
 			 */ 
  function DavProtocolEditDocument(sDocumentUrls: string | string[], sMountUrl?: string | null, errorCallback?: Function | null, reserved?: string | null, sSearchIn?: string | null, sCookieNames?: string | null, sLoginUrl?: string | null, sCommand?: string | null, bDriveVisible?: boolean | null, fAfterMapPathFunc?: Function | null, fAfterReverseMapPathFunc?: Function | null): void; 
  /**
@@ -1890,9 +1893,9 @@ export namespace ITHit{
              * <li> <code>'Print'</code> - Prints a document. The application that prints a document is running in a minimized state and automatically closes if printing is successful. If printing fails, the application remains open. To print multiple documents, pass a list of documents as a first parameter. This option is supported on Windows only.
              * </ul>
              * Default is <code>null</code>.  
-             * @param {boolean} [bDriveVisible] <span class="optional">v6.1 and later only.</span> Specifies whether the mounted drive is visible in Windows Explorer. Set to <code>false</code> to hide the drive. Default is <code>false</code>.
-             * @param {function} [fAfterMapPathFunc] JavaScript function that modifies remote URI after mapping. Parameter: remoteUri. Default is <code>null</code>.
-             * @param {function} [fAfterReverseMapPathFunc] JavaScript function that modifies path after reverse mapping. Parameter: path. Default is <code>null</code>.
+             * @param {boolean}  [bDriveVisible] <span class="optional">v6.1 and later only.</span> Specifies whether the mounted drive is visible in Windows Explorer. Set to <code>false</code> to hide the drive. Default is <code>false</code>.
+             * @param {function} [fAfterMapPathFunc] <span class="optional">v6.2 and later only.</span> JavaScript function that modifies remote URI after mapping. Parameter: remoteUri. Default is <code>null</code>.
+             * @param {function} [fAfterReverseMapPathFunc] <span class="optional">v6.2 and later only.</span> JavaScript function that modifies path after reverse mapping. Parameter: path. Default is <code>null</code>.
              */ 
  function DavProtocolOpenFolderInOsFileManager(sFolderUrl: string, sMountUrl?: string | null, errorCallback?: Function | null, reserved?: string | null, sSearchIn?: string | null, sCookieNames?: string | null, sLoginUrl?: string | null, sCommand?: string | null, bDriveVisible?: boolean | null, fAfterMapPathFunc?: Function | null, fAfterReverseMapPathFunc?: Function | null): void; 
  }class DocManager  { 
